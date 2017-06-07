@@ -1,20 +1,18 @@
 import React, {Component} from 'react';
-// import './component.sass';
 import {connect} from 'react-redux'
-import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
 import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
 
-import {publisherResultsListRequest, publisherResultsListSuccess} from '../../../actions/PublisherResultsList/actions'
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../actions/FieldResultsList/actions'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../actions/CountryResultsList/actions'
+import {publisherResultsListRequest, publisherResultsListSuccess} from '../../../constants/actions/PublisherResultsList/actions'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList/actions'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList/actions'
 
-import {globalError} from '../../../actions/GlobalMessages/actions'
+import {globalError} from '../../../constants/actions/GlobalMessages/actions'
 import DummyPublisherResultsList from '../../Views/PublisherResultsList/component.js'
 import {
         TYPE_FIELD,
         TYPE_PUBLISHER,
         TYPE_COUNTRY
-} from '../../../store/storeTypes'
+} from '../../../constants/action-types/store'
 
 function mapStateToProps(store) {
     return {resultsList: store.get('ResultsList')}

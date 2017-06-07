@@ -12,7 +12,7 @@ import {
     TYPE_COUNTRY,
     TYPE_PUBLISHER,
     // TYPE_INSTITUTION_FIELD
-} from '../../../store/storeTypes'
+} from '../../../constants/action-types/store'
 
 const listType = {
   TYPE_TITLE:'Titles',

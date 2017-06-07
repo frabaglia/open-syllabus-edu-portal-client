@@ -1,22 +1,20 @@
 import React, {Component} from 'react';
-// import './component.sass';
 import {connect} from 'react-redux'
-// import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
 import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
 
-import {authorResultsListRequest, authorResultsListSuccess} from '../../../actions/AuthorResultsList/actions'
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../actions/FieldResultsList/actions'
-import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../actions/InstitutionResultsList/actions'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../actions/CountryResultsList/actions'
+import {authorResultsListRequest, authorResultsListSuccess} from '../../../constants/actions/AuthorResultsList/actions'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList/actions'
+import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../constants/actions/InstitutionResultsList/actions'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList/actions'
 
-import {globalError} from '../../../actions/GlobalMessages/actions'
+import {globalError} from '../../../constants/actions/GlobalMessages/actions'
 import DummyAuthorResultsList from '../../Views/AuthorResultsList/component.js'
 import {
         TYPE_AUTHOR,
         TYPE_FIELD,
         TYPE_INSTITUTION,
         TYPE_COUNTRY
- } from '../../../store/storeTypes'
+ } from '../../../constants/action-types/store'
 
 function mapStateToProps(store) {
     return {resultsList: store.get('ResultsList')}

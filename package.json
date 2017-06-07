@@ -1,6 +1,6 @@
 {
-  "name": "osp-react",
-  "version": "0.1.0",
+  "name": "open-syllabus-edu-portal",
+  "version": "0.0.1",
   "private": true,
   "devDependencies": {
     "autoprefixer": "6.5.1",

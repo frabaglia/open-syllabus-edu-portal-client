@@ -13,7 +13,7 @@ import {
     TYPE_COUNTRY,
     TYPE_PUBLISHER,
     // TYPE_INSTITUTION_FIELD
-} from '../../../store/storeTypes'
+} from '../../../constants/action-types/store'
 
 import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
 import {
@@ -30,8 +30,8 @@ import {
   mostFrecuentCountrySuccess,
   mostFrecuentPublisherRequest,
   mostFrecuentPublisherSuccess,
-} from '../../../actions/Landing/actions'
-import {resultsListError} from '../../../actions/GlobalMessages/actions'
+} from '../../../constants/actions/Landing/actions'
+import {resultsListError} from '../../../constants/actions/GlobalMessages/actions'
 
 function mapStateToProps(store) {
     return {landing: store.get('Landing')}

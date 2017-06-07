@@ -12,7 +12,7 @@ import {
     TYPE_PUBLISHER,
     TYPE_INSTITUTION_FIELD
 
-} from '../../store/storeTypes'
+} from '../../constants/action-types/store'
 
 import {
     MOST_FRECUENT_TYPE_UPDATE,
@@ -34,7 +34,7 @@ import {
     MOST_FRECUENT_INSTITUTION_SUCCESS,
     MOST_FRECUENT_COUNTRY_SUCCESS,
     MOST_FRECUENT_PUBLISHER_SUCCESS
-} from '../../actions/Landing/actions'
+} from '../../constants/actions/Landing/actions'
 
 import {
     isStoredDataUpToDate

@@ -1,20 +1,18 @@
 import React, {Component} from 'react';
-// import './component.sass';
 import {connect} from 'react-redux'
-import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
 import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
 
-import {fieldResultRequest, fieldResultSuccess} from '../../../actions/FieldResult/actions'
+import {fieldResultRequest, fieldResultSuccess} from '../../../constants/actions/FieldResult/actions'
 
 
-import {resultsListError} from '../../../actions/GlobalMessages/actions'
+import {resultsListError} from '../../../constants/actions/GlobalMessages/actions'
 import DummyFieldResult from '../../Views/FieldResult/component.js'
 import {  TYPE_TITLE,
           TYPE_AUTHOR,
           TYPE_FIELD,
           TYPE_INSTITUTION,
           TYPE_COUNTRY
-        } from '../../../store/storeTypes'
+        } from '../../../constants/action-types/store'
 
 function mapStateToProps(store) {
     return {resultsList: store.get('ResultsList')}
