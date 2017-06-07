@@ -1,8 +1,8 @@
-# Open Syllabus Project : React + Redux client
+# Open Syllabus Edu Portal
 
 #### [explorer.opensyllabusproject.org](http://explorer.opensyllabusproject.org)
 
-New UI for Open Syllabus Project explorer on React + Redux stack based on [create-react-app](https://github.com/facebookincubator/create-react-app). For the original project: https://github.com/davidmcclure/open-syllabus-project
+Open Syllabus Edu Portal web client based on React and Redux.
 
 ## How do OSP get the data?
 
