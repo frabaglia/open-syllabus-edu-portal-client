@@ -1,0 +1,59 @@
+.navbar-dropbtn
+  color: white
+  cursor: pointer
+  width: 134px
+  height: 34px
+  line-height: 34px
+  text-align: left
+  padding: 0 15px
+  display: flex
+  svg
+    height: 12px
+    width: 10px
+    margin-left: auto
+    align-self: center
+
+.navbar-dropdown-open
+  border-top-right-radius: 5px !important
+  border-top-left-radius: 5px !important
+  border-bottom-left-radius: 0 !important
+  border-bottom-right-radius: 0 !important
+
+.navbar-dropdown
+  background-color: #9BD331
+  position: relative
+  display: inline-block
+  border-radius: 5px
+  .navbar-dropdown-content
+    border-radius: 5px
+    display: none
+    position: absolute
+    width: 134px
+    background-color: #9BD331
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+    z-index: 10
+    a
+      color: #FFFFFF
+      padding: 0 15px
+      height: 34px
+      line-height: 34px
+      text-decoration: none
+      display: block
+      &:hover
+        span
+          border-bottom: 1px solid #FFFFFF
+
+.navbar-dropdown-content-open
+  border-top-right-radius: 0 !important
+  border-top-left-radius: 0 !important
+  border-bottom-left-radius: 5px !important
+  border-bottom-right-radius: 5px !important
+
+.arrow-down
+  position: absolute
+  right: 15px
+  top: 13px
+
+
+.navbar-show
+  display: block !important

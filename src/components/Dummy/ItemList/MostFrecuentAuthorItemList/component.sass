@@ -1,0 +1,55 @@
+.most-frecuent-author-item
+  width: 100%
+  display: flex
+  justify-content: center
+  div
+    display: inline-block
+    font-size: 1em
+    line-height: 1em
+    text-align: center
+    min-width: 40px
+  .rank
+    width: 10%
+    color: #3188D3
+    align-self: center
+  .author
+    width: 90%
+    text-align: left
+    display: flex
+    a
+      display: flex
+      text-decoration: none
+      color: #405063
+    img
+      align-self: center
+      width: 2.5em
+      height: auto
+    p
+      margin: 0 0 0 0.1em
+      align-self: center
+
+
+@media (min-width: 320px)
+  .most-frecuent-author-item
+      .author
+        p
+          margin: 0 0 0 0.5em
+
+@media (min-width: 500px)
+  .most-frecuent-author-item
+    div
+      font-size: 1.1em
+      line-height: 1.1em
+
+@media (min-width: 600px)
+  .most-frecuent-author-item
+    .author
+      img
+        width: 3em
+        height: auto
+
+@media (min-width: 800px)
+  .most-frecuent-author-item
+    .author
+      p
+        margin: 0 0 0 1em

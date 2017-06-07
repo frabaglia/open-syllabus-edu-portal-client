@@ -1,0 +1,65 @@
+.country-item
+  width: 100%
+  display: flex
+  justify-content: center
+  div
+    display: inline-block
+    font-size: 0.9em
+    line-height: 0.9em
+    text-align: center
+    min-width: 40px
+  .rank
+    width: 10%
+    color: #3188D3
+    align-self: center
+  .country
+    width: 60%
+    text-align: left
+    display: flex
+    img
+      align-self: center
+      width: 2em
+      height: auto
+    p
+      margin: 0 0 0 0.1em
+      align-self: center
+  .syllabi
+    width: 15%
+    align-self: center
+    min-width: 80px
+  .schools
+    width: 15%
+    align-self: center
+    min-width: 80px
+
+@media (min-width: 320px)
+  .country-item
+      .country
+        p
+          margin: 0 0 0 0.5em
+
+@media (min-width: 414px)
+  .country-item
+    div
+      font-size: 1em
+      line-height: 1em
+
+
+@media (min-width: 500px)
+  .country-item
+    div
+      font-size: 1.1em
+      line-height: 1.1em
+
+@media (min-width: 600px)
+  .country-item
+    .country
+      img
+        width: 3em
+        height: auto
+
+@media (min-width: 800px)
+  .country-item
+    .country
+      p
+        margin: 0 0 0 1em

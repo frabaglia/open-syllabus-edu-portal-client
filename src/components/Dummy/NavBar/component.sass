@@ -1,0 +1,117 @@
+.navbar
+  width: 100%
+  height: 40px
+  position: relative
+  z-index: 10
+  .syllabus-logo
+    float: left
+  .btndropdown
+    display: inline-block
+    float: left
+    margin: 3px 0 0 20px
+  ul
+    list-style-type: none
+    /*text-align: center*/
+    display: inline-block
+    float: left
+    margin-right: 29px
+    li
+      display: inline
+      text-align: center
+      line-height: 40px
+      margin-left: 25px
+      a
+        text-decoration: none
+        color: #FFFFFF
+        &:hover
+          color: #9BD331
+  .menu
+    position: absolute
+    right: 0
+  .btnmenu-open
+    display: none
+
+
+.social
+  margin-top: 2px
+  float: right
+  a
+    &:nth-child(2n)
+      margin: 0 10px
+
+.btnmenu-close
+  display: none
+  position: absolute
+  top: 10px
+  right: 10px
+  z-index: 10
+
+.home-active
+  a
+    color: #9BD331 !important
+
+
+@media (max-width: 1138px)
+  .navbar
+    .menu
+      background-color: #FFFFFF
+      display: inline-block
+      z-index: 10
+      border-radius: 5px
+      top: -1.2em
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+      .menu-content
+        display: none
+      .btnmenu-open
+        display: inline-block
+        position: absolute
+        top: 18px
+        right: 0px
+        z-index: 10
+        height: 40px
+
+
+  .menu-content-mobile
+    display: inline-block
+    width: 100%
+    max-width: 400px
+    height: 363px
+    padding-left: 4em
+    ul
+      margin: 5rem 0 3rem 0
+      display: inline-block
+      li
+        width: 100%
+        margin: 0
+        text-align: left
+        line-height: 2.6em
+        display: inline-block
+        a
+          text-decoration: none
+          color: #A9B4C0
+          &:hover
+            color: #9BD331
+    .social
+      width: 100%
+      svg
+        &:nth-child(2n)
+          margin: 0 10px
+
+  .btnmenu-close
+    display: inline-block
+
+@media (max-width: 455px)
+  .navbar
+    .syllabus-logo
+      width: 100%
+    .btndropdown
+      width: 100%
+      text-align: center
+      margin: 2.5rem 0 0 0
+
+@media (max-width : 414px)
+  .navbar
+    .syllabus-logo
+      svg
+        width: 159px
+        height: 36px

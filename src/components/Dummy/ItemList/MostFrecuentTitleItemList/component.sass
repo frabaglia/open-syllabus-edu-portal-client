@@ -1,0 +1,48 @@
+.most-frecuent-title-item
+  width: 100%
+  display: flex
+  justify-content: center
+  div
+    display: inline-block
+    font-size: 1em
+    line-height: 1em
+    text-align: center
+    min-width: 40px
+  .rank
+    width: 10%
+    color: #3188D3
+    align-self: center
+  .title
+    width: 90%
+    text-align: left
+    p
+      margin: 0 0 5px 0
+      display: block
+      a
+        color: #405063
+        text-decoration: none
+    span
+      font-size: 0.8em
+      color: #85919F
+      display: block
+      a
+        text-decoration: none
+    .name
+      margin-right: 4px
+      font-style: italic
+      a
+        color: #3188D3
+
+@media (min-width: 320px)
+  .most-frecuent-title-item
+      .title
+        p
+          display: block
+        span
+          display: inline-block
+
+@media (min-width: 500px)
+  .most-frecuent-title-item
+    div
+      font-size: 1.1em
+      line-height: 1.1em
