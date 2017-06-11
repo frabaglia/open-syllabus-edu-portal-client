@@ -1,31 +1,58 @@
 import React, {Component} from 'react';
+// import './component.sass';
 import {connect} from 'react-redux'
+import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
 import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
 
-import {institutionResultRequest, institutionResultSuccess} from '../../../constants/actions/InstitutionResult/actions'
+import {institutionResultRequest, institutionResultSuccess} from '../../../actions/InstitutionResult/actions'
+import $ from "jquery"
 
 
-import {resultsListError} from '../../../constants/actions/GlobalMessages/actions'
+import {globalError} from '../../../actions/GlobalMessages/actions'
 import DummyInstitutionResult from '../../Views/InstitutionResult/component.js'
 import {  TYPE_TITLE,
           TYPE_AUTHOR,
           TYPE_FIELD,
           TYPE_INSTITUTION,
           TYPE_COUNTRY
-        } from '../../../constants/action-types/store'
+        } from '../../../store/storeTypes'
 
 function mapStateToProps(store) {
-    return {resultsList: store.get('ResultsList')}
+    return {result: store.get('Result')}
 
 }
 
 class SmartInstitutionResult extends Component {
 
 
+  constructor (){
+    super();
+    this.state ={
+      typeData: "Normalized"
+    }
+  }
 
-  componentDidMount = () => {
+
+  componentWillMount = () => {
+    this.makeRequest("Normalized")
+  }
+
+  makeRequest = (dataType) =>{
+    if(dataType === "Normalized"){
       let dispatch = this.props.dispatch;
 
+      dispatch(institutionResultRequest())
+
+      let syllabusHTTPServicePromise = syllabusHTTPService.getInstitutionResultNormalized(this.props.location.query.id)
+
+      syllabusHTTPServicePromise.then( (response) => {
+          dispatch(institutionResultSuccess(response.data))
+      }).catch(function(error) {
+          dispatch(globalError(error))
+      })
+    }
+    else {
+      let dispatch = this.props.dispatch;
 
       dispatch(institutionResultRequest())
 
@@ -34,14 +61,23 @@ class SmartInstitutionResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(institutionResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(resultsListError(error))
+          dispatch(globalError(error))
       })
+    }
+  }
+
+  getDataNormalizedOrRAW = (dataType) =>{
+    this.makeRequest(dataType);
+  }
+
+  renderDummyAuthorResult = () =>{
+    return ($.isEmptyObject(this.props.result.getIn([TYPE_INSTITUTION, 'data']).toJS())) ? (<div></div>) : (<DummyInstitutionResult store={this.props.result.getIn([TYPE_INSTITUTION, 'data']).toJS()} router={this.props.router} getDataNormalizedOrRAW={this.getDataNormalizedOrRAW}/>);
   }
 
   render() {
       return (
         <div>
-          <DummyInstitutionResult/>
+          {this.renderDummyAuthorResult()}
         </div>
       )
   }

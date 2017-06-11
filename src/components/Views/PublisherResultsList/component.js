@@ -48,7 +48,7 @@ class DummyPublisherResultsList extends Component {
             title: 'Publishers',
             number: `${this.props.store.length}`
         }
-        const filtersCategory = ['Publishers','Fields','Countries']
+        const filtersCategory = ['Publisher','Field','Country']
         return (
             <div className="result-list-view">
                 <aside className="left-content">
@@ -73,6 +73,7 @@ class DummyPublisherResultsList extends Component {
                   <ContainerList
                     list="publisherList"
                     store={this.props.store}
+                    pagination={this.props.pagination}
                   />
                 </div>
             </div>

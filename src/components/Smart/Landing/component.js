@@ -13,7 +13,7 @@ import {
     TYPE_COUNTRY,
     TYPE_PUBLISHER,
     // TYPE_INSTITUTION_FIELD
-} from '../../../constants/action-types/store'
+} from '../../../store/storeTypes'
 
 import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
 import {
@@ -30,8 +30,8 @@ import {
   mostFrecuentCountrySuccess,
   mostFrecuentPublisherRequest,
   mostFrecuentPublisherSuccess,
-} from '../../../constants/actions/Landing/actions'
-import {resultsListError} from '../../../constants/actions/GlobalMessages/actions'
+} from '../../../actions/Landing/actions'
+import {globalError} from '../../../actions/GlobalMessages/actions'
 
 function mapStateToProps(store) {
     return {landing: store.get('Landing')}
@@ -49,9 +49,10 @@ class SmartLanding extends Component {
 
         syllabusHTTPServicePromise.then( (response) => {
           dispatch(mostFrecuentTypeUpdate(TYPE_TITLE))
-            dispatch(mostFrecuentTitleSuccess(response.data))
+          let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
+            dispatch(mostFrecuentTitleSuccess(hitsConcat))
         }).catch( (error) => {
-            dispatch(resultsListError(error))
+            dispatch(globalError(error))
         })
 
       }
@@ -69,10 +70,11 @@ class SmartLanding extends Component {
         syllabusHTTPServicePromise = syllabusHTTPService.getMostFrecuentTitles()
 
         syllabusHTTPServicePromise.then( (response) => {
-            dispatch(mostFrecuentTitleSuccess(response.data))
+            let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
+            dispatch(mostFrecuentTitleSuccess(hitsConcat))
             dispatch(mostFrecuentTypeUpdate(TYPE_TITLE))
         }).catch( (error) => {
-            dispatch(resultsListError(error))
+            dispatch(globalError(error))
         })
       break;
 
@@ -82,10 +84,11 @@ class SmartLanding extends Component {
         syllabusHTTPServicePromise = syllabusHTTPService.getMostFrecuentAuthors()
 
         syllabusHTTPServicePromise.then( (response) => {
-            dispatch(mostFrecuentAuthorSuccess(response.data))
+            let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
+            dispatch(mostFrecuentAuthorSuccess(hitsConcat))
             dispatch(mostFrecuentTypeUpdate(TYPE_AUTHOR))
         }).catch( (error) => {
-            dispatch(resultsListError(error))
+            dispatch(globalError(error))
         })
       break;
 
@@ -95,10 +98,11 @@ class SmartLanding extends Component {
         syllabusHTTPServicePromise = syllabusHTTPService.getMostFrecuentFields()
 
         syllabusHTTPServicePromise.then( (response) => {
-            dispatch(mostFrecuentFieldSuccess(response.data))
+          let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
+            dispatch(mostFrecuentFieldSuccess(hitsConcat))
             dispatch(mostFrecuentTypeUpdate(TYPE_FIELD))
         }).catch( (error) => {
-            dispatch(resultsListError(error))
+            dispatch(globalError(error))
         })
       break;
 
@@ -108,10 +112,11 @@ class SmartLanding extends Component {
         syllabusHTTPServicePromise = syllabusHTTPService.getMostFrecuentInstitutions()
 
         syllabusHTTPServicePromise.then( (response) => {
-            dispatch(mostFrecuentInstitutionSuccess(response.data))
+          let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
+            dispatch(mostFrecuentInstitutionSuccess(hitsConcat))
             dispatch(mostFrecuentTypeUpdate(TYPE_INSTITUTION))
         }).catch( (error) => {
-            dispatch(resultsListError(error))
+            dispatch(globalError(error))
         })
       break;
 
@@ -121,10 +126,11 @@ class SmartLanding extends Component {
         syllabusHTTPServicePromise = syllabusHTTPService.getMostFrecuentCountries()
 
         syllabusHTTPServicePromise.then( (response) => {
-            dispatch(mostFrecuentCountrySuccess(response.data))
+          let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
+            dispatch(mostFrecuentCountrySuccess(hitsConcat))
             dispatch(mostFrecuentTypeUpdate(TYPE_COUNTRY))
         }).catch( (error) => {
-            dispatch(resultsListError(error))
+            dispatch(globalError(error))
         })
       break;
 
@@ -134,10 +140,11 @@ class SmartLanding extends Component {
         syllabusHTTPServicePromise = syllabusHTTPService.getMostFrecuentPublishers()
 
         syllabusHTTPServicePromise.then( (response) => {
-            dispatch(mostFrecuentPublisherSuccess(response.data))
+          let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
+            dispatch(mostFrecuentPublisherSuccess(hitsConcat))
             dispatch(mostFrecuentTypeUpdate(TYPE_PUBLISHER))
         }).catch( (error) => {
-            dispatch(resultsListError(error))
+            dispatch(globalError(error))
         })
       break;
 

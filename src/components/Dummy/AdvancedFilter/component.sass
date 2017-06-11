@@ -39,22 +39,11 @@
       padding: 0 0 1em 0
       border-bottom: 2px solid #F4F5F9
       margin: 1em 0 0 0
-      &:hover
-        .check
-          border: 2px solid #F2D86A
       input
         margin: 0
         &[type=radio]
           position: absolute
           visibility: hidden
-          &:checked
-            &~
-              .check
-                border: 2px solid #F2D86A
-                &::before
-                  background: #F2D86A
-              label
-                color: #F2D86A
       label
         display: flex
         margin: 0
@@ -62,31 +51,10 @@
         margin-left: 2.5em
         svg
           margin-left: 1rem
-      .check
-        margin: 0
-        display: block
+      .svg
         position: absolute
-        border: 2px solid #E8E8E8
-        border-radius: 100%
-        height: 1.4em
-        width: 1.4em
-        z-index: 5
-        top: 0
-        left: 0
-        transition: border .25s linear
-        -webkit-transition: border .25s linear
-        &::before
-          display: block
-          position: absolute
-          content: ''
-          border-radius: 0.45em
-          height: 0.9em
-          width: 0.9em
-          margin: auto
-          top: 2px
-          left: 1.5px
-          transition: background 0.25 linear
-          -webkit-transition: background 0.25 linear
+        top: 4.5px
+        left: 3px
   .filter-date-range-classes
     padding: 1em 0
     border-bottom: 2px solid #F4F5F9

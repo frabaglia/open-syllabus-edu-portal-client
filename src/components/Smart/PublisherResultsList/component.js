@@ -1,18 +1,20 @@
 import React, {Component} from 'react';
+// import './component.sass';
 import {connect} from 'react-redux'
+import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
 import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
 
-import {publisherResultsListRequest, publisherResultsListSuccess} from '../../../constants/actions/PublisherResultsList/actions'
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList/actions'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList/actions'
+import {publisherResultsListRequest, publisherResultsListSuccess} from '../../../actions/PublisherResultsList/actions'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../actions/FieldResultsList/actions'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../actions/CountryResultsList/actions'
 
-import {globalError} from '../../../constants/actions/GlobalMessages/actions'
+import {globalError} from '../../../actions/GlobalMessages/actions'
 import DummyPublisherResultsList from '../../Views/PublisherResultsList/component.js'
 import {
         TYPE_FIELD,
         TYPE_PUBLISHER,
         TYPE_COUNTRY
-} from '../../../constants/action-types/store'
+} from '../../../store/storeTypes'
 
 function mapStateToProps(store) {
     return {resultsList: store.get('ResultsList')}
@@ -24,13 +26,14 @@ class SmartPublisherResultList extends Component {
   constructor(){
     super();
     this.state = {
-      currentCategory: 'Publishers',
-      category: 'Publishers',
+      currentCategory: 'Publisher',
+      category: 'Publisher',
       oldString: '',
       currentString: '',
       timerId: '',
       currentParamList:[],
-      currentParamsQuery:[]
+      currentParamsQuery:[],
+      pagination: 1
     }
   }
 
@@ -39,7 +42,7 @@ class SmartPublisherResultList extends Component {
 
       dispatch(publisherResultsListRequest())
 
-      var syllabusHTTPServicePromise = syllabusHTTPService.getPublisherResultsList({page:[1]})
+      var syllabusHTTPServicePromise = syllabusHTTPService.getPublisherResultsList({page:[this.state.pagination]})
 
       syllabusHTTPServicePromise.then( (response) => {
         let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
@@ -69,8 +72,8 @@ class SmartPublisherResultList extends Component {
     let paramQuery;
     if(paramsList.length) paramQuery = paramsList
     else paramQuery = [];
-    this.setState({currentParamsQuery:paramQuery, currentParamList:[]},
-      () => this.makeRequest('Publishers')
+    this.setState({currentParamsQuery:paramQuery, currentParamList:[], pagination:1},
+      () => this.makeRequest('Publisher')
     )
   }
 
@@ -86,21 +89,22 @@ class SmartPublisherResultList extends Component {
 
   makeRequest = (type) => {
     //En esta etapa el usuario hizo click en search o apreto enter, tenemos disponible el string y categoria que tenemos actualmente en el state. Deberiamos agregar la logica de request a partir de ahora
-    if(this.state.currentString !== '' || type === "Publishers"){
+    if(this.state.currentString !== '' || type === "Publisher"){
 
     let category = (type) ? type : this.state.currentCategory
 
     let syllabusHTTPServicePromise,
         dispatch = this.props.dispatch,
-        string = (type !== "Publishers" || this.state.currentCategory !== "Publishers") ? [] : [this.state.currentString];
+        string = (type !== "Publisher" || this.state.currentCategory !== "Publisher") ? [] : [this.state.currentString];
 
       switch (category) {
-        case 'Publishers':
+        case 'Publisher':
         dispatch(publisherResultsListRequest())
         syllabusHTTPServicePromise = syllabusHTTPService.getPublisherResultsList({
+          page:[this.state.pagination],
           query: string,
-          field:this.createQuery('Fields'),
-          country: this.createQuery('Countries'),
+          field:this.createQuery('Field'),
+          country: this.createQuery('Country'),
           pub_year_start: this.createQuery('pub_year_start'),
           pub_year_end: this.createQuery('pub_year_end'),
           class_year_start: this.createQuery('class_year_start'),
@@ -115,7 +119,7 @@ class SmartPublisherResultList extends Component {
         })
         break;
 
-        case 'Fields':
+        case 'Field':
           dispatch(fieldResultsListRequest());
           syllabusHTTPServicePromise = syllabusHTTPService.getFieldResultsList({query: [this.state.currentString]})
 
@@ -128,7 +132,7 @@ class SmartPublisherResultList extends Component {
           this.setState({currentParamList:this.props.resultsList.getIn([TYPE_FIELD, 'data']).toJS()})
           break;
 
-        case 'Countries':
+        case 'Country':
         dispatch(countryResultsListRequest());
         syllabusHTTPServicePromise = syllabusHTTPService.getCountryResultsList({query: [this.state.currentString]})
 
@@ -152,11 +156,11 @@ class SmartPublisherResultList extends Component {
     }
   }
 
+  pagination = () => this.setState({pagination:this.state.pagination+1}, () => this.makeRequest("Publisher"))
+
   componentWillUnmount = () =>{
     clearInterval(this.state.timerId);
   }
-
-
 
   render() {
       return (
@@ -168,6 +172,7 @@ class SmartPublisherResultList extends Component {
             makeSearch={this.makeRequest} store={this.props.resultsList.getIn([TYPE_PUBLISHER, 'data']).toJS()}
             currentParamData={this.state.currentParamList}
             currentParamsQuery={this.getCurrentParamsQuery}
+            pagination={this.pagination}
           />
         </div>
       )

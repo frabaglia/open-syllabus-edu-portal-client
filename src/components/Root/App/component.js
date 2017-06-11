@@ -29,8 +29,10 @@ import SmartTitleResult from '../../Smart/TitleResult/component.js'
 import SmartAuthorResult from '../../Smart/AuthorResult/component.js'
 import SmartFieldResult from '../../Smart/FieldResult/component.js'
 import SmartPublisherResult from '../../Smart/PublisherResult/component.js'
+import SmartCountryResult from '../../Smart/CountryResult/component.js'
 import SmartInstitutionResult from '../../Smart/InstitutionResult/component.js'
 import SmartInstitutionFieldResult from '../../Smart/InstitutionFieldResult/component.js'
+import SmartCountryFieldResult from '../../Smart/CountryFieldResult/component.js'
 
 //-----------------------------END SMART RESULT LIST-----------------------------------
 
@@ -101,8 +103,10 @@ class App extends Component {
                             <Route path="author" component={SmartAuthorResult}/>
                             <Route path="field" component={SmartFieldResult}/>
                             <Route path="school" component={SmartInstitutionResult}/>
+                            <Route path="country" component={SmartCountryResult}/>
                             <Route path="publisher" component={SmartPublisherResult}/>
                             <Route path="school-field" component={SmartInstitutionFieldResult}/>
+                            <Route path="country-field" component={SmartCountryFieldResult}/>
                         </Route>
                         <Route path="results-list" component={ResultsListContainer}>
                             <Route path="title" component={SmartTitleResultsList}/>

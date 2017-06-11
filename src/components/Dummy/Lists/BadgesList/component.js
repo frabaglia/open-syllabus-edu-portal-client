@@ -10,7 +10,17 @@ class BadgesList  extends Component {
   {
     let badgeList = []
     this.props.store.map( (badge, i) =>{
-      badgeList.push( <ButtonBadge key={i} title={badge.title} count={badge.count} type={this.props.type}/>)
+      badgeList.push(
+        <ButtonBadge
+          key={i}
+          title={badge.name}
+          count={badge.syllabus_count}
+          type={this.props.type}
+          router={this.props.router}
+          id_field={badge._id}
+          id_institution={this.props.id_institution}
+          id_country={this.props.id_country}
+        />)
     })
     return badgeList;
   }
@@ -18,7 +28,7 @@ class BadgesList  extends Component {
       return (
         <div className="badges-list">
           <p>
-            Appearances by field
+            Syllabi by field
           </p>
           <div className="badges">
             {this.renderBadges()}

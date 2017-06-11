@@ -6,7 +6,7 @@ import ArrowDown from '../SVG/ArrowDown/component.js'
 import FilterIcon from '../SVG/FilterIcon/component.js'
 import ButtonFilterDropdown from '../Buttons/ButtonFilterDropdown/component.js'
 import OpenAccessIcon from '../SVG/OpenAccessIcon/component.js'
-import CloseAccessIcon from '../SVG/CloseAccessIcon/component.js'
+import CheckBoxFilter from '../SVG/CheckBoxFilter/component.js'
 import {data} from '../../../utils/Data/component.js'
 
 
@@ -100,8 +100,9 @@ class AdvancedFilter extends Component {
 
     optionsCheck = (e) =>
     {
-
-      switch (e.target.value) {
+      let value = e;
+      if(e.target !== undefined) value = e.target.value;
+      switch (value) {
         case '50years':
           if(this.state.radio50Years) $(e.target).prop('checked',false)
           else $(e.target).prop('checked',true)
@@ -280,8 +281,13 @@ class AdvancedFilter extends Component {
       }
     }
 
-    renderAccessIcon = () =>{
-      return (this.state.radioOpenAccess) ? (<OpenAccessIcon/>) : (<CloseAccessIcon/>)
+    changeBackgroundColorInnerCircle = (checkbox) =>{
+      return (this.state[`${checkbox}`]) ? "#F2D86A" : "#FFFFFF";
+    }
+
+    chengeStateOfCheckBox = (checkbox) =>{
+      console.log('apretando', checkbox);
+      this.optionsCheck(checkbox)
     }
 
     render() {
@@ -305,19 +311,37 @@ class AdvancedFilter extends Component {
             <div ref="content" className="advanced-filter-content close">
               <div className="filter-published-years">
                 <div>
+                  <aside className="svg">
+                    <CheckBoxFilter
+                      backgroundColorInnerCircle={this.changeBackgroundColorInnerCircle("radio50Years")}
+                      click={this.chengeStateOfCheckBox}
+                      name={"50years"}
+                    />
+                  </aside>
                   <input type="radio" name="filterYears" id="filter50" value="50years" onClick={this.optionsCheck}/>
                   <label htmlFor="filter50">Published in the last 50 years</label>
-                  <div className="check"></div>
                 </div>
                 <div>
+                  <aside className="svg">
+                    <CheckBoxFilter
+                      backgroundColorInnerCircle={this.changeBackgroundColorInnerCircle("radio10Years")}
+                      click={this.chengeStateOfCheckBox}
+                      name={"10years"}
+                    />
+                  </aside>
                   <input type="radio" name="filterYears" id="filter10" value="10years" onClick={this.optionsCheck}/>
                   <label htmlFor="filter10">Published in the last 10 yearss</label>
-                  <div className="check"></div>
                 </div>
                 <div ref="filterOpenAccess">
+                  <aside className="svg">
+                    <CheckBoxFilter
+                      backgroundColorInnerCircle={this.changeBackgroundColorInnerCircle("radioOpenAccess")}
+                      click={this.chengeStateOfCheckBox}
+                      name={"openAccess"}
+                    />
+                  </aside>
                   <input type="radio" name="filterOpenAcess" id="openAccess" value="openAccess" onClick={this.optionsCheck}/>
-                  <label htmlFor="openAccess">Open Access Resources {this.renderAccessIcon()}</label>
-                  <div className="check"></div>
+                  <label htmlFor="openAccess">Open Access Resources <OpenAccessIcon/></label>
                 </div>
               </div>
               <div className="filter-date-range-classes">

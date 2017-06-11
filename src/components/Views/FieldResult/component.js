@@ -10,6 +10,7 @@ import BarChart from '../../Dummy/BarChart/component.js'
 
 class DummyFieldResult extends Component {
     render() {
+      let store= this.props.store;
         return (
           <div className="result-view">
               <div className="result-view-content">
@@ -20,21 +21,38 @@ class DummyFieldResult extends Component {
                 </div>
                 <div className="left-content">
                   <p className="title-view">
-                    English
+                    {store.name}
                   </p>
                   <div className="top-ranked">
                     <div>
 
                     </div>
-                    <ContainerTopRankedList/>
+                    <ContainerTopRankedList
+                      store={store.top_ranked}
+                      navigation={true}
+                      defaultListType={"TITLES"}
+                      listTypes={["TITLES","AUTHORS"]}
+                    />
                   </div>
                 </div>
 
                 <aside className="right-content">
                   <div className="field-container-map">
-                    <Map/>
+                    <Map
+                      title={'Syllaby Map'}
+                      lat={store.country_map.initialPosition.lat}
+                      lng={store.country_map.initialPosition.lng}
+                      zoom={store.country_map.initialPosition.zoom}
+                      store={store.country_map.data}
+                    />
                   </div>
-                  <BarChart title={"Top Titles by Year"} legend={false}/>
+                  <BarChart
+                    title={"Top Titles by Year"}
+                    legend={false}
+                    store={store.top_titles_by_year.data}
+                    isNormalizable={true}
+                    getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
+                  />
                 </aside>
               </div>
           </div>

@@ -101,14 +101,14 @@ class Filter extends Component {
   makeItemSelectContent = (field,i) =>
   {
     switch (this.state.selected) {
-      case 'Titles':
+      case 'Title':
         return
         break;
 
-      case 'Authors':
-        let name_first = field.name_first || '',
-            name_middle = field.name_middle || '',
-            name_last = field.name_last || '';
+      case 'Author':
+        let name_first = field.author_first || '',
+            name_middle = field.author_middle || '',
+            name_last = field.author_last || '';
         return (
           <li
             key={i}
@@ -128,7 +128,7 @@ class Filter extends Component {
         )
         break;
 
-      case 'Fields':
+      case 'Field':
         return (
           <li
             key={i}
@@ -148,7 +148,7 @@ class Filter extends Component {
         )
         break;
 
-      case 'Schools':
+      case 'School':
       return (
         <li
           key={i}
@@ -168,7 +168,7 @@ class Filter extends Component {
       )
         break;
 
-      case 'Countries':
+      case 'Country':
         return (
           <li
             key={i}
@@ -187,7 +187,7 @@ class Filter extends Component {
         )
         break;
 
-      case 'Publishers':
+      case 'Publisher':
       return (
         <li
           key={i}
@@ -254,7 +254,9 @@ class Filter extends Component {
 
   }
 
-
+  renderTextPlaceholder = () =>{
+    return (this.state.selected !== 'Author') ? `Add a ${this.state.selected}` : `Add an ${this.state.selected}`
+  }
 
   render() {
       return (
@@ -274,7 +276,7 @@ class Filter extends Component {
               <input
                 ref='inputSearch'
                 type="text"
-                placeholder={`Add Filter to ${this.state.selected} filters...`}
+                placeholder={this.renderTextPlaceholder()}
                 onChange={this.sendString}
                 onKeyPress={this.handleEnter}
                 onFocus={this.renderSelectMenu}

@@ -11,7 +11,7 @@ class ButtonLabel extends Component {
       border: `${this.props.border}`
     }
       return (
-        <div className="btnLabel" style={style}>
+        <div className="btnLabel" style={style} onClick={this.props.click}>
           {this.props.title}
         </div>
       )

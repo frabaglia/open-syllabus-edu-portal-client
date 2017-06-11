@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
+// import './component.sass';
 import {connect} from 'react-redux'
+// import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
 import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
 
-import {authorResultsListRequest, authorResultsListSuccess} from '../../../constants/actions/AuthorResultsList/actions'
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList/actions'
-import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../constants/actions/InstitutionResultsList/actions'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList/actions'
+import {authorResultsListRequest, authorResultsListSuccess} from '../../../actions/AuthorResultsList/actions'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../actions/FieldResultsList/actions'
+import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../actions/InstitutionResultsList/actions'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../actions/CountryResultsList/actions'
 
-import {globalError} from '../../../constants/actions/GlobalMessages/actions'
+import {globalError} from '../../../actions/GlobalMessages/actions'
 import DummyAuthorResultsList from '../../Views/AuthorResultsList/component.js'
 import {
         TYPE_AUTHOR,
         TYPE_FIELD,
         TYPE_INSTITUTION,
         TYPE_COUNTRY
- } from '../../../constants/action-types/store'
+ } from '../../../store/storeTypes'
 
 function mapStateToProps(store) {
     return {resultsList: store.get('ResultsList')}
@@ -26,13 +28,14 @@ class SmartAuthorResultList extends Component {
   constructor(){
     super();
     this.state = {
-      currentCategory: 'Authors',
-      category: 'Authors',
+      currentCategory: 'Author',
+      category: 'Author',
       oldString: '',
       currentString: '',
       timerId: '',
       currentParamList:[],
-      currentParamsQuery:[]
+      currentParamsQuery:[],
+      pagination: 1
     }
   }
 
@@ -41,7 +44,7 @@ class SmartAuthorResultList extends Component {
 
       dispatch(authorResultsListRequest())
 
-      var syllabusHTTPServicePromise = syllabusHTTPService.getAuthorResultsList({page:[1]})
+      var syllabusHTTPServicePromise = syllabusHTTPService.getAuthorResultsList({page:[this.state.pagination]})
 
       syllabusHTTPServicePromise.then( (response) => {
         let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
@@ -69,8 +72,8 @@ class SmartAuthorResultList extends Component {
 
   getCurrentParamsQuery = (paramsList) => {
     console.log('cambio en params');
-    this.setState({currentParamsQuery:paramsList, currentParamList:[]},
-      () => this.makeRequest('Authors')
+    this.setState({currentParamsQuery:paramsList, currentParamList:[], pagination:1},
+      () => this.makeRequest('Author')
     )
   }
 
@@ -86,22 +89,23 @@ class SmartAuthorResultList extends Component {
 
   makeRequest = (type) => {
     //En esta etapa el usuario hizo click en search o apreto enter, tenemos disponible el string y categoria que tenemos actualmente en el state. Deberiamos agregar la logica de request a partir de ahora
-    if(this.state.currentString !== '' || type === "Authors"){
+    if(this.state.currentString !== '' || type === "Author"){
 
     let category = (type) ? type : this.state.currentCategory
 
     let syllabusHTTPServicePromise,
         dispatch = this.props.dispatch,
-        string = (type !== "Authors" || this.state.currentCategory !== "Authors") ? [] : [this.state.currentString];
+        string = (type !== "Author" || this.state.currentCategory !== "Author") ? [] : [this.state.currentString];
 
       switch (category) {
-        case 'Authors':
+        case 'Author':
         dispatch(authorResultsListRequest())
         syllabusHTTPServicePromise = syllabusHTTPService.getAuthorResultsList({
+          page:[this.state.pagination],
           query: string,
-          field:this.createQuery('Fields'),
-          institution: this.createQuery('Schools'),
-          country: this.createQuery('Countries')
+          field:this.createQuery('Field'),
+          institution: this.createQuery('School'),
+          country: this.createQuery('Country')
         })
         syllabusHTTPServicePromise.then( (response) => {
           let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
@@ -111,7 +115,7 @@ class SmartAuthorResultList extends Component {
         })
         break;
 
-        case 'Fields':
+        case 'Field':
           dispatch(fieldResultsListRequest());
           syllabusHTTPServicePromise = syllabusHTTPService.getFieldResultsList({query: [this.state.currentString]})
 
@@ -124,7 +128,7 @@ class SmartAuthorResultList extends Component {
           this.setState({currentParamList:this.props.resultsList.getIn([TYPE_FIELD, 'data']).toJS()})
           break;
 
-        case 'Schools':
+        case 'School':
           dispatch(institutionResultsListRequest());
           syllabusHTTPServicePromise = syllabusHTTPService.getInstitutionResultsList({query: [this.state.currentString]})
 
@@ -137,7 +141,7 @@ class SmartAuthorResultList extends Component {
           this.setState({currentParamList:this.props.resultsList.getIn([TYPE_INSTITUTION, 'data']).toJS()})
           break;
 
-        case 'Countries':
+        case 'Country':
         dispatch(countryResultsListRequest());
         syllabusHTTPServicePromise = syllabusHTTPService.getCountryResultsList({query: [this.state.currentString]})
 
@@ -161,6 +165,8 @@ class SmartAuthorResultList extends Component {
     }
   }
 
+  pagination = () => this.setState({pagination:this.state.pagination+1}, () => this.makeRequest("Author"))
+
   componentWillUnmount = () =>{
     clearInterval(this.state.timerId);
   }
@@ -175,6 +181,7 @@ class SmartAuthorResultList extends Component {
             makeSearch={this.makeRequest} store={this.props.resultsList.getIn([TYPE_AUTHOR, 'data']).toJS()}
             currentParamData={this.state.currentParamList}
             currentParamsQuery={this.getCurrentParamsQuery}
+            pagination={this.pagination}
           />
         </div>
       )

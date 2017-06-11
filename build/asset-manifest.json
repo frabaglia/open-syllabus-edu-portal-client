@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.dc18b387.css",
-  "main.css.map": "static/css/main.dc18b387.css.map",
-  "main.js": "static/js/main.01d8bd69.js",
-  "main.js.map": "static/js/main.01d8bd69.js.map",
+  "main.css": "static/css/main.50108f2c.css",
+  "main.css.map": "static/css/main.50108f2c.css.map",
+  "main.js": "static/js/main.5574993f.js",
+  "main.js.map": "static/js/main.5574993f.js.map",
   "static/media/186081425f588a894cd7876472413453.eot": "static/media/186081425f588a894cd7876472413453.696a92c6.eot",
   "static/media/186081425f588a894cd7876472413453.svg": "static/media/186081425f588a894cd7876472413453.aa959263.svg",
   "static/media/186081425f588a894cd7876472413453.ttf": "static/media/186081425f588a894cd7876472413453.18608142.ttf",
@@ -24,11 +24,6 @@
   "static/media/7ff3a37e1e7b7ffa2fd8845f7351d0bc.woff": "static/media/7ff3a37e1e7b7ffa2fd8845f7351d0bc.596936d4.woff",
   "static/media/7ff3a37e1e7b7ffa2fd8845f7351d0bc.woff2": "static/media/7ff3a37e1e7b7ffa2fd8845f7351d0bc.67896fc4.woff2",
   "static/media/EEUU.svg": "static/media/EEUU.b347789b.svg",
-  "static/media/authors_logo.svg": "static/media/authors_logo.2a0fee6c.svg",
-  "static/media/countries_logo.svg": "static/media/countries_logo.ba1ac419.svg",
-  "static/media/fields_logo.svg": "static/media/fields_logo.29e866fb.svg",
-  "static/media/network_graph.jpg": "static/media/network_graph.9c4bfdca.jpg",
-  "static/media/publishers_logo.svg": "static/media/publishers_logo.0f47f26a.svg",
-  "static/media/schools_logo.svg": "static/media/schools_logo.ad1ae548.svg",
-  "static/media/titles_logo.svg": "static/media/titles_logo.f4054fe4.svg"
+  "static/media/network_graph.jpg": "static/media/network_graph.bb76e6cb.jpg",
+  "static/media/parallax_image.jpg": "static/media/parallax_image.e8f90ae2.jpg"
 }

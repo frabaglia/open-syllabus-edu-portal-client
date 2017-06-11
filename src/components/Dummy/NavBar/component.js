@@ -29,6 +29,15 @@ class NavBar extends Component {
 
     if(this.props.router.location.pathname === '/') this.refs.home.className = 'home-active'
     else this.refs.home.className = ''
+
+      $(window).scroll(() => {
+        this.shrinkMenu();
+        if ($(document).scrollTop() > 50){
+          $('.menu').addClass('shrinkM');
+        } else {
+          $('.menu').removeClass('shrinkM');
+        }
+      });
   }
 
   componentWillReceiveProps = (nextProps) =>{
@@ -48,9 +57,21 @@ class NavBar extends Component {
       }
       else {
         this.refs.menuContent.className = "menu-content";
-        this.refs.btnmenu.className = "btnmenu-open"
+        this.refs.btnmenu.className = "btnmenu-open";
       }
       this.setState({openMenu:open});
+    }
+
+    this.shrinkMenu()
+  }
+
+  shrinkMenu = () =>{
+    if(this.refs.menu.className.includes('shrinkM')) {
+      if(this.refs.menuContent.className === "menu-content-mobile") this.refs.menu.className = "menu shrinkMenu";
+      else this.refs.menu.className = "menu shrinkM";
+    }
+    else {
+      this.refs.menu.className = "menu"
     }
   }
 
@@ -63,7 +84,11 @@ class NavBar extends Component {
 
   buttonDropdown = () =>
   {
-    let buttonDropdown = (this.props.router.location.pathname.includes('/results-list')) ? (<ButtonDropdown reactRouter={this.props.router}/>) : (<div></div>);
+    let buttonDropdown = (this.props.router.location.pathname.includes('/results-list')) ? (
+      <div className="btndropdown">
+        <ButtonDropdown reactRouter={this.props.router}/>
+      </div>
+    ) : (<div></div>);
 
     return buttonDropdown;
   }
@@ -75,8 +100,8 @@ class NavBar extends Component {
           <div className="syllabus-logo">
             <Link to="/"><SVGSyllabusLogo colorOpenSyllabus="#FFFFFF" colorExplorer="#9BD331"/></Link>
           </div>
-          <div className="btndropdown">{this.buttonDropdown()}</div>
-          <div className="menu">
+          {this.buttonDropdown()}
+          <div className="menu" ref="menu">
             <div ref='menuContent' id='menuContent' className="menu-content">
               <ul>
                 <li ref="home" id='menuContent'><Link to="/">Home</Link></li>

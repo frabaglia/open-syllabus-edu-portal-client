@@ -1,5 +1,7 @@
 .container-barchart
   margin: 0
+  .container-header
+    padding: 1.9rem 1.9rem 1.9rem 1.9rem
 
 .wrapper-container-chart
   height: calc(100% - 72px)
@@ -27,19 +29,19 @@
     margin-left: 3rem
 
 .economics
-  background-color: #67AAF9
+  background-color: #FC976D
 
 .literature
-  background-color: #F7A3EB
+  background-color: #DF6161
 
 .history
   background-color: #FBD669
 
 .english
-  background-color: #B76AC4
+  background-color: #85919F
 
 .biology
-  background-color: #B8E986
+  background-color: #B76AC4
 
 .container-header-expand
   box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.2)
@@ -49,10 +51,44 @@
 
 .expand-barchart
   position: fixed
-  z-index: 1000
+  z-index: 20000
   top: 0
   left: 0
   right: 0
   bottom: 0
   border-radius: 0 !important
   margin: 0 !important
+
+.noLanding
+  flex-direction: row
+  .unattributed-label
+    display: none
+  .right-content-expand-button
+    display: none
+  .titleNoLanding
+    align-self: flex-start
+    margin: 0 0 1.9rem 0
+    font-size: 1.3em
+
+.additional-info
+  margin-left: auto
+
+@media (min-width : 643px)
+  .additional-info
+    display: flex
+    margin: 0
+    .unattributed-label
+      display: inline-block
+      margin-right: 2rem
+    div
+      display: inline-block
+    .right-content-expand-button
+      margin-left: auto
+      display: inline-block
+
+  .noLanding
+    flex-direction: column
+    .titleNoLanding
+      align-self: flex-start
+      margin: 0 0 1.9rem 0
+      font-size: 1.3em

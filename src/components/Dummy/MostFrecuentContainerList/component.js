@@ -12,7 +12,7 @@ import {
     TYPE_COUNTRY,
     TYPE_PUBLISHER,
     // TYPE_INSTITUTION_FIELD
-} from '../../../constants/action-types/store'
+} from '../../../store/storeTypes'
 
 const listType = {
   TYPE_TITLE:'Titles',
@@ -68,11 +68,20 @@ class MostFrecuentContainerList extends Component {
     }
   }
 
+  renderTitle = () =>{
+    let listTypeName = this.renderCategoryName(),
+        title;
+    if(listTypeName === 'Titles' || listTypeName === 'Authors' ) title = `Most Frequently Assigned ${listTypeName}`;
+    else title = `Top Represented ${listTypeName}`;
+
+    return title;
+  }
+
   render() {
       return (
         <div className="most-frecuent-container-list">
           <div className="most-frecuent-container-title">
-            <p>{`Most Frequently Taught ${this.renderCategoryName()}`}</p>
+            <p>{this.renderTitle()}</p>
             <ButtonMostFrecuentDropdown
               click={this.setType}
               title={this.renderCategoryName()}

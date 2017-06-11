@@ -5,95 +5,16 @@ import ButtonLabel from '../../Dummy/Buttons/ButtonLabel/component.js'
 import SVGFacebookLogo from '../../Dummy/SVG/FacebookLogo/component.js'
 import SVGTwitterLogo from '../../Dummy/SVG/TwitterLogo/component.js'
 import BadgesList from '../../Dummy/Lists/BadgesList/component.js'
-import MostTaughtTextOverallList from '../../Dummy/Lists/MostTaughtTextOverallList/component.js'
+import MostFrecuentlyAssignedTextList from '../../Dummy/Lists/MostFrecuentlyAssignedTextList/component.js'
 import Map from '../../Dummy/Map/component.js'
 import BarChart from '../../Dummy/BarChart/component.js'
-import image from './Amherst_College.png'
+import images from './Amherst_College.png'
 
 class InstitutionResult extends Component {
+
     render() {
-      const badgetList = [
-        {
-          title: 'English',
-          count: 420
-        },
-        {
-          title: 'Politics',
-          count: 210
-        },
-        {
-          title: 'Architecture',
-          count: 99
-        },
-        {
-          title: 'Philosophy',
-          count: 72
-        },
-        {
-          title: 'unattributed',
-          count: 320
-        },
-        {
-          title: 'English',
-          count: 420
-        },
-        {
-          title: 'Politics',
-          count: 210
-        },
-        {
-          title: 'Architecture',
-          count: 99
-        },
-        {
-          title: 'Philosophy',
-          count: 72
-        },
-        {
-          title: 'unattributed',
-          count: 320
-        },
-        {
-          title: 'English',
-          count: 420
-        },
-        {
-          title: 'Politics',
-          count: 210
-        },
-        {
-          title: 'Architecture',
-          count: 99
-        },
-        {
-          title: 'Philosophy',
-          count: 72
-        },
-        {
-          title: 'unattributed',
-          count: 320
-        },
-        {
-          title: 'English',
-          count: 420
-        },
-        {
-          title: 'Politics',
-          count: 210
-        },
-        {
-          title: 'Architecture',
-          count: 99
-        },
-        {
-          title: 'Philosophy',
-          count: 72
-        },
-        {
-          title: 'unattributed',
-          count: 320
-        },
-      ]
+      let store = this.props.store,
+          image = store.image || images;
         return (
           <div className="result-view">
             <div className="result-view-content">
@@ -104,35 +25,53 @@ class InstitutionResult extends Component {
               </div>
               <div className="left-content">
                 <div className="title-view">
-                  <img src={image} alt="image-author"/>
+                  <img src={image} alt="author"/>
                   <p>
-                    Amherst College
+                    {store.name}
                   </p>
                 </div>
 
                 <p className="description">
-                  Amherst College is a private liberal arts college located in Amherst, Massachusetts, United States. Founded in 1821 as an attempt to relocate Williams College by its president, Zephaniah Swift Moore, Amherst is the third oldest institution of higher education in Massachusetts.[6] The institution was named after the town, which in turn had been named after Lord Jeffery Amherst. Amherst was established as a men's college and became coeducational in 1975.
+                  {store.school_description}
                 </p>
                 <div className="buttons-label">
-                  <ButtonLabel title="435 SYLLABI" backgroundColor="#3188D3" color="#FFFFFF" border=""/>
+                  <ButtonLabel title={`${store.syllabi.total} SYLLABI`} backgroundColor="#3188D3" color="#FFFFFF" border=""/>
                 </div>
                 <div className="badge">
-                  <BadgesList store={badgetList} type={1}/>
+                  <BadgesList
+                    store={store.syllabi.by_field}
+                    type={1}
+                    router={this.props.router}
+                    id_institution={store._id}
+                    id_country={""}
+                  />
                   <p className="legend-badge">
                     <span></span>
                     More than 250 Syllabi, click for more info
                   </p>
                 </div>
                 <div className="most-taught-texts-overall">
-                  <MostTaughtTextOverallList/>
+                  <MostFrecuentlyAssignedTextList store={store.most_frecuently_assigned_texts}/>
                 </div>
               </div>
 
               <aside className="right-content">
                 <div className="institution-container-map">
-                  <Map/>
+                  <Map
+                    title={'Syllaby Map'}
+                    lat={store.country_map.initialPosition.lat}
+                    lng={store.country_map.initialPosition.lng}
+                    zoom={store.country_map.initialPosition.zoom}
+                    store={store.country_map.data}
+                  />
                 </div>
-                <BarChart title={"Top Titles by Year"} legend={false}/>
+                <BarChart
+                  title={"Top Titles by Year"}
+                  legend={false}
+                  store={store.top_fields_by_year.data}
+                  isNormalizable={true}
+                  getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
+                />
               </aside>
             </div>
           </div>

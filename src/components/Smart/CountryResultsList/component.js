@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
+// import './component.sass';
 import {connect} from 'react-redux'
+import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
 import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
 
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList/actions'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList/actions'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../actions/FieldResultsList/actions'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../actions/CountryResultsList/actions'
 
-import {globalError} from '../../../constants/actions/GlobalMessages/actions'
+import {globalError} from '../../../actions/GlobalMessages/actions'
 import DummyCountryResultsList from '../../Views/CountryResultsList/component.js'
 import {  TYPE_FIELD,
           TYPE_COUNTRY
-} from '../../../constants/action-types/store'
+} from '../../../store/storeTypes'
 
 function mapStateToProps(store) {
     return {resultsList: store.get('ResultsList')}
@@ -21,13 +23,14 @@ class SmartCountryResultList extends Component {
   constructor(){
     super();
     this.state = {
-      currentCategory: 'Countries',
-      category: 'Countries',
+      currentCategory: 'Country',
+      category: 'Country',
       oldString: '',
       currentString: '',
       timerId: '',
       currentParamList:[],
-      currentParamsQuery:[]
+      currentParamsQuery:[],
+      pagination: 1
     }
   }
 
@@ -36,7 +39,7 @@ class SmartCountryResultList extends Component {
 
       dispatch(countryResultsListRequest())
 
-      var syllabusHTTPServicePromise = syllabusHTTPService.getCountryResultsList({page:[1]})
+      var syllabusHTTPServicePromise = syllabusHTTPService.getCountryResultsList({page:[this.state.pagination]})
 
       syllabusHTTPServicePromise.then( (response) => {
         let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
@@ -63,8 +66,8 @@ class SmartCountryResultList extends Component {
 
   getCurrentParamsQuery = (paramsList) => {
     console.log('cambio en params');
-    this.setState({currentParamsQuery:paramsList, currentParamList:[]},
-      () => this.makeRequest('Countries')
+    this.setState({currentParamsQuery:paramsList, currentParamList:[], pagination:1},
+      () => this.makeRequest('Country')
     )
   }
 
@@ -80,20 +83,21 @@ class SmartCountryResultList extends Component {
 
   makeRequest = (type) => {
     //En esta etapa el usuario hizo click en search o apreto enter, tenemos disponible el string y categoria que tenemos actualmente en el state. Deberiamos agregar la logica de request a partir de ahora
-    if(this.state.currentString !== '' || type === "Countries"){
+    if(this.state.currentString !== '' || type === "Country"){
 
     let category = (type) ? type : this.state.currentCategory
 
     let syllabusHTTPServicePromise,
         dispatch = this.props.dispatch,
-        string = (type !== "Countries" || this.state.currentCategory !== "Countries") ? [] : [this.state.currentString];
+        string = (type !== "Country" || this.state.currentCategory !== "Country") ? [] : [this.state.currentString];
 
       switch (category) {
-        case 'Countries':
+        case 'Country':
         dispatch(countryResultsListRequest())
         syllabusHTTPServicePromise = syllabusHTTPService.getCountryResultsList({
+          page:[this.state.pagination],
           query: string,
-          field: this.createQuery('Fields')
+          field: this.createQuery('Field')
         })
         syllabusHTTPServicePromise.then( (response) => {
           let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
@@ -103,7 +107,7 @@ class SmartCountryResultList extends Component {
         })
         break;
 
-        case 'Fields':
+        case 'Field':
         dispatch(fieldResultsListRequest());
         syllabusHTTPServicePromise = syllabusHTTPService.getFieldResultsList({query: [this.state.currentString]})
 
@@ -127,6 +131,8 @@ class SmartCountryResultList extends Component {
     }
   }
 
+  pagination = () => this.setState({pagination:this.state.pagination+1}, () => this.makeRequest("Country"))
+
   componentWillUnmount = () =>{
     clearInterval(this.state.timerId);
   }
@@ -141,6 +147,7 @@ class SmartCountryResultList extends Component {
             makeSearch={this.makeRequest} store={this.props.resultsList.getIn([TYPE_COUNTRY, 'data']).toJS()}
             currentParamData={this.state.currentParamList}
             currentParamsQuery={this.getCurrentParamsQuery}
+            pagination={this.pagination}
           />
         </div>
       )

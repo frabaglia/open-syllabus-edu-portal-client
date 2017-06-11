@@ -1,34 +1,31 @@
 import {
-  applyMiddleware,
-  createStore,
-  compose
+    applyMiddleware,
+    createStore,
+    compose
 } from 'redux'
 import {
-  combineReducers
+    combineReducers
 } from 'redux-immutable'
 import reduxLogger from 'redux-logger'
 import reduxThunk from 'redux-thunk'
-import {
-  GlobalMessages,
-  Landing,
-  Result,
-  ResultsList,
-  Router
-} from '../reducers'
-import Immutable from 'immutable'
-
-import {
-  loadState
-} from '../utils/SyllabusLocalStorage/component'
+import Immutable, {
+    Map
+} from 'immutable'
+import GlobalMessages from '../reducers/GlobalMessages/reducer'
+import Landing from '../reducers/Landing/reducer'
+import Result from '../reducers/Result/reducer'
+import ResultsList from '../reducers/ResultsList/reducer'
+import Router from '../reducers/Router/reducer'
+import {loadState} from '../utils/SyllabusLocalStorage/component'
 
 const middleware = applyMiddleware(reduxThunk, reduxLogger())
 
 let rootReducer = combineReducers({
-  GlobalMessages,
-  Landing,
-  Result,
-  ResultsList,
-  routing: Router
+    GlobalMessages,
+    Landing,
+    Result,
+    ResultsList,
+    routing: Router
 })
 
 const initialState = Immutable.Map({})

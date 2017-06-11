@@ -18,6 +18,11 @@ class MapComponent extends Component {
     };
   }
 
+  componentDidMount = () =>{
+    console.log(this.props);
+    this.setState({lat: this.props.lat, lng: this.props.lng, zoom: this.props.zoom})
+  }
+
   invalidateMap = () => {
       if (this.refs.map1) {
           this.refs.map1.leafletElement.invalidateSize();
@@ -45,16 +50,39 @@ class MapComponent extends Component {
     return (!this.state.expanded) ? <ExpandIcon click={this.makeFullScreen}/> : <ExpandCloseIcon click={this.makeFullScreen}/>
   }
 
+  renderMarkers = () => {
+    let markers;
+    if(this.props.store.length !== 0){
+    markers = this.props.store.map( (item,i) =>{
+      return (
+          <Marker key={i}  position={[item.lat, item.lon]}>
+            <Popup className="popup">
+              <span className="popup-content">
+                <span className="university-name">{item.name}</span>
+                <span className="location-name">{item.formatedAdress}</span>
+                <span className="syllabi">{item.syllabus_count}</span>
+              </span>
+            </Popup>
+          </Marker>
+        )
+      })
+    }
+
+    return markers;
+  }
+
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
       <div ref="map" className="container-map">
         <div className="container-header">
           <p className="right-content-title">
-            Syllabi Map
+            {this.props.title}
           </p>
           <div className="right-content-expand">
-            <ButtonLabel backgroundColor="" color="#85919F" border="1px solid #E8E8E8" title="580,500 unattributed"/>
+            <div className="right-content-expand-button">
+              <ButtonLabel backgroundColor="" color="#85919F" border="1px solid #E8E8E8" title="580,500 unattributed"/>
+            </div>
             {this.renderExpandIcon()}
           </div>
         </div>
@@ -67,44 +95,9 @@ class MapComponent extends Component {
           >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url='http://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png'
+            url='http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
           />
-          <Marker position={[39.61, -105.02]}>
-            <Popup className="popup">
-              <span className="popup-content">
-                <span className="university-name">University of Denver</span>
-                <span className="location-name">Denver, United States</span>
-                <span className="syllabi">3 syllabi</span>
-              </span>
-            </Popup>
-          </Marker>
-          <Marker position={[39.74, -104.99]}>
-            <Popup className="popup">
-              <span className="popup-content">
-                <span className="university-name">University of Denver</span>
-                <span className="location-name">Denver, United States</span>
-                <span className="syllabi">3 syllabi</span>
-              </span>
-            </Popup>
-          </Marker>
-          <Marker position={[39.73, -104.8]}>
-            <Popup className="popup">
-              <span className="popup-content">
-                <span className="university-name">University of Denver</span>
-                <span className="location-name">Denver, United States</span>
-                <span className="syllabi">3 syllabi</span>
-              </span>
-            </Popup>
-          </Marker>
-          <Marker position={[39.77, -105.23]}>
-            <Popup className="popup">
-              <span className="popup-content">
-                <span className="university-name">University of Denver</span>
-                <span className="location-name">Denver, United States</span>
-                <span className="syllabi">3 syllabi</span>
-              </span>
-            </Popup>
-          </Marker>
+          {this.renderMarkers()}
         </Map>
       </div>
 

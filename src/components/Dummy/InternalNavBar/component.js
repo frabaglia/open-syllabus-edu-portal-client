@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import './component.sass'
-import titles_logo from './titles_logo.svg'
-import authors_logo from './authors_logo.svg'
-import countries_logo from './countries_logo.svg'
-import fields_logo from './fields_logo.svg'
-import publishers_logo from './publishers_logo.svg'
-import schools_logo from './schools_logo.svg'
 import {Link} from 'react-router'
+import TitlesIcon from '../SVG/TitlesIcon/component'
+import SchoolsIcon from '../SVG/SchoolsIcon/component'
+import AuthorsIcon from '../SVG/AuthorsIcon/component'
+import FieldsIcon from '../SVG/FieldsIcon/component'
+import CountriesIcon from '../SVG/CountriesIcon/component'
+import PublishersIcon from '../SVG/PublishersIcon/component'
 
 class InternalNavBar extends Component {
 
@@ -25,7 +25,7 @@ class InternalNavBar extends Component {
                             <Link to="/results-list/title">
                                 <figure className='first'>
                                     <div>
-                                        <img src={titles_logo} alt="titles_logo"/>
+                                        <TitlesIcon/>
                                         <figcaption>TITLES</figcaption>
                                     </div>
                                 </figure>
@@ -35,7 +35,7 @@ class InternalNavBar extends Component {
                             <Link to="/results-list/author">
                                 <figure>
                                     <div>
-                                        <img src={authors_logo} alt="authors_logo"/>
+                                        <AuthorsIcon/>
                                         <figcaption>AUTHORS</figcaption>
                                     </div>
                                 </figure>
@@ -45,7 +45,7 @@ class InternalNavBar extends Component {
                             <Link to="/results-list/school">
                                 <figure>
                                     <div>
-                                        <img src={schools_logo} alt="schools_logo"/>
+                                        <SchoolsIcon/>
                                         <figcaption>SCHOOLS</figcaption>
                                     </div>
                                 </figure>
@@ -55,7 +55,7 @@ class InternalNavBar extends Component {
                             <Link to="/results-list/field">
                                 <figure>
                                     <div>
-                                        <img src={fields_logo} alt="fields_logo"/>
+                                        <FieldsIcon/>
                                         <figcaption>FIELDS</figcaption>
                                     </div>
                                 </figure>
@@ -65,7 +65,7 @@ class InternalNavBar extends Component {
                             <Link to="/results-list/country">
                                 <figure>
                                     <div>
-                                        <img src={countries_logo} alt="countries_logo"/>
+                                        <CountriesIcon/>
                                         <figcaption>COUNTRIES</figcaption>
                                     </div>
                                 </figure>
@@ -75,7 +75,7 @@ class InternalNavBar extends Component {
                             <Link to="/results-list/publisher">
                                 <figure>
                                     <div>
-                                        <img src={publishers_logo} alt="publishers_logo"/>
+                                        <PublishersIcon/>
                                         <figcaption>PUBLISHERS</figcaption>
                                     </div>
                                 </figure>

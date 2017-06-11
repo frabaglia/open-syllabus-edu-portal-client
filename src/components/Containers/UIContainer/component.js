@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import $ from 'jquery';
 import './component.sass'
 import NavBar from '../../Dummy/NavBar/component.js'
 import Footer from '../../Dummy/Footer/component.js'
@@ -13,12 +14,24 @@ class UIContainer extends Component {
     return header;
   }
 
+  componentDidMount = () =>{
+    $(window).scroll(function() {
+      if ($(document).scrollTop() > 50) {
+        $('.navbar-fixed').addClass('shrink');
+      } else {
+        $('.navbar-fixed').removeClass('shrink');
+      }
+    });
+  }
+
     render() {
         return (
           <div>
             <header ref="header" className={this.header()}>
-              <div className="huge-container">
-                <NavBar router={this.props}/>
+              <div className="navbar-fixed">
+                <div className="huge-container">
+                  <NavBar router={this.props}/>
+                </div>
               </div>
             </header>
             <div className="main-layout">

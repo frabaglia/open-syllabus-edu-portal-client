@@ -1,14 +1,16 @@
 
 .header-landing
-  background-color: #384458
+  background-image: url('parallax_image.jpg')
+  // background-color: #384458
   min-height: 27em
-  padding-top: 2.5em
+  // padding-top: 2.5em
 
 
 .header
-  background-color: #384458
+  background-image: url('parallax_image.jpg')
+  // background-color: #384458
   min-height: 17em
-  padding-top: 2.5em
+  // padding-top: 2.5em
 
 
 .main-layout
@@ -22,6 +24,17 @@
     position: relative
     width: 100%
 
+.navbar-fixed
+  padding: 2.5em 0 0 0
+  position: fixed
+  width: 100%
+  z-index: 10000
+  background-image: url('parallax_image.jpg')
+  -webkit-transition: all 0.4s ease
+   transition: all 0.4s ease
+
+.shrink
+  padding: 2rem 0
 
 @media (max-width : 414px)
   .header-landing
@@ -33,3 +46,7 @@
       padding: 0
     section
       top: -19.8em
+
+@media (min-width : 643px)
+  .shrink
+    padding: 1rem 0

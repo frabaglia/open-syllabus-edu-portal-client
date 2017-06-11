@@ -9,6 +9,8 @@ import BarChart from '../../Dummy/BarChart/component.js'
 
 class PublisherResult extends Component {
     render() {
+      console.log(this.props.store);
+      let store= this.props.store;
         return (
           <div className="result-view">
               <div className="result-view-content">
@@ -19,18 +21,26 @@ class PublisherResult extends Component {
                 </div>
                 <div className="left-content">
                   <p className="title-view">
-                    Oxford University Press
+                    {store.name}
                   </p>
                   <div className="top-ranked">
-                    <div>
-
-                    </div>
-                    <ContainerTopRankedList/>
+                    <ContainerTopRankedList
+                      store={store.top_ranked}
+                      navigation={true}
+                      defaultListType={"TITLES"}
+                      listTypes={["TITLES","AUTHORS"]}
+                    />
                   </div>
                 </div>
 
                 <aside className="right-content">
-                  <BarChart title={"Top Titles by Year"} legend={false}/>
+                  <BarChart
+                    title={"Top Titles by Year"}
+                    legend={false}
+                    store={store.top_titles_by_year.data}
+                    isNormalizable={true}
+                    getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
+                  />
                 </aside>
               </div>
           </div>

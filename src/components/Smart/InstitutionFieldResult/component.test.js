@@ -9,7 +9,9 @@ it('renders without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(
       <Provider store={store}>
-        <SmartInstitutionFieldResult/>
+        <SmartInstitutionFieldResult
+          location={{query:{id:1}}}
+        />
       </Provider>
       , div)
 })

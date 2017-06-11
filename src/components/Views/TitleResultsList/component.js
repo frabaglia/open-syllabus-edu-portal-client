@@ -50,7 +50,7 @@ class DummyTitleResultsList extends Component {
             title: 'Titles',
             number: `${this.props.store.length}`
         }
-        const filtersCategory = ['Titles', 'Authors','Schools','Fields','Countries']
+        const filtersCategory = ['Title', 'Author','School','Field','Country']
         return (
             <div className="result-list-view">
                 <aside className="left-content">
@@ -75,6 +75,7 @@ class DummyTitleResultsList extends Component {
                   <ContainerList
                     list={"titleList"}
                     store={this.props.store}
+                    pagination={this.props.pagination}
                   />
                 </div>
             </div>
