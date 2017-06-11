@@ -4,20 +4,7 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router'
 import {Provider} from 'react-redux'
 import {saveState} from '../../../utils/SyllabusLocalStorage/component'
 
-//-----------------------------VIEWS -----------------------------------
-//----------------------------- DUMMY RESULT ---------------------------------
-
-
-// import TitleResult from '../../Views/TitleResult/component.js'
-// import AuthorResult from '../../Views/AuthorResult/component.js'
-// import InstitutionResult from '../../Views/InstitutionResult/component.js'
-// import FieldResult from '../../Views/FieldResult/component.js'
-// import PublisherResult from '../../Views/PublisherResult/component.js'
-// import InstitutionFieldResult from '../../Views/InstitutionFieldResult/component.js'
-//-----------------------DUMMY RESULTS LIST ----------------------------------
-//-----------------------------END VIEWS-----------------------------------
-
-//----------------------- SMART RESULTS LIST ----------------------------------
+//----------------------- SMART COMPONENTS ----------------------------------
 import SmartLanding from '../../Smart/Landing/component.js'
 import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
 import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
@@ -33,8 +20,7 @@ import SmartCountryResult from '../../Smart/CountryResult/component.js'
 import SmartInstitutionResult from '../../Smart/InstitutionResult/component.js'
 import SmartInstitutionFieldResult from '../../Smart/InstitutionFieldResult/component.js'
 import SmartCountryFieldResult from '../../Smart/CountryFieldResult/component.js'
-
-//-----------------------------END SMART RESULT LIST-----------------------------------
+//-----------------------------END SMART COMPONENTS-----------------------------------
 
 //-----------------------------CONTAINERS-----------------------------------
 import ResultContainer from '../../../components/Containers/ResultContainer/component.js'
@@ -98,27 +84,25 @@ class App extends Component {
                 <Router history={history}>
                     <Route path="/" component={UIContainer}>
                         <IndexRoute component={SmartLanding}/>
-                        <Route path="result" component={ResultContainer}>
-                            <Route path="title" component={SmartTitleResult}/>
+                        <Route path="search" component={ResultContainer}>
+                            {/* <Route path="title" component={SmartTitleResult}/>
                             <Route path="author" component={SmartAuthorResult}/>
                             <Route path="field" component={SmartFieldResult}/>
                             <Route path="school" component={SmartInstitutionResult}/>
                             <Route path="country" component={SmartCountryResult}/>
                             <Route path="publisher" component={SmartPublisherResult}/>
                             <Route path="school-field" component={SmartInstitutionFieldResult}/>
-                            <Route path="country-field" component={SmartCountryFieldResult}/>
+                            <Route path="country-field" component={SmartCountryFieldResult}/> */}
                         </Route>
-                        <Route path="results-list" component={ResultsListContainer}>
-                            <Route path="title" component={SmartTitleResultsList}/>
+                        <Route path="university-portal" component={ResultsListContainer}>
+                            {/* <Route path="title" component={SmartTitleResultsList}/>
                             <Route path="author" component={SmartAuthorResultsList}/>
                             <Route path="field" component={SmartFieldResultsList}/>
                             <Route path="school" component={SmartInstitutionResultsList}/>
                             <Route path="country" component={SmartCountryResultsList}/>
-                            <Route path="publisher" component={SmartPublisherResultsList}/>
+                            <Route path="publisher" component={SmartPublisherResultsList}/> */}
                         </Route>
                         <Route path="advanced-filter" component={AdvancedFilter}/>
-                        <Route path="filter" component={Filter}/>
-                        <Route path="internal-navbar" component={InternalNavBar}/>
                         <Route path="*" component={SmartLanding}/>
                     </Route>
                 </Router>

@@ -4,7 +4,7 @@ import './component.css'
 import SVGFacebookLogo from '../SVG/FacebookLogo/component.js'
 import SVGGithubLogo from '../SVG/GithubLogo/component.js'
 import SVGTwitterLogo from '../SVG/TwitterLogo/component.js'
-import SVGSyllabusLogo from '../SVG/SyllabusLogo/component.js'
+// import SVGSyllabusLogo from '../SVG/SyllabusLogo/component.js'
 import SVGTAACULogo from '../SVG/TAACULogo/component.js'
 
 class Footer extends Component {
@@ -47,7 +47,7 @@ class Footer extends Component {
           </div>
           <div className="logos-footer">
             <Link to="/">
-              <SVGSyllabusLogo colorOpenSyllabus="#85919F" colorExplorer="#85919F"/>
+              {/* <SVGSyllabusLogo colorOpenSyllabus="#85919F" colorExplorer="#85919F"/> */}
             </Link>
             <Link target="_blank" to="http://americanassembly.org/">
               <SVGTAACULogo/>

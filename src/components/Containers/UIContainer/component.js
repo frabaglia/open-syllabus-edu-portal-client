@@ -28,9 +28,11 @@ class UIContainer extends Component {
         return (
           <div>
             <header ref="header" className={this.header()}>
-              <div className="navbar-fixed">
-                <div className="huge-container">
-                  <NavBar router={this.props}/>
+              <div className="parallax-header">
+                <div className="navbar-fixed">
+                  <div className="huge-container">
+                    <NavBar router={this.props}/>
+                  </div>
                 </div>
               </div>
             </header>
