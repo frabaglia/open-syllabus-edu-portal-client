@@ -1,0 +1,71 @@
+.institution-item
+  width: 100%
+  display: flex
+  justify-content: center
+  div
+    display: inline-block
+    font-size: 0.9em
+    line-height: 0.9em
+    text-align: center
+    min-width: 40px
+  .rank
+    width: 10%
+    color: #3188D3
+    align-self: center
+  .institution
+    width: 80%
+    text-align: left
+    display: flex
+    a
+      width: 80%
+      text-align: left
+      display: flex
+    img
+      align-self: center
+      width: 2em
+      height: auto
+    span
+      margin: 0 0 0 0.1em
+      align-self: center
+      color: #405063
+      p
+        color: #A9B4C0
+        display: inline-block
+        margin: 0
+
+  .syllabi
+    width: 10%
+    align-self: center
+    min-width: 90px
+
+@media (min-width: 320px)
+  .institution-item
+      .institution
+        span
+          margin: 0 0 0 0.5em
+
+@media (min-width: 414px)
+  .institution-item
+    div
+      font-size: 1em
+      line-height: 1em
+
+
+@media (min-width: 500px)
+  .institution-item
+    div
+      font-size: 1.1em
+      line-height: 1.1em
+
+@media (min-width: 600px)
+  .institution-item
+    .institution
+      img
+        width: 3em
+        height: auto
+
+@media (min-width: 800px)
+  .institution-item
+    .institution
+      span
+        margin: 0 0 0 1em

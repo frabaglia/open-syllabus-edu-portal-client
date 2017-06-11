@@ -1,0 +1,118 @@
+.result-view-content
+  background-color: #FFFFFF
+  padding: 1.9rem
+  overflow: auto
+  .title-view
+    display: flex
+    margin-bottom: 1.5em
+    div, svg
+      align-self: center
+    svg
+      &:nth-child(2)
+        margin: 0 1em 0 2em
+  .left-content
+    p
+      margin: 0
+      text-align: left
+    .title-view
+      font-size: 1.4em
+      font-family: 'Adelle Sans W01 Bold'
+      margin-bottom: 1rem
+    .author-view
+      a
+        color: #3188D3
+        font-style: italic
+    .editorial
+      a
+        color: #85919F
+    .description
+      margin: 1em 0 1.5em 0
+    .buttons-label
+      div
+        margin: 0 1em 1em 0
+    .badge
+      margin: 0.5em 0 1em 0
+    .text-assigned
+      .text-assigned-discription
+          font-size: 1.1em
+          margin-bottom: 1em
+          span
+            font-family: 'Adelle Sans W01 Bold'
+  .right-content
+    .availability
+      border: 1px solid #E8E8E8
+      border-radius: 5px
+      padding: 2em
+      margin: 2em 0
+      p
+        margin: 0
+        &:first-child
+          font-size: 1.1em
+          font-family: 'Adelle Sans W01 Bold'
+        &:nth-child(2)
+          margin: 1em 0
+        span
+          display: block
+          a
+            text-decoration: none
+            color: #3188D3
+    .text-syllabi
+      border: 1px solid #E8E8E8
+      border-radius: 5px
+      padding: 2em
+      p
+        margin: 0
+        font-size: 1.1em
+        font-family: 'Adelle Sans W01 Bold'
+      ul
+        margin: 1em 0
+        color: #67AAF9
+        list-style-type: disc
+        li
+          span
+            color: #405063
+          &:last-child
+            margin: 0
+
+@media (min-width: 361px)
+  .result-view-content
+    .left-content
+      .title-view
+        font-size: 1.5em
+
+@media (min-width: 384px)
+  .result-view-content
+    .left-content
+      .title-view
+        font-size: 1.6em
+
+@media (min-width: 414px)
+  .result-view-content
+    border-radius: 5px
+
+@media (min-width: 768px)
+  .result-view-content
+    padding: 4rem
+    .left-content
+      .title-view
+        font-size: 2.2em
+
+@media (min-width: 768px)
+  .result-view-content
+    .left-content
+      max-width: 520px
+      margin: 0 auto
+    .right-content
+      max-width: 520px
+      margin: 0 auto
+
+@media (min-width: 1139px)
+  .result-view-content
+    .left-content
+      display: inline-block
+      width: calc(100% - 46%)
+    .right-content
+      float: right
+      width: 400px
+      .availability
+        margin: 0 0 2em 0

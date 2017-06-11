@@ -1,0 +1,54 @@
+.text-assigned-item
+  width: 100%
+  display: flex
+  justify-content: center
+  div
+    display: inline-block
+    font-size: 0.9em
+    line-height: 0.9em
+    text-align: center
+    min-width: 40px
+  .count
+    width: 10%
+    color: #3188D3
+    align-self: center
+  .text
+    width: 90%
+    text-align: left
+    p
+      margin: 0 0 5px 0
+      display: block
+      a
+        color: #405063
+    span
+      font-size: 0.8em
+      color: #85919F
+      display: block
+    .name
+      a
+        margin-right: 4px
+        font-style: italic
+        color: #3188D3
+
+@media (min-width: 320px)
+  .text-assigned-item
+      .text
+        p
+          display: block
+        span
+          display: inline-block
+
+
+
+@media (min-width: 414px)
+  .text-assigned-item
+    div
+      font-size: 1em
+      line-height: 1em
+
+
+@media (min-width: 500px)
+  .text-assigned-item
+    div
+      font-size: 1.1em
+      line-height: 1.1em

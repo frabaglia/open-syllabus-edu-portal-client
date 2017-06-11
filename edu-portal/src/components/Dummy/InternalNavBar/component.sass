@@ -1,0 +1,82 @@
+.internal-navbar
+  display: inline-block
+  width: 100%
+  p
+    text-align: center
+    font-size: 1.3em
+    margin-bottom: 2rem
+
+.button-title
+  display: flex
+  height: 17px
+  div
+    background-color: #9BD331
+    color: white
+    cursor: default
+    border-radius: 5px
+    width: 101px
+    height: 34px
+    line-height: 34px
+    text-align: center
+    font-size: 14px
+    margin: 0 auto
+
+.container-navbar
+  background-color: #FFFFFF
+  padding-top: 34px
+  border-radius: 5px
+
+
+.row-navbar
+  text-align: center
+  width: 100%
+  padding: 0 1.9rem 1.9rem 1.9rem
+  overflow-x: auto
+  white-space: nowrap
+  figure
+    margin: 0
+    height: 140px
+    border: 1px solid #E8E8E8
+    width: 140px
+    display: flex
+    justify-content: center
+    svg
+      margin: 0 auto
+      display: block
+    img
+      margin: 0 auto
+      display: block
+    div
+      margin: 0
+      align-self: center
+    figcaption
+      margin-top: 1em
+      text-align: center
+  div
+    display: inline-block
+    margin: 0 0 0 1.8em
+
+
+.links
+  &:first-child
+    margin: 0
+  a
+    color: #000000
+    text-decoration: none
+    &:hover
+      color: #3188D3
+
+@media (min-width: 414px)
+  .row-navbar
+    padding: 0 2em 2em 2em
+    figure
+      width: 146px
+    div
+      margin: 0 0 0 1.6em
+
+@media (min-width: 1350px)
+  .row-navbar
+    figure
+      width: 156px
+    div
+      margin: 0 0 0 1.8em
