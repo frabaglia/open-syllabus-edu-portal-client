@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router'
+import ButtonLabel from '../Buttons/ButtonLabel/component'
 import './component.sass'
 
 import SVGEduPortalLogo from '../SVG/EduPortalLogo/component.js'
@@ -24,21 +25,30 @@ class NavBar extends Component {
     else this.refs.home.className = ''
   }
 
+  callLogin = () =>{
+
+  }
+
   render() {
 
       return (
         <div className="navbar">
-          <div className="syllabus-logo">
-            <Link to="/">{SVGEduPortalLogo()}</Link>
+          <div className="edu-logo">
+            <Link to="/">{SVGEduPortalLogo({color:'#9BD331'})}</Link>
           </div>
-          <div className="menu" ref="menu">
-            <div ref='menuContent' id='menuContent' className="menu-content">
+          <div className="navbar-menu">
               <ul>
                 <li ref="home" id='menuContent'><Link to="/">Home</Link></li>
                 <li id='menuContent'><Link target="_blank" to="">Features</Link></li>
                 <li id='menuContent'><Link target="_blank" to="">Contact</Link></li>
               </ul>
-            </div>
+                {ButtonLabel({
+                  backgroundColor:'#9BD331',
+                  color:'#FFFFFF',
+                  border: '#9BD331',
+                  title: 'University Login',
+                  click: this.callLogin()
+                })}
           </div>
 
         </div>

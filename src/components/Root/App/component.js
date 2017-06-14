@@ -6,20 +6,20 @@ import {saveState} from '../../../utils/SyllabusLocalStorage/component'
 
 //----------------------- SMART COMPONENTS ----------------------------------
 import SmartLanding from '../../Smart/Landing/component.js'
-import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
-import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
-import SmartFieldResultsList from '../../Smart/FieldResultsList/component.js'
-import SmartInstitutionResultsList from '../../Smart/InstitutionResultsList/component.js'
-import SmartCountryResultsList from '../../Smart/CountryResultsList/component.js'
-import SmartPublisherResultsList from '../../Smart/PublisherResultsList/component.js'
-import SmartTitleResult from '../../Smart/TitleResult/component.js'
-import SmartAuthorResult from '../../Smart/AuthorResult/component.js'
-import SmartFieldResult from '../../Smart/FieldResult/component.js'
-import SmartPublisherResult from '../../Smart/PublisherResult/component.js'
-import SmartCountryResult from '../../Smart/CountryResult/component.js'
-import SmartInstitutionResult from '../../Smart/InstitutionResult/component.js'
-import SmartInstitutionFieldResult from '../../Smart/InstitutionFieldResult/component.js'
-import SmartCountryFieldResult from '../../Smart/CountryFieldResult/component.js'
+// import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
+// import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
+// import SmartFieldResultsList from '../../Smart/FieldResultsList/component.js'
+// import SmartInstitutionResultsList from '../../Smart/InstitutionResultsList/component.js'
+// import SmartCountryResultsList from '../../Smart/CountryResultsList/component.js'
+// import SmartPublisherResultsList from '../../Smart/PublisherResultsList/component.js'
+// import SmartTitleResult from '../../Smart/TitleResult/component.js'
+// import SmartAuthorResult from '../../Smart/AuthorResult/component.js'
+// import SmartFieldResult from '../../Smart/FieldResult/component.js'
+// import SmartPublisherResult from '../../Smart/PublisherResult/component.js'
+// import SmartCountryResult from '../../Smart/CountryResult/component.js'
+// import SmartInstitutionResult from '../../Smart/InstitutionResult/component.js'
+// import SmartInstitutionFieldResult from '../../Smart/InstitutionFieldResult/component.js'
+// import SmartCountryFieldResult from '../../Smart/CountryFieldResult/component.js'
 //-----------------------------END SMART COMPONENTS-----------------------------------
 
 //-----------------------------CONTAINERS-----------------------------------
@@ -29,8 +29,6 @@ import UIContainer from '../../../components/Containers/UIContainer/component.js
 //-----------------------------END CONTAINERS-----------------------------------
 
 //-----------------------------COMPONENTS-----------------------------------
-import AdvancedFilter from '../../Dummy/AdvancedFilter/component.js'
-import InternalNavBar from '../../Dummy/InternalNavBar/component.js'
 import Filter from '../../Dummy/Filter/component.js'
 import store from '../../../store/index.js'
 //-----------------------------END COMPONENTS-----------------------------------
@@ -102,7 +100,7 @@ class App extends Component {
                             <Route path="country" component={SmartCountryResultsList}/>
                             <Route path="publisher" component={SmartPublisherResultsList}/> */}
                         </Route>
-                        <Route path="advanced-filter" component={AdvancedFilter}/>
+                        <Route path="component" component={Filter}/>
                         <Route path="*" component={SmartLanding}/>
                     </Route>
                 </Router>
