@@ -4,9 +4,8 @@ import {
     TYPE_INSTITUTION,
     TYPE_FIELD,
     TYPE_COUNTRY,
-    TYPE_PUBLISHER,
-    TYPE_INSTITUTION_FIELD
-} from '../../action-types/store'
+    TYPE_PUBLISHER
+} from '../store'
 
 const MOST_FRECUENT = "MOST_FRECUENT"
 export const MOST_FRECUENT_TYPE_UPDATE = "MOST_FRECUENT_TYPE_UPDATE"
@@ -42,100 +41,3 @@ export const MOST_FRECUENT_PUBLISHER_SUCCESS = MOST_FRECUENT_PUBLISHER + "SUCCES
 export const LANDING_REQUEST = "LANDING_REQUEST"
 export const LANDING_SUCCESS = "LANDING_SUCCESS"
 export const LANDING_FAILURE = "LANDING_FAILURE"
-
-export const mostFrecuentTypeUpdate = (type) => {
-    return {
-        type: MOST_FRECUENT_TYPE_UPDATE,
-        payload: type
-    }
-}
-
-export const mostFrecuentTitleRequest = () => {
-    return {
-        type: MOST_FRECUENT_TITLE_REQUEST
-    }
-}
-
-export const mostFrecuentTitleSuccess = (data) => {
-    return {
-        type: MOST_FRECUENT_TITLE_SUCCESS,
-        payload: {
-            data: data
-        }
-    }
-}
-
-export const mostFrecuentAuthorRequest = () => {
-    return {
-        type: MOST_FRECUENT_AUTHOR_REQUEST
-    }
-}
-
-export const mostFrecuentAuthorSuccess = (data) => {
-    return {
-        type: MOST_FRECUENT_AUTHOR_SUCCESS,
-        payload: {
-            data: data
-        }
-    }
-}
-
-export const mostFrecuentFieldRequest = () => {
-    return {
-        type: MOST_FRECUENT_FIELD_REQUEST
-    }
-}
-
-export const mostFrecuentFieldSuccess = (data) => {
-    return {
-        type: MOST_FRECUENT_FIELD_SUCCESS,
-        payload: {
-            data: data
-        }
-    }
-}
-
-export const mostFrecuentInstitutionRequest = () => {
-    return {
-        type: MOST_FRECUENT_INSTITUTION_REQUEST
-    }
-}
-
-export const mostFrecuentInstitutionSuccess = (data) => {
-    return {
-        type: MOST_FRECUENT_INSTITUTION_SUCCESS,
-        payload: {
-            data: data
-        }
-    }
-}
-
-export const mostFrecuentCountryRequest = () => {
-    return {
-        type: MOST_FRECUENT_COUNTRY_REQUEST
-    }
-}
-
-export const mostFrecuentCountrySuccess = (data) => {
-    return {
-        type: MOST_FRECUENT_COUNTRY_SUCCESS,
-        payload: {
-            data: data
-        }
-    }
-}
-
-export const mostFrecuentPublisherRequest = () => {
-    return {
-        type: MOST_FRECUENT_PUBLISHER_REQUEST
-    }
-}
-
-export const mostFrecuentPublisherSuccess = (data) => {
-    return {
-        type: MOST_FRECUENT_PUBLISHER_SUCCESS,
-        payload: {
-            data: data
-        }
-    }
-}
