@@ -15,14 +15,17 @@ export const apiMiddleware = ({
   request.then(response =>
       dispatch({
         type: success,
-        response
+        payload: {
+          ...response
+        }
       }))
     .catch(
       err =>
       dispatch({
         type: error,
-        err
+        payload: {
+          ...err
+        }
       })
     )
-
 }

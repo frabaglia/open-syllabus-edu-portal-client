@@ -1,10 +1,8 @@
 import {
   AUTHOR_RESULT_REQUEST,
-  AUTHOR_RESULT_SUCCESS
+  AUTHOR_RESULT_SUCCESS,
+  AUTHOR_RESULT_ERROR
 } from '../../action-types/AuthorResult'
-import {
-  ERROR
-} from '../../action-types/GlobalMessages'
 import {
   API
 } from '../../action-types/API'
@@ -12,23 +10,14 @@ import {
   SyllabusHTTPService
 } from '../../../os-toolkit/SyllabusHTTPService'
 
-export const authorResultRequest = () => {
+export const authorResultRequest = (id) => {
   return {
     type: API,
     payload: {
-      request: 'recipes.json',
+      request: SyllabusHTTPService.getAuthorResult(id),
       pending: AUTHOR_RESULT_REQUEST,
       success: AUTHOR_RESULT_SUCCESS,
-      error: ERROR
-    }
-  }
-}
-
-export const authorResultSuccess = (data) => {
-  return {
-    type: AUTHOR_RESULT_SUCCESS,
-    payload: {
-      data: data
+      error: AUTHOR_RESULT_ERROR
     }
   }
 }
