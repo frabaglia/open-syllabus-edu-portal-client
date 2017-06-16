@@ -1,18 +1,23 @@
 import {
   FIELD_RESULT_REQUEST,
-  FIELD_RESULT_SUCCESS
+  FIELD_RESULT_SUCCESS,
+  FIELD_RESULT_ERROR
 } from '../../action-types/FieldResult'
-export const fieldResultRequest = () => {
-  return {
-    type: FIELD_RESULT_REQUEST
-  }
-}
+import {
+  API
+} from '../../action-types/API'
+import {
+  SyllabusHTTPService
+} from '../../../os-toolkit/SyllabusHTTPService'
 
-export const fieldResultSuccess = (data) => {
+export const fieldResultRequest = (id) => {
   return {
-    type: FIELD_RESULT_SUCCESS,
+    type: API,
     payload: {
-      data: data
+      request: SyllabusHTTPService.getFieldResult(id),
+      pending: FIELD_RESULT_REQUEST,
+      success: FIELD_RESULT_SUCCESS,
+      error: FIELD_RESULT_ERROR
     }
   }
 }
