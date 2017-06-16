@@ -29,7 +29,7 @@ import UIContainer from '../../../components/Containers/UIContainer/component.js
 //-----------------------------END CONTAINERS-----------------------------------
 
 //-----------------------------COMPONENTS-----------------------------------
-import Filter from '../../Dummy/Filter/component.js'
+import Login from '../../Views/Login/component.js'
 import store from '../../../store/index.js'
 //-----------------------------END COMPONENTS-----------------------------------
 
@@ -100,7 +100,7 @@ class App extends Component {
                             <Route path="country" component={SmartCountryResultsList}/>
                             <Route path="publisher" component={SmartPublisherResultsList}/> */}
                         </Route>
-                        <Route path="component" component={Filter}/>
+                        <Route path="login" component={Login}/>
                         <Route path="*" component={SmartLanding}/>
                     </Route>
                 </Router>
