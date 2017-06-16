@@ -6,7 +6,7 @@ const CloseIcon = (props) => {
           <g id="Desktop---Login" transform="translate(-905.000000, -168.000000)">
               <g id="Group-8" transform="translate(520.000000, 168.000000)">
                   <g id="Group-7" transform="translate(385.000000, 0.000000)">
-                      <g id="Group-5" fill="#C8CFD7">
+                      <g id="Group-5" fill={props.color}>
                           <circle id="Oval" cx="15" cy="15" r="15"></circle>
                       </g>
                       <g id="Group-6" transform="translate(11.000000, 11.000000)" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

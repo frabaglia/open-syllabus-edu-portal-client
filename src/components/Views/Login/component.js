@@ -20,7 +20,7 @@ class DummyLogin extends Component {
           <div className="centered-login">
             <div className="login">
               <div className="login-close">
-                {SVGCloseIcon()}
+                {SVGCloseIcon({color:'#C8CFD7'})}
               </div>
               <div className="login-header">
                 {SVGEduPortalLogo({color:'#9BD331', colorEDU:'#3B475B'})}
@@ -34,6 +34,13 @@ class DummyLogin extends Component {
                   <div className="input-password">
                     <input type="password" placeholder="Password"/>
                     {SVGKeyIcon()}
+                  </div>
+                </div>
+                <div className="login-body-inputs-message">
+                  {/* {this.showMessage()} */}
+                  <div className="message">
+                    <p>Please check your Email and Password</p>
+                    {SVGCloseIcon({color:'#F7485D'})}
                   </div>
                 </div>
                 <div className="login-body-button">
