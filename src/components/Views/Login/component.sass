@@ -32,12 +32,20 @@
       .login-body
         margin-top: 3em
         .login-body-inputs
+          div
+            position: relative
+            svg
+              position: absolute
+              top: 10px
+              right: 14px
           input
             margin: 0
             width: 100%
             font-size: 0.9em
             &::-webkit-input-placeholder
               color: #A9B4C0
+            &:focus
+              border: 1px solid #9BD331
           .input-text
             margin-bottom: 1em
         .login-body-button

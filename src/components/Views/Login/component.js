@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 
 import SVGEduPortalLogo from '../../Dummy/SVG/EduPortalLogo/component'
 import SVGCloseIcon from '../../Dummy/SVG/CloseIcon/component'
+import SVGUserIcon from '../../Dummy/SVG/UserIcon/component'
+import SVGKeyIcon from '../../Dummy/SVG/KeyIcon/component'
 import ButtonLabel from '../../Dummy/Buttons/ButtonLabel/component'
 
 import './component.sass'
@@ -27,11 +29,11 @@ class DummyLogin extends Component {
                 <div className="login-body-inputs">
                   <div className="input-text">
                     <input type="text" placeholder="Email"/>
-
+                    {SVGUserIcon()}
                   </div>
                   <div className="input-password">
                     <input type="password" placeholder="Password"/>
-
+                    {SVGKeyIcon()}
                   </div>
                 </div>
                 <div className="login-body-button">
