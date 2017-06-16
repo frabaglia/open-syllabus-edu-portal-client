@@ -13,32 +13,32 @@ import {
 import {
     TITLE_RESULTS_LIST_REQUEST,
     TITLE_RESULTS_LIST_SUCCESS
-} from '../../constants/actions/TitleResultsList/actions'
+} from '../../constants/actions/TitleResultsList'
 
 import {
     AUTHOR_RESULTS_LIST_REQUEST,
     AUTHOR_RESULTS_LIST_SUCCESS
-} from '../../constants/actions/AuthorResultsList/actions'
+} from '../../constants/actions/AuthorResultsList'
 
 import {
     FIELD_RESULTS_LIST_REQUEST,
     FIELD_RESULTS_LIST_SUCCESS
-} from '../../constants/actions/FieldResultsList/actions'
+} from '../../constants/actions/FieldResultsList'
 
 import {
     COUNTRY_RESULTS_LIST_REQUEST,
     COUNTRY_RESULTS_LIST_SUCCESS
-} from '../../constants/actions/CountryResultsList/actions'
+} from '../../constants/actions/CountryResultsList'
 
 import {
     INSTITUTION_RESULTS_LIST_REQUEST,
     INSTITUTION_RESULTS_LIST_SUCCESS
-} from '../../constants/actions/InstitutionResultsList/actions'
+} from '../../constants/actions/InstitutionResultsList'
 
 import {
     PUBLISHER_RESULTS_LIST_REQUEST,
     PUBLISHER_RESULTS_LIST_SUCCESS
-} from '../../constants/actions/PublisherResultsList/actions'
+} from '../../constants/actions/PublisherResultsList'
 
 const initialResultsListState = Immutable.Map({
     TYPE_TITLE: Immutable.Map({

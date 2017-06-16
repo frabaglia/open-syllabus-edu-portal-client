@@ -19,7 +19,7 @@ import Immutable from 'immutable'
 
 import {
   loadState
-} from '../utils/SyllabusLocalStorage/component'
+} from '../os-toolkit/SyllabusLocalStorage/component'
 
 const middleware = applyMiddleware(reduxThunk, reduxLogger())
 

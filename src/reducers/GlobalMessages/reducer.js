@@ -5,7 +5,7 @@ import {
 
 import {
     ERROR,WARNING,MSG
-} from '../../constants/actions/GlobalMessages/actions'
+} from '../../constants/actions/GlobalMessages'
 
 const initialGlobalMessages = Map({
     lastMessage: false,

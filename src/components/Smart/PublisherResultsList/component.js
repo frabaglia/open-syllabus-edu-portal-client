@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 
-import {publisherResultsListRequest, publisherResultsListSuccess} from '../../../constants/actions/PublisherResultsList/actions'
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList/actions'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList/actions'
+import {publisherResultsListRequest, publisherResultsListSuccess} from '../../../constants/actions/PublisherResultsList'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList'
 
-import {globalError} from '../../../constants/actions/GlobalMessages/actions'
+import {globalError} from '../../../constants/actions/GlobalMessages'
 import DummyPublisherResultsList from '../../Views/PublisherResultsList/component.js'
 import {
         TYPE_FIELD,

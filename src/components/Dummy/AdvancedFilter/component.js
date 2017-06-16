@@ -7,7 +7,7 @@ import FilterIcon from '../SVG/FilterIcon/component.js'
 import ButtonFilterDropdown from '../Buttons/ButtonFilterDropdown/component.js'
 import OpenAccessIcon from '../SVG/OpenAccessIcon/component.js'
 import CloseAccessIcon from '../SVG/CloseAccessIcon/component.js'
-import {data} from '../../../utils/Data/component.js'
+import {data} from '../../../os-toolkit/Data/component.js'
 
 
 class AdvancedFilter extends Component {

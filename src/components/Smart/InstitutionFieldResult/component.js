@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 
-import {institutionFieldResultRequest, institutionFieldResultSuccess} from '../../../constants/actions/InstitutionFieldResult/actions'
+import {institutionFieldResultRequest, institutionFieldResultSuccess} from '../../../constants/actions/InstitutionFieldResult'
 
 
-import {resultsListError} from '../../../constants/actions/GlobalMessages/actions'
+import {resultsListError} from '../../../constants/actions/GlobalMessages'
 import DummyInstitutionFieldResult from '../../Views/InstitutionFieldResult/component.js'
 import {  TYPE_TITLE,
           TYPE_AUTHOR,

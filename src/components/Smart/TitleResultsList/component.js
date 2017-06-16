@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 
-import {titleResultsListRequest, titleResultsListSuccess} from '../../../constants/actions/TitleResultsList/actions'
-import {authorResultsListRequest, authorResultsListSuccess} from '../../../constants/actions/AuthorResultsList/actions'
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList/actions'
-import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../constants/actions/InstitutionResultsList/actions'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList/actions'
+import {titleResultsListRequest, titleResultsListSuccess} from '../../../constants/actions/TitleResultsList'
+import {authorResultsListRequest, authorResultsListSuccess} from '../../../constants/actions/AuthorResultsList'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList'
+import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../constants/actions/InstitutionResultsList'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList'
 
-import {globalError} from '../../../constants/actions/GlobalMessages/actions'
+import {globalError} from '../../../constants/actions/GlobalMessages'
 import DummyTitleResultsList from '../../Views/TitleResultsList/component.js'
 import {  TYPE_TITLE,
           TYPE_AUTHOR,

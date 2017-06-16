@@ -15,7 +15,7 @@ import {
     // TYPE_INSTITUTION_FIELD
 } from '../../../constants/action-types/store'
 
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 import {
   mostFrecuentTypeUpdate,
   mostFrecuentTitleRequest,
@@ -30,8 +30,8 @@ import {
   mostFrecuentCountrySuccess,
   mostFrecuentPublisherRequest,
   mostFrecuentPublisherSuccess,
-} from '../../../constants/actions/Landing/actions'
-import {resultsListError} from '../../../constants/actions/GlobalMessages/actions'
+} from '../../../constants/actions/Landing'
+import {resultsListError} from '../../../constants/actions/GlobalMessages'
 
 function mapStateToProps(store) {
     return {landing: store.get('Landing')}

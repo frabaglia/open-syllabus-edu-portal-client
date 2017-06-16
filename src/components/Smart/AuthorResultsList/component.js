@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 
-import {authorResultsListRequest, authorResultsListSuccess} from '../../../constants/actions/AuthorResultsList/actions'
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList/actions'
-import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../constants/actions/InstitutionResultsList/actions'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList/actions'
+import {authorResultsListRequest, authorResultsListSuccess} from '../../../constants/actions/AuthorResultsList'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList'
+import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../constants/actions/InstitutionResultsList'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList'
 
-import {globalError} from '../../../constants/actions/GlobalMessages/actions'
+import {globalError} from '../../../constants/actions/GlobalMessages'
 import DummyAuthorResultsList from '../../Views/AuthorResultsList/component.js'
 import {
         TYPE_AUTHOR,

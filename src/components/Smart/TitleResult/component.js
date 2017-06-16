@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 
-import {titleResultRequest, titleResultSuccess} from '../../../constants/actions/TitleResult/actions'
+import {titleResultRequest, titleResultSuccess} from '../../../constants/actions/TitleResult'
 
 
-import {resultsListError} from '../../../constants/actions/GlobalMessages/actions'
+import {resultsListError} from '../../../constants/actions/GlobalMessages'
 import DummyTitleResult from '../../Views/TitleResult/component.js'
 import {  TYPE_TITLE,
           TYPE_AUTHOR,
