@@ -43,12 +43,10 @@ class SmartLanding extends Component {
 
   render() {
       return (
-        <div>
           <DummyLanding
             store={store}
             router={this.props.router}
           />
-        </div>
       )
   }
 }

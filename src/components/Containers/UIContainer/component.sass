@@ -1,58 +1,31 @@
+.parallax-landing
+  background-image: url('../../../images/parallax.png')
+  background-color: #F4F5F9
 
-.parallax-header
-  background-image: url('parallax_landing.png')
-  background-color: #F6F6FA
-  min-height: 37em
-  width: 130%
-  border-radius: 0 0 100% 100%
-  position: relative
-  left: -15%
+.parallax
+  background-image: url('../../../images/parallax.png')
+  background-color: #405063
 
 .header-landing
   overflow: hidden
+  min-height: 5.3em
+  background-color: #F4F5F9
 
 .header
-  background-image: url('parallax.jpg')
-  background-color: #F6F6FA
-  min-height: 17em
-
-
-.main-layout
-  background-color: #FFFFFF
-  min-height: 50em
-
-
-.main-layout
-  section
-    top: -22em
-    position: relative
-    width: 100%
+  background-color: #405063
+  min-height: 5.3em
 
 .navbar-fixed
-  background-color: #F6F6FA
-  padding: 2.5em 0 0 0
+  padding: 1.2em 0 0 0
   position: fixed
-  left: 0
   width: 100%
   z-index: 10000
-  background-image: url('parallax_landing.png')
   -webkit-transition: all 0.4s ease
-   transition: all 0.4s ease
+  transition: all 0.4s ease
 
 .shrink
-  padding: 2rem 0
+  padding: 1rem 0 !important
 
-@media (max-width : 414px)
-  .header-landing
-    min-height: 20em
-
-  .main-layout
-    .huge-container
-      width: 100%
-      padding: 0
-    section
-      top: -19.8em
-
-@media (min-width : 643px)
-  .shrink
-    padding: 1rem 0
+@media (min-width : 600px)
+  .navbar-fixed
+    padding: 2.7em 0 0 0

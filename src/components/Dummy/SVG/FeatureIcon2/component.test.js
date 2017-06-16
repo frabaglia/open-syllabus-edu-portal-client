@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Footer from './component'
+import FeatureIcon2 from './component'
 
 it('renders without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(
-        <Footer color="#FFFFFF"/>, div)
+        <FeatureIcon2 color="#FFFFFF"/>, div)
 })

@@ -8,10 +8,15 @@ class UIContainer extends Component {
 
   header = () =>
   {
-    let header = 'header'
-    if(this.props.location.pathname === '/') header = 'header-landing';
+    let header = 'header',
+        parallax = 'parallax navbar-fixed';
 
-    return header;
+    if(this.props.location.pathname === '/') {
+      header = 'header-landing';
+      parallax = 'parallax-landing navbar-fixed';
+    }
+
+    return {header: header, parallax: parallax};
   }
 
   componentDidMount = () =>{
@@ -27,21 +32,15 @@ class UIContainer extends Component {
     render() {
         return (
           <div>
-            <header ref="header" className={this.header()}>
-              <div className="parallax-header">
-                <div className="navbar-fixed">
+            <header className={this.header().header}>
+                <div className={this.header().parallax}>
                   <div className="huge-container">
                     <NavBar router={this.props}/>
                   </div>
                 </div>
-              </div>
             </header>
-            <div className="main-layout">
-              <div className="huge-container">
-                  <section ref='view'>{this.props.children}</section>
-              </div>
-            </div>
-            <Footer router={this.props}/>
+            {this.props.children}
+            {Footer()}
           </div>
         )
     }

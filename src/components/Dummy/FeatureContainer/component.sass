@@ -1,0 +1,52 @@
+.feature
+  display: flex
+  align-items: center
+  margin-bottom: 2em
+  .feature-icon
+    .feature-icon-container
+      display: flex
+      align-items: center
+      justify-content: center
+      padding: 1.5em
+      border-radius: 50%
+      border: 1px solid #E2E2E2
+      svg
+        width: 35px
+        height: 35px
+  .feature-information
+    display: inline-block
+    margin-left: 1.5em
+    .feature-information-title
+      font-size: 1.1em
+      margin-bottom: 0.2em
+    .feature-information-description
+      color: #85919F
+      font-size: 0.9em
+
+@media (min-width : 600px)
+  .feature
+    margin-bottom: 0
+    width: 33%
+    display: inline-flex
+    flex-direction: column
+    text-align: center
+    .feature-information
+      margin: 1.7em 0 0 0
+      .feature-information-title
+        margin-bottom: 1em
+      .feature-information-description
+        width: 80%
+        margin: 0 auto
+
+@media (min-width : 1024px)
+  .feature
+    .feature-icon
+      .feature-icon-container
+        padding: 2.3em
+        svg
+          width: 65px
+          height: 65px
+    .feature-information
+      .feature-information-description
+        width: 60%
+        margin: 0 auto

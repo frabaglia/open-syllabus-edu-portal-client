@@ -34,7 +34,7 @@ class NavBar extends Component {
       return (
         <div className="navbar">
           <div className="edu-logo">
-            <Link to="/">{SVGEduPortalLogo({color:'#9BD331'})}</Link>
+            <Link to="/">{SVGEduPortalLogo({color:'#9BD331', colorEDU:'#3B475B'})}</Link>
           </div>
           <div className="navbar-menu">
               <ul>
