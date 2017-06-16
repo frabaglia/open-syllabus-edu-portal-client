@@ -1,112 +1,151 @@
 .landing-title
-  margin: 3em 0
+  background-image: url('../../../images/parallax.png')
+  background-color: #F4F5F9
+  border-bottom-right-radius: 100% 10%
+  border-bottom-left-radius: 100% 10%
+  padding: 6em 0 10em 0
+  position: relative
   p
-    font-size: 2em
-    width: 48%
+    font-size: 1.6em
+    line-height: 1.4em
+    width: 90%
     text-align: center
     margin: 0 auto
-    color: #FFFFFF
+    color: #3B475B
     span
       color: #9BD331
-
-
-.landing-content
-  margin-top: 4rem
-  .left-content
-    background-color: #FFFFFF
-  .right-content
-    .container-network-graph
-      margin-top: 4rem
-.tooltip-wrapper
-  position: absolute
-  top: -35px
-  left: -50px
-  .tooltip
-    width: 100px
+  .oval-arrow-down
+    position: absolute
+    bottom: -7%
+    left: 0
+    right: 0
     text-align: center
-    position: relative
-    .tooltip-content
-      background-color: #405063
-      padding: 0.5rem
-      border-radius: 5px
-      .tooltip-content-field
-        display: block
-      .tooltip-content-syllabi
-        color: #FFFFFF
-    .tooltip-tail
+    svg
+      width: 2.8em
+      height: 2.8em
+
+.landing-body-title
+  text-align: center
+  margin: 3.2em 0 0 0
+  font-size: 1.5em
+  line-height: 1.4em
+  span
+    display: block
+  div
+    width: 60px
+    border: 1.5px solid #9BD331
+    display: inline-block
+
+.landing-body
+  .feature-container
+    margin-top: 3em
+    padding: 0 1.2em
+
+.aditional-information-container
+  margin-top: 2.4em
+  padding: 5.3em 0 3.6em 0
+  background-image: url('../../../images/parallax.png')
+  background-color: #405063
+  .aditional-information-title
+    margin: 0 0 1.5em 0
+    span
+      color: #FFFFFF
+  .aditional-information-description
+    color: #FFFFFF
+    width: 80%
+    margin: 0 auto
+    text-align: center
+  .aditional-information-contact
+    margin-top: 2em
+    div
+      display: flex
+      align-items: center
+      width: 100%
+      max-width: 200px
+      margin: 0 auto 1.2em auto
+      svg
+        width: 30px
+        height: 30px
+    p
+      color: #FFFFFF
       display: inline-block
-      position: absolute
-      left: 44px
-      width: 0
-      height: 0
-      border-right: 7px solid transparent
-      border-bottom: 7px solid transparent
-      border-left: 7px solid transparent
-      border-top: 7px solid #405063
-
-
-
-@media (max-width : 414px)
-  .landing-title
-    margin: 8.1em 0 4.1em 0
-    p
-      width: 59%
-      font-size: 1.4em
-
-@media (max-width : 340px)
-  .landing-title
-    p
-      width: 68%
+      margin: 0 0 0 1em
+      font-size: 1.3em
 
 
 @media (min-width : 414px)
   .landing-title
     p
-      width: 80%
-  .landing-content
-    .left-content
-      border-radius: 5px
+      font-size: 1.7em
 
-@media (min-width : 485px)
+@media (min-width : 600px)
   .landing-title
     p
-      width: 64%
+      font-size: 2em
+      width: 90%
 
+  .landing-body
+    .feature-container
+      margin-top: 4.7em
 
-
-
-@media (min-width : 643px)
+@media (min-width : 768px)
   .landing-title
     p
-      width: 51%
+      width: 75%
 
-@media (min-width : 800px)
+@media (min-width : 900px)
   .landing-title
     p
-      width: 44.6%
+      width: 60%
 
-@media (min-width: 926px)
+@media (min-width : 1024px)
+  .landing-title
+    padding: 16em 0 19.7em 0
+    border-bottom-right-radius: 100% 30%
+    border-bottom-left-radius: 100% 30%
+    p
+      width: 65%
+      font-size: 2.3em
+    .oval-arrow-down
+      bottom: -4%
+      svg
+        width: 3.2em
+        height: 3.2em
+
+  .landing-body
+    .landing-body-title
+      margin: 4.2em 0 0 0
+      font-size: 2.3em
+      line-height: 1.2em
+
+  .aditional-information-container
+    margin-top: 11em
+    padding: 10em 0 9em 0
+    .aditional-information
+      display: flex
+      align-items: flex-end
+      justify-content: center
+      .aditional-information-title
+        display: inline-block
+        text-align: left
+        font-size: 2.3em
+        line-height: 1.2em
+        margin: 0 0 1em 0
+      .aditional-information-description
+        width: 100%
+        max-width: 450px
+        text-align: left
+      .aditional-information-contact
+        margin: 0 0 2em 8em
+        div
+          max-width: none
+          svg
+            width: 40px
+            height: 40px
+        p
+          font-size: 1.8em
+
+@media (min-width : 1224px)
   .landing-title
     p
-      width: 35%
-
-@media (min-width: 1139px)
-  .landing-title
-    p
-      width: 48%
-  .landing-content
-    .left-content
-      display: inline-block
-      width: 48%
-    .right-content
-      float: right
-      width: 48%
-      .container-network-graph
-        margin-top: 0
-      .container-map
-        margin: 0 0 4rem 0
-
-@media (min-width: 1250px)
-  .landing-title
-    p
-      width: 44%
+      width: 52%

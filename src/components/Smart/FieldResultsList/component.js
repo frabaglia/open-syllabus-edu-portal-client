@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+// import './component.sass';
 import {connect} from 'react-redux'
 import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 
@@ -9,7 +10,7 @@ import {globalError} from '../../../constants/actions/GlobalMessages'
 import DummyFieldResultsList from '../../Views/FieldResultsList/component.js'
 import {  TYPE_FIELD,
           TYPE_COUNTRY
-} from '../../../constants/action-types/store'
+} from '../../../store/storeTypes'
 
 function mapStateToProps(store) {
     return {resultsList: store.get('ResultsList')}
@@ -21,13 +22,14 @@ class SmartFieldResultList extends Component {
   constructor(){
     super();
     this.state = {
-      currentCategory: 'Fields',
-      category: 'Fields',
+      currentCategory: 'Field',
+      category: 'Field',
       oldString: '',
       currentString: '',
       timerId: '',
       currentParamList:[],
-      currentParamsQuery:[]
+      currentParamsQuery:[],
+      pagination: 1
     }
   }
 
@@ -36,7 +38,7 @@ class SmartFieldResultList extends Component {
 
       dispatch(fieldResultsListRequest())
 
-      var syllabusHTTPServicePromise = syllabusHTTPService.getFieldResultsList({page:[1]})
+      var syllabusHTTPServicePromise = syllabusHTTPService.getFieldResultsList({page:[this.state.pagination]})
 
       syllabusHTTPServicePromise.then( (response) => {
         let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
@@ -64,8 +66,8 @@ class SmartFieldResultList extends Component {
 
   getCurrentParamsQuery = (paramsList) => {
     console.log('cambio en params');
-    this.setState({currentParamsQuery:paramsList, currentParamList:[]},
-      () => this.makeRequest('Fields')
+    this.setState({currentParamsQuery:paramsList, currentParamList:[], pagination:1},
+      () => this.makeRequest('Field')
     )
   }
 
@@ -81,20 +83,21 @@ class SmartFieldResultList extends Component {
 
   makeRequest = (type) => {
     //En esta etapa el usuario hizo click en search o apreto enter, tenemos disponible el string y categoria que tenemos actualmente en el state. Deberiamos agregar la logica de request a partir de ahora
-    if(this.state.currentString !== '' || type === "Fields"){
+    if(this.state.currentString !== '' || type === "Field"){
 
     let category = (type) ? type : this.state.currentCategory
 
     let syllabusHTTPServicePromise,
         dispatch = this.props.dispatch,
-        string = (type !== "Fields" || this.state.currentCategory !== "Fields") ? [] : [this.state.currentString];
+        string = (type !== "Field" || this.state.currentCategory !== "Field") ? [] : [this.state.currentString];
 
       switch (category) {
-        case 'Fields':
+        case 'Field':
         dispatch(fieldResultsListRequest())
         syllabusHTTPServicePromise = syllabusHTTPService.getFieldResultsList({
+          page:[this.state.pagination],
           query: string,
-          country: this.createQuery('Countries')
+          country: this.createQuery('Country')
         })
         syllabusHTTPServicePromise.then( (response) => {
           let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
@@ -104,7 +107,7 @@ class SmartFieldResultList extends Component {
         })
         break;
 
-        case 'Countries':
+        case 'Country':
         dispatch(countryResultsListRequest());
         syllabusHTTPServicePromise = syllabusHTTPService.getCountryResultsList({query: [this.state.currentString]})
 
@@ -128,6 +131,8 @@ class SmartFieldResultList extends Component {
     }
   }
 
+  pagination = () => this.setState({pagination:this.state.pagination+1}, () => this.makeRequest("Field"))
+
   componentWillUnmount = () =>{
     clearInterval(this.state.timerId);
   }
@@ -144,6 +149,7 @@ class SmartFieldResultList extends Component {
             store={this.props.resultsList.getIn([TYPE_FIELD, 'data']).toJS()}
             currentParamData={this.state.currentParamList}
             currentParamsQuery={this.getCurrentParamsQuery}
+            pagination={this.pagination}
           />
         </div>
       )

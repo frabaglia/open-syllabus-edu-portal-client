@@ -7,32 +7,16 @@ import SVGTwitterLogo from '../../Dummy/SVG/TwitterLogo/component.js'
 import BadgesList from '../../Dummy/Lists/BadgesList/component.js'
 import AuthorTitlesList from '../../Dummy/Lists/AuthorTitlesList/component.js'
 import BarChart from '../../Dummy/BarChart/component.js'
-import image from './Fredric_Jameson.png'
+import Map from '../../Dummy/Map/component.js'
+import images from './Fredric_Jameson.png'
 
 class DummyAuthorResult extends Component {
     render() {
-      const badgetList = [
-        {
-          title: 'English',
-          count: 420
-        },
-        {
-          title: 'Politics',
-          count: 210
-        },
-        {
-          title: 'Architecture',
-          count: 99
-        },
-        {
-          title: 'Philosophy',
-          count: 72
-        },
-        {
-          title: 'unattributed',
-          count: 320
-        },
-      ]
+      let store = this.props.store,
+          first_name = store.author_first || '',
+          middle_name = store.author_middle || '',
+          last_name = store.author_last || '',
+          image = store.image || images;
         return (
           <div className="result-view">
             <div className="result-view-content">
@@ -43,29 +27,44 @@ class DummyAuthorResult extends Component {
               </div>
               <div className="left-content">
                 <div className="title-view">
-                  <img src={image} alt="image-author"/>
+                  <img src={image} alt="author"/>
                   <p>
-                    Fredric Jameson
+                    {`${first_name} ${middle_name} ${last_name}`}
                   </p>
                 </div>
 
                 <p className="description">
-                  Fredric Jameson (born 14 April 1934) is an American literary critic and Marxist political theorist. He is best known for his analysis of contemporary cultural trends. He once described postmodernism as the spatialization of culture under the pressure of organized capitalism. Jameson's best-known books include Postmodernism, or, The Cultural Logic of Late Capitalism, The Political Unconscious, and Marxism and Form.
+                  {store.author_description}
                 </p>
                 <div className="buttons-label">
-                  <ButtonLabel title="APPEARANCES 575" backgroundColor="#A9B4C0" color="#FFFFFF" border=""/>
+                  <ButtonLabel title={`APPEARANCES ${store.appearences.total}`} backgroundColor="#A9B4C0" color="#FFFFFF" border=""/>
 
                 </div>
                 <div className="badge">
-                  <BadgesList store={badgetList} />
+                  <BadgesList store={store.appearences.by_field} />
                 </div>
                 <div className="author-titles">
-                  <AuthorTitlesList/>
+                  <AuthorTitlesList store={store.author_titles}/>
                 </div>
               </div>
 
               <aside className="right-content">
-                <BarChart title={"Top Titles by Year"} legend={false}/>
+                <div className="field-container-map">
+                  <Map
+                    title={'Syllaby Map'}
+                    lat={store.country_map.initialPosition.lat}
+                    lng={store.country_map.initialPosition.lng}
+                    zoom={store.country_map.initialPosition.zoom}
+                    store={store.country_map.data}
+                  />
+                </div>
+                <BarChart
+                  title={"Top Titles by Year"}
+                  legend={false}
+                  store={store.top_titles_by_year.data}
+                  isNormalizable={true}
+                  getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
+                />
               </aside>
             </div>
           </div>

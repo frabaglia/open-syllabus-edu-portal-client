@@ -10,7 +10,7 @@ import ArrowUp from '../../SVG/ArrowUp/component.js'
 //     TYPE_COUNTRY,
 //     TYPE_PUBLISHER,
 //     // TYPE_INSTITUTION_FIELD
-// } from '../../../constants/action-types/store'
+// } from '../../../store/storeTypes'
 
 class ButtonMostFrecuentDropdown extends Component {
 

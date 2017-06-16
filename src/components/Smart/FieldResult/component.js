@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+// import './component.sass';
 import {connect} from 'react-redux'
+import $ from 'jquery'
 import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 
 import {fieldResultRequest, fieldResultSuccess} from '../../../constants/actions/FieldResult'
@@ -12,20 +14,43 @@ import {  TYPE_TITLE,
           TYPE_FIELD,
           TYPE_INSTITUTION,
           TYPE_COUNTRY
-        } from '../../../constants/action-types/store'
+        } from '../../../store/storeTypes'
 
 function mapStateToProps(store) {
-    return {resultsList: store.get('ResultsList')}
+    return {result: store.get('Result')}
 
 }
 
 class SmartFieldResult extends Component {
 
+  constructor (){
+    super();
+    this.state ={
+      typeData: "Normalized"
+    }
+  }
 
 
-  componentDidMount = () => {
+  componentWillMount = () => {
+    this.makeRequest("Normalized")
+  }
+
+  makeRequest = (dataType) =>{
+    if(dataType === "Normalized"){
       let dispatch = this.props.dispatch;
 
+      dispatch(fieldResultRequest())
+
+      let syllabusHTTPServicePromise = syllabusHTTPService.getFieldResultNormalized(this.props.location.query.id)
+
+      syllabusHTTPServicePromise.then( (response) => {
+          dispatch(fieldResultSuccess(response.data))
+      }).catch(function(error) {
+          dispatch(resultsListError(error))
+      })
+    }
+    else {
+      let dispatch = this.props.dispatch;
 
       dispatch(fieldResultRequest())
 
@@ -36,12 +61,21 @@ class SmartFieldResult extends Component {
       }).catch(function(error) {
           dispatch(resultsListError(error))
       })
+    }
+  }
+
+  getDataNormalizedOrRAW = (dataType) =>{
+    this.makeRequest(dataType);
+  }
+  renderDummyFieldResult = () =>{
+    return ($.isEmptyObject(this.props.result.getIn([TYPE_FIELD, 'data']).toJS())) ? (<div></div>) : (<DummyFieldResult store={this.props.result.getIn([TYPE_FIELD, 'data']).toJS()} getDataNormalizedOrRAW={this.getDataNormalizedOrRAW}/>);
   }
 
   render() {
+    console.log(this.props.result.getIn([TYPE_FIELD, 'data']).toJS());
       return (
         <div>
-          <DummyFieldResult/>
+          {this.renderDummyFieldResult()}
         </div>
       )
   }

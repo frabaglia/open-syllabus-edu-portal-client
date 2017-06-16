@@ -16,7 +16,7 @@ class InstitutionItemList extends Component {
               query: {id:objectItem._id}
             }}>
               <img src={image} alt="institution-name"/>
-              <p>{`${objectItem.name}, `}<span>{objectItem.country}</span></p>
+              <span>{`${objectItem.name}, `}<p>{objectItem.country}</p></span>
             </Link>
           </div>
           <div className="syllabi">{objectItem.syllabus_count}</div>

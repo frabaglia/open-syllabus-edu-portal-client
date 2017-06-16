@@ -1,21 +1,15 @@
 import React, {Component} from 'react';
+// import './component.sass';
 import {connect} from 'react-redux'
+import $ from "jquery"
 import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
-
 import {publisherResultRequest, publisherResultSuccess} from '../../../constants/actions/PublisherResult'
-
-
 import {resultsListError} from '../../../constants/actions/GlobalMessages'
 import DummyPublisherResult from '../../Views/PublisherResult/component.js'
-import {  TYPE_TITLE,
-          TYPE_AUTHOR,
-          TYPE_FIELD,
-          TYPE_INSTITUTION,
-          TYPE_COUNTRY
-        } from '../../../constants/action-types/store'
+import {TYPE_PUBLISHER} from '../../../store/storeTypes'
 
 function mapStateToProps(store) {
-    return {resultsList: store.get('ResultsList')}
+  return {result: store.get('Result')}
 
 }
 
@@ -23,9 +17,34 @@ class SmartPublisherResult extends Component {
 
 
 
-  componentDidMount = () => {
+  constructor (){
+    super();
+    this.state ={
+      typeData: "Normalized"
+    }
+  }
+
+
+  componentWillMount = () => {
+    this.makeRequest("Normalized")
+  }
+
+  makeRequest = (dataType) =>{
+    if(dataType === "Normalized"){
       let dispatch = this.props.dispatch;
 
+      dispatch(publisherResultRequest())
+
+      let syllabusHTTPServicePromise = syllabusHTTPService.getPublisherResultNormalized(this.props.location.query.id)
+
+      syllabusHTTPServicePromise.then( (response) => {
+          dispatch(publisherResultSuccess(response.data))
+      }).catch(function(error) {
+          dispatch(resultsListError(error))
+      })
+    }
+    else {
+      let dispatch = this.props.dispatch;
 
       dispatch(publisherResultRequest())
 
@@ -36,12 +55,22 @@ class SmartPublisherResult extends Component {
       }).catch(function(error) {
           dispatch(resultsListError(error))
       })
+    }
+  }
+
+  getDataNormalizedOrRAW = (dataType) =>{
+    this.makeRequest(dataType);
+  }
+
+
+  renderDummyPublisherResult = () =>{
+    return ($.isEmptyObject(this.props.result.getIn([TYPE_PUBLISHER, 'data']).toJS())) ? (<div></div>) : (<DummyPublisherResult store={this.props.result.getIn([TYPE_PUBLISHER, 'data']).toJS()} getDataNormalizedOrRAW={this.getDataNormalizedOrRAW}/>);
   }
 
   render() {
       return (
         <div>
-          <DummyPublisherResult/>
+          {this.renderDummyPublisherResult()}
         </div>
       )
   }

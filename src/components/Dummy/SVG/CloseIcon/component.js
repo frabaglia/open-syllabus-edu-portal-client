@@ -1,26 +1,23 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class CloseIcon extends Component {
-
-  render() {
-
-      return (
-        <svg width="9px" height="9px" viewBox="0 0 9 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-            <g id="Visual-Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                <g id="Search-Results---Titles" transform="translate(-1219.000000, -181.000000)" fill={this.props.color}>
-                    <g id="Group-25" transform="translate(470.000000, 140.000000)">
-                        <g id="Group-47" transform="translate(638.000000, 30.000000)">
-                            <g id="Group-27" transform="translate(111.000000, 11.000000)">
-                                <polygon id="Path-2" points="0.292893219 7.36396103 1.70710678 8.77817459 8.77817459 1.70710678 7.36396103 0.292893219"></polygon>
-                                <polygon id="Path-2" points="7.36396103 8.77817459 8.77817459 7.36396103 1.70710678 0.292893219 0.292893219 1.70710678"></polygon>
-                            </g>
-                        </g>
-                    </g>
-                </g>
-            </g>
-        </svg>
-      )
-  }
+const CloseIcon = (props) => {
+  return ( <svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+      <g id="Visual-Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+          <g id="Desktop---Login" transform="translate(-905.000000, -168.000000)">
+              <g id="Group-8" transform="translate(520.000000, 168.000000)">
+                  <g id="Group-7" transform="translate(385.000000, 0.000000)">
+                      <g id="Group-5" fill="#C8CFD7">
+                          <circle id="Oval" cx="15" cy="15" r="15"></circle>
+                      </g>
+                      <g id="Group-6" transform="translate(11.000000, 11.000000)" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M0,0 L8.48528137,8.48528137" id="Path-2"></path>
+                          <path d="M0,0 L8.48528137,8.48528137" id="Path-2" transform="translate(4.242641, 4.242641) scale(-1, 1) translate(-4.242641, -4.242641) "></path>
+                      </g>
+                  </g>
+              </g>
+          </g>
+      </g>
+  </svg>);
 }
 
 export default CloseIcon

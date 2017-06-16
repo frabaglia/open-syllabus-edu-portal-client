@@ -7,6 +7,7 @@ import SVGFacebookLogo from '../../Dummy/SVG/FacebookLogo/component.js'
 import SVGTwitterLogo from '../../Dummy/SVG/TwitterLogo/component.js'
 import BadgesList from '../../Dummy/Lists/BadgesList/component.js'
 import TextAssignedList from '../../Dummy/Lists/TextAssignedList/component.js'
+import SeeTheTextOnSyllabiList from '../../Dummy/Lists/SeeTheTextOnSyllabiList/component.js'
 import BarChart from '../../Dummy/BarChart/component.js'
 import Map from '../../Dummy/Map/component.js'
 
@@ -16,24 +17,10 @@ class DummyTitleResult extends Component {
 
 
     render() {
-      const badgetList = [
-        {
-          title: 'Public Administration',
-          count: 9
-        },
-        {
-          title: 'Business',
-          count: 5
-        },
-        {
-          title: 'Undefined',
-          count: 1
-        },
-        {
-          title: 'Urban Planing',
-          count: 4
-        }
-      ]
+      let store = this.props.store,
+          first_name = store.author.author_first || '',
+          middle_name = store.author.author_middle || '',
+          last_name = store.author.author_last || '';
         return (
             <div className="result-view">
                 <div className="result-view-content">
@@ -44,39 +31,38 @@ class DummyTitleResult extends Component {
                   </div>
                   <div className="left-content">
                     <p className="title-view">
-                      A Manual for Writers of Term Papers, Theses, and Dissertations
+                      {store.title}
                     </p>
                     <p className="author-view">
                       <Link to={{
                         pathname: "/result/author",
-                        query: {id:'id'}
+                        query: {id:store.author._id}
                       }}>
-                        Georgia Levenson Keohane
+                        {`${first_name} ${middle_name} ${last_name}`}
                       </Link>
                     </p>
                     <p className="editorial">
                       <Link to={{
                         pathname: "/result/publisher",
-                        query: {id:'id'}
+                        query: {id:store.publisher._id}
                       }}>
-                        Pantheon Press, 2013
+                        {`${store.publisher.name}, ${store.pub_year}`}
                       </Link>
                     </p>
                     <p className="description">
-                      Whether you’re a policymaker, investor, or involved in a nonprofit, Social Entrepreneurship for the 21st Century gives you the knowledge you need to make the best possible decisions for the future. A former McKinsey consultant reveals how social entrepreneurship has filtered into the workings of government and private enterprise, where social sector values are now shaping “social impact” capitalism.
+                      {store.title_description}
                     </p>
                     <div className="buttons-label">
-                      <ButtonLabel title="RANK 43" backgroundColor="#3188D3" color="#FFFFFF" border=""/>
-                      <ButtonLabel title="APPEARANCES 22" backgroundColor="#A9B4C0" color="#FFFFFF" border=""/>
-                      <ButtonLabel title="SCORE 100.0" backgroundColor="#9BD331" color="#FFFFFF" border=""/>
+                      <ButtonLabel title={`RANK ${store.rank}`} backgroundColor="#3188D3" color="#FFFFFF" border=""/>
+                      <ButtonLabel title={`APPEARANCES ${store.appearences.total}`} backgroundColor="#A9B4C0" color="#FFFFFF" border=""/>
+                      <ButtonLabel title={`SCORE ${store.score}`} backgroundColor="#9BD331" color="#FFFFFF" border=""/>
                     </div>
                     <div className="badge">
-                      <BadgesList store={badgetList} type={0}/>
+                      <BadgesList store={store.appearences.by_field} type={0}/>
                     </div>
                     <div className="text-assigned">
-                      <p className="text-assigned-discription">Texts assigned with <span>A Manual for Writers of Term Papers, Theses, and Dissertations:</span></p>
-                      <TextAssignedList/>
-                      <ButtonLabel title="Show all" backgroundColor="#A9B4C0" border="" color="#FFFFFF"/>
+                      <p className="text-assigned-discription">Texts assigned with <span>{`${store.title}:`}</span></p>
+                      <TextAssignedList store={store.textAssignedWith}/>
                     </div>
                   </div>
 
@@ -87,27 +73,38 @@ class DummyTitleResult extends Component {
                       </p>
                       <p>
                         Open Version:
-                        <span><a href="#">Project Gutenberg, SSRN</a></span>
+                        <span>
+                          <Link target="_blank" to="#">
+                            {store.availability.openVersion.title}
+                          </Link>
+                        </span>
                       </p>
                       <p>
                         Via Your Institution:
-                        <span><a href="#">Pearson</a></span>
+                        <span>
+                          <Link target="_blank" to="#" >
+                            {store.availability.viaYourInstitution.title}
+                          </Link>
+                        </span>
                       </p>
                     </div>
                     <div className="text-syllabi">
-                      <p>
-                        See the Text on 24 Syllabi
-                      </p>
-                      <ul>
-                        <li><span>Sociology 1 (MIT)</span></li>
-                        <li><span>Sociology 2 (MIT)</span></li>
-                        <li><span>Public Policy State 1 (UNER University)</span></li>
-                        <li><span>Biology 1 (MIT)</span></li>
-                        <li><span>Philosophy 2 (University of Denver)</span></li>
-                      </ul>
+                      <SeeTheTextOnSyllabiList store={store.seeTheTextOn}/>
                     </div>
-                    <Map/>
-                    <BarChart title={"Top Field by Year"} legend={false}/>
+                    <Map
+                      title={'Syllaby Map'}
+                      lat={store.country_map.initialPosition.lat}
+                      lng={store.country_map.initialPosition.lng}
+                      zoom={store.country_map.initialPosition.zoom}
+                      store={store.country_map.data}
+                    />
+                    <BarChart
+                      title={"Top Field by Year"}
+                      legend={false}
+                      store={store.top_fields_by_year.data}
+                      isNormalizable={true}
+                      getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
+                    />
                   </aside>
                 </div>
             </div>

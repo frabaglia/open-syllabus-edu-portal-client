@@ -12,7 +12,7 @@ import {
     TYPE_PUBLISHER,
     TYPE_INSTITUTION_FIELD
 
-} from '../../constants/action-types/store'
+} from '../../store/storeTypes'
 
 import {
     MOST_FRECUENT_TYPE_UPDATE,

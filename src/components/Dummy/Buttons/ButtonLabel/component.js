@@ -1,21 +1,18 @@
-import React, {Component} from 'react'
-import './component.sass'
+import React from 'react';
+import './component.sass';
 
-
-class ButtonLabel extends Component {
-
-  render() {
-    let style = {
-      backgroundColor: `${this.props.backgroundColor}`,
-      color: `${this.props.color}`,
-      border: `${this.props.border}`
-    }
-      return (
-        <div className="btnLabel" style={style}>
-          {this.props.title}
-        </div>
-      )
+const ButtonLabel = (props) => {
+  let style = {
+    backgroundColor: `${props.backgroundColor}`,
+    color: `${props.color}`,
+    border: `${props.border}`
   }
+
+  return (
+    <div className="btnLabel" style={style} onClick={props.click}>
+      {props.title}
+    </div>
+);
 }
 
 export default ButtonLabel

@@ -8,7 +8,7 @@ import {
     TYPE_COUNTRY,
     TYPE_PUBLISHER,
     TYPE_INSTITUTION_FIELD
-} from '../../constants/action-types/store'
+} from '../../store/storeTypes'
 
 import {
     TITLE_RESULTS_LIST_REQUEST,

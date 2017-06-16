@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import './component.sass';
+import ToolTip from '../../ToolTip/component.js'
 
 class TitleItemList extends Component {
 
   render() {
-      let objectItem = this.props.objectItem;
+      let objectItem = this.props.objectItem,
+          first_name = objectItem.author.author_first || '',
+          middle_name = objectItem.author.author_middle || '',
+          last_name = objectItem.author.author_last || '';
       return (
         <div className="title-item">
           <div className="rank">{objectItem.rank}</div>
@@ -15,7 +19,7 @@ class TitleItemList extends Component {
                 pathname: "/result/title",
                 query: {id:objectItem._id}
               }}>
-                {objectItem.title}
+                {objectItem.name}
               </Link>
             </p>
             <span className="name">
@@ -23,13 +27,19 @@ class TitleItemList extends Component {
                 pathname: "/result/author",
                 query: {id:objectItem._id}
               }}>
-                {`${objectItem.author_first} ${objectItem.author_middle} ${objectItem.author_last}`}
+                {`${first_name} ${middle_name} ${last_name}`}
               </Link>
             </span>
             <span>{objectItem.pub_year}</span>
           </div>
-          <div className="appearances">{objectItem.appearances}</div>
-          <div className="score">{objectItem.score}</div>
+          <div className="appearances">{objectItem.appearences.total}</div>
+
+            <div className="score">
+              {/* <ToolTip tooltipText="Lorem Ipsum"> */}
+              {objectItem.score}
+              {/* </ToolTip> */}
+            </div>
+
         </div>
       )
   }

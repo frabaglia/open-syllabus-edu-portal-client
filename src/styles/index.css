@@ -2,14 +2,13 @@
 *{
   font-family: "Adelle Sans W01 Regular";
   box-sizing: border-box;
+  color: #3B475B;
 }
 
 body{
-
   font-size: 14px;
   margin: 0;
   padding: 0;
-  color: #405063;
 }
 
 a{

@@ -5,28 +5,31 @@ import './component.sass';
 class TextAssignedItemList extends Component {
 
   render() {
-      // let objectItem = this.props.objectItem;
+      let objectItem = this.props.objectItem,
+          first_name = objectItem.author.author_first || '',
+          middle_name = objectItem.author.author_middle || '',
+          last_name = objectItem.author.author_last || '';
       return (
         <div className="text-assigned-item">
-          <div className="count">7</div>
+          <div className="count">{objectItem.rank}</div>
           <div className="text">
             <p>
               <Link to={{
                 pathname: "/result/title",
-                query: {id:'id'}
+                query: {id:objectItem._id}
               }}>
-                MLA Handbook for Writers of Research Papers
+                {objectItem.title}
               </Link>
             </p>
             <span className="name">
               <Link to={{
                 pathname: "/result/author",
-                query: {id:'id'}
+                query: {id:objectItem.author._id}
               }}>
-                Gibaldi, Joseph
+                {`${first_name}, ${middle_name} ${last_name}`}
               </Link>
             </span>
-            <span>1942</span>
+            <span>{objectItem.pub_year}</span>
           </div>
         </div>
       )

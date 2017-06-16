@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+// import './component.sass';
 import {connect} from 'react-redux'
 import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 
@@ -15,17 +16,17 @@ import {  TYPE_TITLE,
           TYPE_FIELD,
           TYPE_INSTITUTION,
           TYPE_COUNTRY
-        } from '../../../constants/action-types/store'
+        } from '../../../store/storeTypes'
 
 
 // User gets into Title results list.
 //
 // On component mount, the UI fetch:
-//   - Titles (0-200 paginationI) of +2M set.
-//   - Authors (0-200 pagination) of maybe +500.000 set.
+//   - Title (0-200 paginationI) of +2M set.
+//   - Author (0-200 pagination) of maybe +500.000 set.
 //   - Institutions.
-//   - Fields.
-//   - Countries.
+//   - Field.
+//   - Country.
 //
 // If user decides to filter by: Author, Institution, Field or Country:
 //   -UI makes an HTTP request using the user input, on a 2 second debounce rate (if you click SEARCH, you avoid this debounce timing), as a query param for the GET request.
@@ -47,13 +48,14 @@ class SmartTitleResultList extends Component {
   constructor(){
     super();
     this.state = {
-      currentCategory: 'Titles',
-      category: 'Titles',
+      currentCategory: 'Title',
+      category: 'Title',
       oldString: '',
       currentString: '',
       timerId: '',
       currentParamList:[],
-      currentParamsQuery:[]
+      currentParamsQuery:[],
+      pagination: 1
     }
   }
 
@@ -62,7 +64,7 @@ class SmartTitleResultList extends Component {
 
       dispatch(titleResultsListRequest())
 
-      var syllabusHTTPServicePromise = syllabusHTTPService.getTitleResultsList({page:[1]})
+      var syllabusHTTPServicePromise = syllabusHTTPService.getTitleResultsList({page:[this.state.pagination]})
 
       syllabusHTTPServicePromise.then( (response) => {
         let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
@@ -95,8 +97,8 @@ class SmartTitleResultList extends Component {
     let paramQuery;
     if(paramsList.length) paramQuery = paramsList
     else paramQuery = [];
-    this.setState({currentParamsQuery:paramQuery, currentParamList:[]},
-      () => this.makeRequest('Titles')
+    this.setState({currentParamsQuery:paramQuery, currentParamList:[], pagination:1},
+      () => this.makeRequest('Title')
     )
   }
 
@@ -112,23 +114,24 @@ class SmartTitleResultList extends Component {
 
   makeRequest = (type) => {
     //En esta etapa el usuario hizo click en search o apreto enter, tenemos disponible el string y categoria que tenemos actualmente en el state. Deberiamos agregar la logica de request a partir de ahora
-    if(this.state.currentString !== '' || type === "Titles"){
+    if(this.state.currentString !== '' || type === "Title"){
 
     let category = (type) ? type : this.state.currentCategory
 
     let syllabusHTTPServicePromise,
         dispatch = this.props.dispatch,
-        string = (type !== "Titles" || this.state.currentCategory !== "Titles") ? [] : [this.state.currentString];
+        string = (type !== "Title" || this.state.currentCategory !== "Title") ? [] : [this.state.currentString];
 
       switch (category) {
-        case 'Titles':
+        case 'Title':
         dispatch(titleResultsListRequest())
         syllabusHTTPServicePromise = syllabusHTTPService.getTitleResultsList({
+          page:[this.state.pagination],
           query: string,
-          author: this.createQuery('Authors'),
-          field:this.createQuery('Fields'),
-          institution: this.createQuery('Schools'),
-          country: this.createQuery('Countries'),
+          author: this.createQuery('Author'),
+          field:this.createQuery('Field'),
+          institution: this.createQuery('School'),
+          country: this.createQuery('Country'),
           pub_year_start: this.createQuery('pub_year_start'),
           pub_year_end: this.createQuery('pub_year_end'),
           class_year_start: this.createQuery('class_year_start'),
@@ -145,7 +148,7 @@ class SmartTitleResultList extends Component {
         })
         break;
 
-        case 'Authors':
+        case 'Author':
           dispatch(authorResultsListRequest());
           syllabusHTTPServicePromise = syllabusHTTPService.getAuthorResultsList({query: [this.state.currentString]})
 
@@ -158,7 +161,7 @@ class SmartTitleResultList extends Component {
           this.setState({currentParamList:this.props.resultsList.getIn([TYPE_AUTHOR, 'data']).toJS()})
           break;
 
-        case 'Fields':
+        case 'Field':
           dispatch(fieldResultsListRequest());
           syllabusHTTPServicePromise = syllabusHTTPService.getFieldResultsList({query: [this.state.currentString]})
 
@@ -171,7 +174,7 @@ class SmartTitleResultList extends Component {
           this.setState({currentParamList:this.props.resultsList.getIn([TYPE_FIELD, 'data']).toJS()})
           break;
 
-        case 'Schools':
+        case 'School':
           dispatch(institutionResultsListRequest());
           syllabusHTTPServicePromise = syllabusHTTPService.getInstitutionResultsList({query: [this.state.currentString]})
 
@@ -184,7 +187,7 @@ class SmartTitleResultList extends Component {
           this.setState({currentParamList:this.props.resultsList.getIn([TYPE_INSTITUTION, 'data']).toJS()})
           break;
 
-        case 'Countries':
+        case 'Country':
         dispatch(countryResultsListRequest());
         syllabusHTTPServicePromise = syllabusHTTPService.getCountryResultsList({query: [this.state.currentString]})
 
@@ -208,6 +211,8 @@ class SmartTitleResultList extends Component {
     }
   }
 
+  pagination = () => this.setState({pagination:this.state.pagination+1}, () => this.makeRequest("Title"))
+
   componentWillUnmount = () =>{
     clearInterval(this.state.timerId);
   }
@@ -223,6 +228,7 @@ class SmartTitleResultList extends Component {
             store={this.props.resultsList.getIn([TYPE_TITLE, 'data']).toJS()}
             currentParamData={this.state.currentParamList}
             currentParamsQuery={this.getCurrentParamsQuery}
+            pagination={this.pagination}
           />
         </div>
       )

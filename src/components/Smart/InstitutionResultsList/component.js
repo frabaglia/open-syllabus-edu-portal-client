@@ -12,7 +12,7 @@ import {
         TYPE_FIELD,
         TYPE_INSTITUTION,
         TYPE_COUNTRY
-} from '../../../constants/action-types/store'
+} from '../../../store/storeTypes'
 
 function mapStateToProps(store) {
     return {resultsList: store.get('ResultsList')}
@@ -24,13 +24,14 @@ class SmartInstitutionResultList extends Component {
   constructor(){
     super();
     this.state = {
-      currentCategory: 'Schools',
-      category: 'Schools',
+      currentCategory: 'School',
+      category: 'School',
       oldString: '',
       currentString: '',
       timerId: '',
       currentParamList:[],
-      currentParamsQuery:[]
+      currentParamsQuery:[],
+      pagination: 1
     }
   }
 
@@ -39,7 +40,7 @@ class SmartInstitutionResultList extends Component {
 
       dispatch(institutionResultsListRequest())
 
-      var syllabusHTTPServicePromise = syllabusHTTPService.getInstitutionResultsList({page:[1]})
+      var syllabusHTTPServicePromise = syllabusHTTPService.getInstitutionResultsList({page:[this.state.pagination]})
 
       syllabusHTTPServicePromise.then( (response) => {
         let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
@@ -67,8 +68,8 @@ class SmartInstitutionResultList extends Component {
 
   getCurrentParamsQuery = (paramsList) => {
     console.log('cambio en params');
-    this.setState({currentParamsQuery:paramsList, currentParamList:[]},
-      () => this.makeRequest('Schools')
+    this.setState({currentParamsQuery:paramsList, currentParamList:[], pagination:1},
+      () => this.makeRequest('School')
     )
   }
 
@@ -84,21 +85,22 @@ class SmartInstitutionResultList extends Component {
 
   makeRequest = (type) => {
     //En esta etapa el usuario hizo click en search o apreto enter, tenemos disponible el string y categoria que tenemos actualmente en el state. Deberiamos agregar la logica de request a partir de ahora
-    if(this.state.currentString !== '' || type === "Schools"){
+    if(this.state.currentString !== '' || type === "School"){
 
     let category = (type) ? type : this.state.currentCategory
 
     let syllabusHTTPServicePromise,
         dispatch = this.props.dispatch,
-        string = (type !== "Schools" || this.state.currentCategory !== "Schools") ? [] : [this.state.currentString];
+        string = (type !== "School" || this.state.currentCategory !== "School") ? [] : [this.state.currentString];
 
       switch (category) {
-        case 'Schools':
+        case 'School':
         dispatch(institutionResultsListRequest())
         syllabusHTTPServicePromise = syllabusHTTPService.getInstitutionResultsList({
+          page:[this.state.pagination],
           query: string,
-          field:this.createQuery('Fields'),
-          country: this.createQuery('Countries')
+          field:this.createQuery('Field'),
+          country: this.createQuery('Country')
         })
         syllabusHTTPServicePromise.then( (response) => {
           let hitsConcat = response.data.hits[0].concat(response.data.hits[1])
@@ -108,7 +110,7 @@ class SmartInstitutionResultList extends Component {
         })
         break;
 
-        case 'Fields':
+        case 'Field':
           dispatch(fieldResultsListRequest());
           syllabusHTTPServicePromise = syllabusHTTPService.getFieldResultsList({query: [this.state.currentString]})
 
@@ -121,7 +123,7 @@ class SmartInstitutionResultList extends Component {
           this.setState({currentParamList:this.props.resultsList.getIn([TYPE_FIELD, 'data']).toJS()})
           break;
 
-        case 'Countries':
+        case 'Country':
         dispatch(countryResultsListRequest());
         syllabusHTTPServicePromise = syllabusHTTPService.getCountryResultsList({query: [this.state.currentString]})
 
@@ -145,6 +147,8 @@ class SmartInstitutionResultList extends Component {
     }
   }
 
+  pagination = () => this.setState({pagination:this.state.pagination+1}, () => this.makeRequest("School"))
+
   componentWillUnmount = () =>{
     clearInterval(this.state.timerId);
   }
@@ -159,6 +163,7 @@ class SmartInstitutionResultList extends Component {
             makeSearch={this.makeRequest} store={this.props.resultsList.getIn([TYPE_INSTITUTION, 'data']).toJS()}
             currentParamData={this.state.currentParamList}
             currentParamsQuery={this.getCurrentParamsQuery}
+            pagination={this.pagination}
           />
         </div>
       )

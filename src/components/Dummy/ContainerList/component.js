@@ -45,13 +45,15 @@ class ContainerList extends Component {
     }
   }
 
+  pagination = () => this.props.pagination()
+
   render() {
       return (
         <div className="container-list">
           {this.showList()}
           <div className="buttons">
             <div>
-              <ButtonPagination title="SHOW MORE"/>
+              <ButtonPagination title="SHOW MORE" click={this.pagination}/>
             </div>
             <ButtonExportCSV/>
           </div>
