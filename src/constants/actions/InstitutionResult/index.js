@@ -1,6 +1,6 @@
 import {
     TYPE_INSTITUTION
-} from '../../action-types/store'
+} from '../../../store/storeTypes.js'
 
 const RESULT = "RESULT"
 const INSTITUTION_RESULT = TYPE_INSTITUTION + RESULT

@@ -5,7 +5,7 @@ import {
     TYPE_FIELD,
     TYPE_COUNTRY,
     TYPE_PUBLISHER
-} from '../store'
+} from '../../../store/storeTypes.js'
 
 const MOST_FRECUENT = "MOST_FRECUENT"
 export const MOST_FRECUENT_TYPE_UPDATE = "MOST_FRECUENT_TYPE_UPDATE"

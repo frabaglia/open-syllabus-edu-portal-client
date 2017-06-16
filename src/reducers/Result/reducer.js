@@ -26,10 +26,10 @@ import {
     FIELD_RESULT_SUCCESS
 } from '../../constants/actions/FieldResult'
 
-// import {
-//     COUNTRY_RESULT_REQUEST,
-//     COUNTRY_RESULT_SUCCESS
-// } from '../../constants/actions/CountryResult'
+import {
+    COUNTRY_RESULT_REQUEST,
+    COUNTRY_RESULT_SUCCESS
+} from '../../constants/actions/CountryResult'
 
 import {
     INSTITUTION_RESULT_REQUEST,
@@ -148,19 +148,19 @@ export default function resultsList(resultState = initialResultState, action) {
                 break
             }
 
-        case COUNTRY_FIELD_RESULT_REQUEST:
-            {
-                return resultState.setIn([TYPE_COUNTRY_FIELD, 'isFetching'], true)
-                break
-            }
-
-        case COUNTRY_FIELD_RESULT_SUCCESS:
-            {
-                let _resultState = resultState.setIn([TYPE_COUNTRY_FIELD, 'data'], Immutable.Map(action.payload.data))
-                let __resultState = _resultState.setIn(['updatedAt'], new Date())
-                return __resultState.setIn([TYPE_COUNTRY_FIELD, 'isFetching'], false)
-                break
-            }
+        // case COUNTRY_FIELD_RESULT_REQUEST:
+        //     {
+        //         return resultState.setIn([TYPE_COUNTRY_FIELD, 'isFetching'], true)
+        //         break
+        //     }
+        //
+        // case COUNTRY_FIELD_RESULT_SUCCESS:
+        //     {
+        //         let _resultState = resultState.setIn([TYPE_COUNTRY_FIELD, 'data'], Immutable.Map(action.payload.data))
+        //         let __resultState = _resultState.setIn(['updatedAt'], new Date())
+        //         return __resultState.setIn([TYPE_COUNTRY_FIELD, 'isFetching'], false)
+        //         break
+        //     }
 
         case PUBLISHER_RESULT_REQUEST:
             {

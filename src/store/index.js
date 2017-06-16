@@ -8,14 +8,11 @@ import {
 } from 'redux-immutable'
 import reduxLogger from 'redux-logger'
 import reduxThunk from 'redux-thunk'
-import {GlobalMessages} from '../reducers/GlobalMessages/reducer.js'
-import {
-  // GlobalMessages,
-  Landing,
-  Result,
-  ResultsList,
-  Router
-} from '../reducers'
+import GlobalMessages from '../reducers/GlobalMessages/reducer.js'
+import Landing from '../reducers/Landing/reducer.js'
+import Result from '../reducers/Result/reducer.js'
+import ResultsList from '../reducers/ResultsList/reducer.js'
+import Router from '../reducers/Router/reducer.js'
 import Immutable from 'immutable'
 
 import {

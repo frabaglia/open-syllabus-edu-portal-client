@@ -1,6 +1,6 @@
 import {
     TYPE_FIELD
-} from '../store'
+} from '../../../store/storeTypes.js'
 
 const RESULT = "RESULT"
 const FIELD_RESULT = TYPE_FIELD + RESULT
