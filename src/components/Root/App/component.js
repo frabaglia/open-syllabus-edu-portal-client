@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {syncHistoryWithStore} from 'react-router-redux'
 import {Router, Route, browserHistory, IndexRoute} from 'react-router'
 import {Provider} from 'react-redux'
-import {saveState} from '../../../utils/SyllabusLocalStorage/component'
+import {saveState} from '../../../os-toolkit/SyllabusLocalStorage/component'
 
 //----------------------- SMART COMPONENTS ----------------------------------
 import SmartLanding from '../../Smart/Landing/component.js'

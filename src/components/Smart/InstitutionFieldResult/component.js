@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 // import './component.sass';
 import {connect} from 'react-redux'
-import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
-
-import {institutionFieldResultRequest, institutionFieldResultSuccess} from '../../../actions/InstitutionFieldResult/actions'
 import $ from "jquery"
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
+
+import {institutionFieldResultRequest, institutionFieldResultSuccess} from '../../../constants/actions/InstitutionFieldResult'
 
 
-import {globalError} from '../../../actions/GlobalMessages/actions'
+import {resultsListError} from '../../../constants/actions/GlobalMessages'
 import DummyInstitutionFieldResult from '../../Views/InstitutionFieldResult/component.js'
 import {  TYPE_INSTITUTION_FIELD } from '../../../store/storeTypes'
 
@@ -44,7 +43,7 @@ class SmartInstitutionFieldResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(institutionFieldResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
     else {
@@ -57,7 +56,7 @@ class SmartInstitutionFieldResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(institutionFieldResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
   }

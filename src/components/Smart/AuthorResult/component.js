@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 // import './component.sass';
 import {connect} from 'react-redux'
-import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
-
-import {authorResultRequest, authorResultSuccess} from '../../../actions/AuthorResult/actions'
 import $ from "jquery"
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
+
+import {authorResultRequest, authorResultSuccess} from '../../../constants/actions/AuthorResult'
 
 
-import {globalError} from '../../../actions/GlobalMessages/actions'
+import {resultsListError} from '../../../constants/actions/GlobalMessages'
 import DummyAuthorResult from '../../Views/AuthorResult/component.js'
 import { TYPE_AUTHOR } from '../../../store/storeTypes'
 
@@ -42,7 +41,7 @@ class SmartAuthorResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(authorResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
     else {
@@ -55,7 +54,7 @@ class SmartAuthorResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(authorResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
   }

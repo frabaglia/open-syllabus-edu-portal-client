@@ -34,11 +34,11 @@ import {
     MOST_FRECUENT_INSTITUTION_SUCCESS,
     MOST_FRECUENT_COUNTRY_SUCCESS,
     MOST_FRECUENT_PUBLISHER_SUCCESS
-} from '../../actions/Landing/actions'
+} from '../../constants/actions/Landing'
 
 import {
     isStoredDataUpToDate
-} from '../../utils/Date/component'
+} from '../../os-toolkit/Date/component'
 
 const mostFrecuent = Map({
     current: TYPE_TITLE,

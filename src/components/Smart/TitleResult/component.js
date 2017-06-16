@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
-// import './component.sass';
 import {connect} from 'react-redux'
-import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
-
-import {titleResultRequest, titleResultSuccess} from '../../../actions/TitleResult/actions'
 import $ from "jquery"
-
-
-import {globalError} from '../../../actions/GlobalMessages/actions'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
+import {titleResultRequest, titleResultSuccess} from '../../../constants/actions/TitleResult'
+import {resultsListError} from '../../../constants/actions/GlobalMessages'
 import DummyTitleResult from '../../Views/TitleResult/component.js'
 import {  TYPE_TITLE,
           TYPE_AUTHOR,
@@ -47,7 +42,7 @@ class SmartTitleResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(titleResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
     else {
@@ -60,7 +55,7 @@ class SmartTitleResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(titleResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
   }

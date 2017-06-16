@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 // import './component.sass';
 import {connect} from 'react-redux'
-import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
+import $ from 'jquery'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 
-import {countryFieldResultRequest, countryFieldResultSuccess} from '../../../actions/CountryFieldResult/actions'
-import $ from "jquery"
+import {countryFieldResultRequest, countryFieldResultSuccess} from '../../../constants/actions/FieldResult'
 
 
-import {globalError} from '../../../actions/GlobalMessages/actions'
+import {resultsListError} from '../../../constants/actions/GlobalMessages'
 import DummyCountryFieldResult from '../../Views/CountryFieldResult/component.js'
 import {  TYPE_COUNTRY_FIELD } from '../../../store/storeTypes'
 
@@ -43,7 +42,7 @@ class SmartCountryFieldResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(countryFieldResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
     else {
@@ -56,7 +55,7 @@ class SmartCountryFieldResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(countryFieldResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
   }

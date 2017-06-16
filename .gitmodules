@@ -1,0 +1,3 @@
+[submodule "src/os-toolkit"]
+	path = src/os-toolkit
+	url = git@github.com:FrancooHM/os-toolkit.git

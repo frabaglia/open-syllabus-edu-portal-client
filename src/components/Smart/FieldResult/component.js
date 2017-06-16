@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 // import './component.sass';
 import {connect} from 'react-redux'
-import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
-
-import {fieldResultRequest, fieldResultSuccess} from '../../../actions/FieldResult/actions'
 import $ from 'jquery'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
+
+import {fieldResultRequest, fieldResultSuccess} from '../../../constants/actions/FieldResult'
 
 
-import {globalError} from '../../../actions/GlobalMessages/actions'
+import {resultsListError} from '../../../constants/actions/GlobalMessages'
 import DummyFieldResult from '../../Views/FieldResult/component.js'
 import {  TYPE_TITLE,
           TYPE_AUTHOR,
@@ -47,7 +46,7 @@ class SmartFieldResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(fieldResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
     else {
@@ -60,7 +59,7 @@ class SmartFieldResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(fieldResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
   }

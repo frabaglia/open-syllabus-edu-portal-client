@@ -9,9 +9,9 @@ import DummyLanding from '../../Views/Landing/component.js'
 //     TYPE_COUNTRY,
 //     TYPE_PUBLISHER,
 //     // TYPE_INSTITUTION_FIELD
-// } from '../../../store/storeTypes'
+// } from '../../../constants/action-types/store'
 //
-// import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
+// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 // import {
 //   mostFrecuentTypeUpdate,
 //   mostFrecuentTitleRequest,
@@ -26,14 +26,14 @@ import DummyLanding from '../../Views/Landing/component.js'
 //   mostFrecuentCountrySuccess,
 //   mostFrecuentPublisherRequest,
 //   mostFrecuentPublisherSuccess,
-// } from '../../../actions/Landing/actions'
-// import {globalError} from '../../../actions/GlobalMessages/actions'
-//
+// } from '../../../constants/actions/Landing'
+// import {resultsListError} from '../../../constants/actions/GlobalMessages'
+
 // function mapStateToProps(store) {
 //     return {landing: store.get('Landing')}
 // }
-const store ={
 
+const store ={
 }
 
 class SmartLanding extends Component {

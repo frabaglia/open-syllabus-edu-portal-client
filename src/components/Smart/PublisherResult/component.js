@@ -1,14 +1,10 @@
 import React, {Component} from 'react';
 // import './component.sass';
 import {connect} from 'react-redux'
-import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
-
-import {publisherResultRequest, publisherResultSuccess} from '../../../actions/PublisherResult/actions'
 import $ from "jquery"
-
-
-import {globalError} from '../../../actions/GlobalMessages/actions'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
+import {publisherResultRequest, publisherResultSuccess} from '../../../constants/actions/PublisherResult'
+import {resultsListError} from '../../../constants/actions/GlobalMessages'
 import DummyPublisherResult from '../../Views/PublisherResult/component.js'
 import {TYPE_PUBLISHER} from '../../../store/storeTypes'
 
@@ -44,7 +40,7 @@ class SmartPublisherResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(publisherResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
     else {
@@ -57,7 +53,7 @@ class SmartPublisherResult extends Component {
       syllabusHTTPServicePromise.then( (response) => {
           dispatch(publisherResultSuccess(response.data))
       }).catch(function(error) {
-          dispatch(globalError(error))
+          dispatch(resultsListError(error))
       })
     }
   }

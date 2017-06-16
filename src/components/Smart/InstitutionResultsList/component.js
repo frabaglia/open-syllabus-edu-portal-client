@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-// import './component.sass';
 import {connect} from 'react-redux'
-import {syllabusLinker} from '../../../utils/SyllabusLinker/component'
-import {syllabusHTTPService} from '../../../utils/SyllabusHTTPService/component'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
 
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../actions/FieldResultsList/actions'
-import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../actions/InstitutionResultsList/actions'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../actions/CountryResultsList/actions'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList'
+import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../constants/actions/InstitutionResultsList'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList'
 
-import {globalError} from '../../../actions/GlobalMessages/actions'
+import {globalError} from '../../../constants/actions/GlobalMessages'
 import DummyInstitutionResultsList from '../../Views/InstitutionResultsList/component.js'
 import {
         TYPE_FIELD,
