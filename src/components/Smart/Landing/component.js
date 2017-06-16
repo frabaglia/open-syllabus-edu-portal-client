@@ -11,7 +11,7 @@ import DummyLanding from '../../Views/Landing/component.js'
 //     // TYPE_INSTITUTION_FIELD
 // } from '../../../constants/action-types/store'
 //
-// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
+// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
 // import {
 //   mostFrecuentTypeUpdate,
 //   mostFrecuentTitleRequest,

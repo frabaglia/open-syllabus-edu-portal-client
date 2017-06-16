@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 // import './component.sass';
 import {connect} from 'react-redux'
 import $ from 'jquery'
-import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
 
 import {fieldResultRequest, fieldResultSuccess} from '../../../constants/actions/FieldResult'
 

@@ -4,7 +4,7 @@ import {
 } from '../../action-types/AuthorResult'
 import {
   ERROR
-} from '../../action-types/GlobalMesssages'
+} from '../../action-types/GlobalMessages'
 import {
   API
 } from '../../action-types/API'

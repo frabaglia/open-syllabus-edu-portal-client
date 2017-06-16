@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import $ from "jquery"
-import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
 import {titleResultRequest, titleResultSuccess} from '../../../constants/actions/TitleResult'
 import {resultsListError} from '../../../constants/actions/GlobalMessages'
 import DummyTitleResult from '../../Views/TitleResult/component.js'

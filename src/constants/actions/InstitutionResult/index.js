@@ -1,23 +1,18 @@
 import {
-    TYPE_INSTITUTION
-} from '../../../store/storeTypes.js'
-
-const RESULT = "RESULT"
-const INSTITUTION_RESULT = TYPE_INSTITUTION + RESULT
-export const INSTITUTION_RESULT_REQUEST = INSTITUTION_RESULT + "REQUEST"
-export const INSTITUTION_RESULT_SUCCESS = INSTITUTION_RESULT + "SUCCESS"
-
+  INSTITUTION_RESULT_REQUEST,
+  INSTITUTION_RESULT_SUCCESS
+} from '../../action-types/InstitutionResult'
 export const institutionResultRequest = () => {
-    return {
-        type: INSTITUTION_RESULT_REQUEST
-    }
+  return {
+    type: INSTITUTION_RESULT_REQUEST
+  }
 }
 
 export const institutionResultSuccess = (data) => {
-    return {
-        type: INSTITUTION_RESULT_SUCCESS,
-        payload: {
-            data: data
-        }
+  return {
+    type: INSTITUTION_RESULT_SUCCESS,
+    payload: {
+      data: data
     }
+  }
 }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import './component.sass';
 import {connect} from 'react-redux'
-import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService/component'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
 
 import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList'
 import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList'

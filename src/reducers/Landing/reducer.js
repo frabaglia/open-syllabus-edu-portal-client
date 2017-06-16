@@ -34,7 +34,7 @@ import {
     MOST_FRECUENT_INSTITUTION_SUCCESS,
     MOST_FRECUENT_COUNTRY_SUCCESS,
     MOST_FRECUENT_PUBLISHER_SUCCESS
-} from '../../constants/actions/Landing'
+} from '../../constants/action-types/Landing'
 
 import {
     isStoredDataUpToDate
