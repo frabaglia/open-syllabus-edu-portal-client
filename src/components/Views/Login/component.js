@@ -15,8 +15,8 @@ class DummyLogin extends Component {
     super();
     this.state={
       renderMessage: false,
-      recoverState: true,
-      recoverSuccess: true
+      recoverState: false,
+      recoverSuccess: false
     }
   }
 
@@ -128,7 +128,45 @@ class DummyLogin extends Component {
   render() {
     return (
         <div className="fixed-container">
-          <div className="centered-login">
+          <div className="centered-login" style={{position:'relative'}}>
+            <div style={{position:'absolute',top:'0',left:'0'}}>
+              <span
+                style={{display:'block',cursor:'pointer'}}
+                onClick={()=>{this.setState({
+                  renderMessage: false,
+                  recoverState:false,
+                  recoverSuccess:false
+                })}}
+                >Init Login
+              </span>
+              <span
+                style={{display:'block',cursor:'pointer'}}
+                onClick={()=>{this.setState({
+                  renderMessage: true,
+                  recoverState:false,
+                  recoverSuccess:false
+                })}}
+                >Wrong pass or user
+              </span>
+              <span
+                style={{display:'block',cursor:'pointer'}}
+                onClick={()=>{this.setState({
+                  renderMessage: false,
+                  recoverState:true,
+                  recoverSuccess:false
+                })}}
+                >Recover pass
+              </span>
+              <span
+                style={{display:'block',cursor:'pointer'}}
+                onClick={()=>{this.setState({
+                  renderMessage: false,
+                  recoverState:true,
+                  recoverSuccess:true
+                })}}
+                >Success recover
+              </span>
+            </div>
             <div className="login">
               <div className="login-close">
                 {SVGCloseIcon({color:'#C8CFD7'})}
