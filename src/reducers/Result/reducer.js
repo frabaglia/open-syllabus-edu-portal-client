@@ -9,42 +9,42 @@ import {
     TYPE_PUBLISHER,
     TYPE_INSTITUTION_FIELD,
     TYPE_COUNTRY_FIELD,
-} from '../../store/storeTypes'
+} from '../../constants/store-types'
 
 import {
     TITLE_RESULT_REQUEST,
     TITLE_RESULT_SUCCESS
-} from '../../constants/actions/TitleResult'
+} from '../../constants/action-types/TitleResult'
 
 import {
     AUTHOR_RESULT_REQUEST,
     AUTHOR_RESULT_SUCCESS
-} from '../../constants/actions/AuthorResult'
+} from '../../constants/action-types/AuthorResult'
 
 import {
     FIELD_RESULT_REQUEST,
     FIELD_RESULT_SUCCESS
-} from '../../constants/actions/FieldResult'
+} from '../../constants/action-types/FieldResult'
 
 import {
     COUNTRY_RESULT_REQUEST,
     COUNTRY_RESULT_SUCCESS
-} from '../../constants/actions/CountryResult'
+} from '../../constants/action-types/CountryResult'
 
 import {
     INSTITUTION_RESULT_REQUEST,
     INSTITUTION_RESULT_SUCCESS
-} from '../../constants/actions/InstitutionResult'
+} from '../../constants/action-types/InstitutionResult'
 
 import {
     PUBLISHER_RESULT_REQUEST,
     PUBLISHER_RESULT_SUCCESS
-} from '../../constants/actions/PublisherResult'
+} from '../../constants/action-types/PublisherResult'
 
 import {
     INSTITUTION_FIELD_RESULT_REQUEST,
     INSTITUTION_FIELD_RESULT_SUCCESS
-} from '../../constants/actions/InstitutionFieldResult'
+} from '../../constants/action-types/InstitutionFieldResult'
 
 const initialResultState = Immutable.Map({
     TYPE_TITLE: Immutable.Map({

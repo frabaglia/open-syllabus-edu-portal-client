@@ -1,23 +1,23 @@
 import {
-    TYPE_INSTITUTION
-} from '../../../store/storeTypes.js'
+  INSTITUTION_RESULT_REQUEST,
+  INSTITUTION_RESULT_SUCCESS,
+  INSTITUTION_RESULT_ERROR
+} from '../../action-types/InstitutionResult'
+import {
+  API
+} from '../../action-types/API'
+import {
+  SyllabusHTTPService
+} from '../../../os-toolkit/SyllabusHTTPService'
 
-const RESULT = "RESULT"
-const INSTITUTION_RESULT = TYPE_INSTITUTION + RESULT
-export const INSTITUTION_RESULT_REQUEST = INSTITUTION_RESULT + "REQUEST"
-export const INSTITUTION_RESULT_SUCCESS = INSTITUTION_RESULT + "SUCCESS"
-
-export const institutionResultRequest = () => {
-    return {
-        type: INSTITUTION_RESULT_REQUEST
+export const institutionResultRequest = (id) => {
+  return {
+    type: API,
+    payload: {
+      request: SyllabusHTTPService.getInstitutionResult(id),
+      pending: INSTITUTION_RESULT_REQUEST,
+      success: INSTITUTION_RESULT_SUCCESS,
+      error: INSTITUTION_RESULT_ERROR
     }
-}
-
-export const institutionResultSuccess = (data) => {
-    return {
-        type: INSTITUTION_RESULT_SUCCESS,
-        payload: {
-            data: data
-        }
-    }
+  }
 }

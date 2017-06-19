@@ -1,18 +1,23 @@
 import {
   AUTHOR_RESULTS_LIST_REQUEST,
-  AUTHOR_RESULTS_LIST_SUCCESS
+  AUTHOR_RESULTS_LIST_SUCCESS,
+  AUTHOR_RESULTS_LIST_ERROR
 } from '../../action-types/AuthorResultsList'
-export const authorResultsListRequest = () => {
-  return {
-    type: AUTHOR_RESULTS_LIST_REQUEST
-  }
-}
+import {
+  API
+} from '../../action-types/API'
+import {
+  SyllabusHTTPService
+} from '../../../os-toolkit/SyllabusHTTPService'
 
-export const authorResultsListSuccess = (data) => {
+export const authorResultsListRequest = (params) => {
   return {
-    type: AUTHOR_RESULTS_LIST_SUCCESS,
+    type: API,
     payload: {
-      data: data
+      request: SyllabusHTTPService.getAuthorResultsList(params),
+      pending: AUTHOR_RESULTS_LIST_REQUEST,
+      success: AUTHOR_RESULTS_LIST_SUCCESS,
+      error: AUTHOR_RESULTS_LIST_ERROR
     }
   }
 }

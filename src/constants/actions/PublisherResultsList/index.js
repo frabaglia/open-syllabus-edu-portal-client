@@ -1,18 +1,23 @@
 import {
   PUBLISHER_RESULTS_LIST_REQUEST,
-  PUBLISHER_RESULTS_LIST_SUCCESS
+  PUBLISHER_RESULTS_LIST_SUCCESS,
+  PUBLISHER_RESULTS_LIST_ERROR
 } from '../../action-types/PublisherResultsList'
-export const publisherResultsListRequest = () => {
-  return {
-    type: PUBLISHER_RESULTS_LIST_REQUEST
-  }
-}
+import {
+  API
+} from '../../action-types/API'
+import {
+  SyllabusHTTPService
+} from '../../../os-toolkit/SyllabusHTTPService'
 
-export const publisherResultsListSuccess = (data) => {
+export const publisherResultsListRequest = (params) => {
   return {
-    type: PUBLISHER_RESULTS_LIST_SUCCESS,
+    type: API,
     payload: {
-      data: data
+      request: SyllabusHTTPService.getPublisherResultsList(params),
+      pending: PUBLISHER_RESULTS_LIST_REQUEST,
+      success: PUBLISHER_RESULTS_LIST_SUCCESS,
+      error: PUBLISHER_RESULTS_LIST_ERROR
     }
   }
 }
