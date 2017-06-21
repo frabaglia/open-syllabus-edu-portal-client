@@ -15,21 +15,16 @@ class BadgesList  extends Component {
           key={i}
           title={badge.name}
           count={badge.syllabus_count}
-          type={this.props.type}
           router={this.props.router}
           id_field={badge._id}
-          id_institution={this.props.id_institution}
-          id_country={this.props.id_country}
         />)
     })
     return badgeList;
   }
+
   render() {
       return (
         <div className="badges-list">
-          <p>
-            Syllabi by field
-          </p>
           <div className="badges">
             {this.renderBadges()}
           </div>
@@ -38,4 +33,4 @@ class BadgesList  extends Component {
   }
 }
 
-export  default BadgesList
+export default BadgesList

@@ -4,43 +4,34 @@ import './component.sass'
 
 class ButtonBadge extends Component {
 
-  styleColor = () =>
+  style = () =>
   {
-    let color = "#A9B4C0"
-    if(this.props.count >= 250 && this.props.type) color = "#67AAF9";
-    return color
-  }
-
-  styleCursor = () =>
-  {
-    let cursor = "default"
-    if(this.props.count >= 250 && this.props.type) cursor = "pointer";
-    return cursor
+    let color = "#A9B4C0",
+        cursor = "default";
+    if(this.props.count >= 250) {
+      color = "#9BD331";
+      cursor = "pointer";
+    }
+    return {color:color,cursor:cursor}
   }
 
   sendTo = () =>{
-    if(this.props.count >= 250 && this.props.type){
+    if(this.props.count >= 250){
       console.log(this.props);
-      if(this.props.id_institution !== ""){
-        this.props.router.push({
-          pathname: '/result/school-field',
-          query: { id_school:this.props.id_institution,id_field:this.props.id_field}
-        })
-      }
-      else {
-        this.props.router.push({
-          pathname: '/result/country-field',
-          query: { id_school:this.props.id_country,id_field:this.props.id_field}
-        })
-      }
-
+      console.log('ir a algun lugar');
+      // if(this.props.id_field !== ""){
+      //   this.props.router.push({
+      //     pathname: '/field',
+      //     query: { id_school:this.props.id_institution,id_field:this.props.id_field}
+      //   })
+      // }
     }
   }
 
   render() {
       return (
-        <div className="btnBadge" onClick={this.sendTo} style={{cursor: `${this.styleCursor()}`}}>
-            <span style={{color: `${this.styleColor()}`}}>{this.props.count} </span>{this.props.title}
+        <div className="btnBadge" onClick={this.sendTo} style={{cursor: `${this.style().cursor}`}}>
+            <span style={{color: `${this.style().color}`}}>{this.props.count} </span>{this.props.title}
         </div>
       )
   }

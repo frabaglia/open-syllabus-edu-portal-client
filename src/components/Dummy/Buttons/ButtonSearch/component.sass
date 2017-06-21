@@ -1,14 +1,24 @@
 .btnSearch
-  width: 144px
+  width: 60px
   height: 44px
-  background-color: #3188D3
-  color: #FFFFFF
-  font-size: 1.1em
+  background-color: #9BD331
   border-radius: 5px
   text-align: center
   display: inline-block
   line-height: 44px
   font-size: 1.1em
   cursor: pointer
-  svg
-    margin-right: 9px
+  display: flex
+  justify-content: center
+  align-items: center
+  span
+    display: none
+    color: #FFFFFF
+    font-size: 0.9em
+
+@media (min-width: 600px)
+  .btnSearch
+    width: 165px
+    span
+      display: inline-block
+      margin-left: 1em

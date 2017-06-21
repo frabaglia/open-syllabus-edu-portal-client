@@ -1,7 +1,23 @@
+.container-map
+  border-radius: 5px
+  background-color: #FFFFFF
+  margin: 4rem 0
+  .container-header
+    display: flex
+    .right-content-title
+      margin: 0
+      align-self: center
+      font-family: "Adelle Sans W01 SemiBold"
+      font-size: 1.1em
+    .right-content-expand
+      margin-left: auto
+      align-items: center
+      display: flex
+      .right-content-expand-button
+        display: none
+
 .container-barchart
   margin: 0
-  .container-header
-    padding: 1.9rem 1.9rem 1.9rem 1.9rem
 
 .wrapper-container-chart
   height: calc(100% - 72px)
@@ -45,9 +61,7 @@
 
 .container-header-expand
   box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.2)
-
-.container-header
-  border-bottom: 2px solid #F4F5F9
+  padding: 1.9rem
 
 .expand-barchart
   position: fixed
@@ -61,34 +75,77 @@
 
 .noLanding
   flex-direction: row
-  .unattributed-label
-    display: none
   .right-content-expand-button
     display: none
   .titleNoLanding
     align-self: flex-start
     margin: 0 0 1.9rem 0
-    font-size: 1.3em
+    font-family: "Adelle Sans W01 SemiBold"
+    font-size: 1.1em
+
+.unattributed-label
+  display: none
+  border: 1px solid #E8E8E8
+  color: #85919F
+  font-size: 0.8em
+  padding: 0.4em 0.9em
 
 .additional-info
   margin-left: auto
 
+.hidden
+  display: none
+
+.tooltip-wrapper
+  position: absolute
+  top: -35px
+  left: -50px
+  .tooltip
+    width: 100px
+    text-align: center
+    position: relative
+    .tooltip-content
+      background-color: #405063
+      padding: 0.5rem
+      border-radius: 5px
+      .tooltip-content-field
+        display: block
+      .tooltip-content-syllabi
+        color: #FFFFFF
+    .tooltip-tail
+      display: inline-block
+      position: absolute
+      left: 44px
+      width: 0
+      height: 0
+      border-right: 7px solid transparent
+      border-bottom: 7px solid transparent
+      border-left: 7px solid transparent
+      border-top: 7px solid #405063
+
 @media (min-width : 643px)
+  .container-map
+    .container-header
+      .right-content-expand
+        .right-content-expand-button
+          display: block
+          margin-right: 2rem
+
   .additional-info
     display: flex
     margin: 0
-    .unattributed-label
-      display: inline-block
-      margin-right: 2rem
+    align-items: center
     div
       display: inline-block
     .right-content-expand-button
       margin-left: auto
       display: inline-block
 
+  .unattributed-label
+    display: inline-block
+    margin-right: 1em
+
   .noLanding
     flex-direction: column
     .titleNoLanding
       align-self: flex-start
-      margin: 0 0 1.9rem 0
-      font-size: 1.3em

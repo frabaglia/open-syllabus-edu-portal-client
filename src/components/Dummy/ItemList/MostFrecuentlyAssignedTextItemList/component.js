@@ -12,10 +12,12 @@ class MostFrecuentlyAssignedTextItemList extends Component {
       return (
         <li>
           <p className="name-title">
-            <Link to={{
-              pathname: "/result/title",
-              query: {id:objectItem._id}
-            }}>
+            <Link
+              // to={{
+              // pathname: "/result/title",
+              // query: {id:objectItem._id}
+              // }}
+            >
               {objectItem.title}
             </Link>
           </p>
@@ -23,10 +25,12 @@ class MostFrecuentlyAssignedTextItemList extends Component {
             {`${first_name} ${middle_name} ${last_name}`}
           </p>
           <p className="name-editorial">
-            <Link to={{
-              pathname: "/result/publisher",
-              query: {id:objectItem.publisher._id}
-            }}>
+            <Link
+              // to={{
+              // pathname: "/result/publisher",
+              // query: {id:objectItem.publisher._id}
+              // }}
+            >
               {objectItem.publisher.name}
             </Link>
             , {objectItem.pub_year}

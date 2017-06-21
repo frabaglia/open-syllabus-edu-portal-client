@@ -40,7 +40,7 @@ class BarChartComponent extends Component {
     if(this.props.isNormalizable){
       if(!this.state.expanded) {
         this.refs.barchartContainer.className = 'expand-barchart container-map'
-        this.refs.headerContainer.className = 'container-header noLanding'
+        this.refs.headerContainer.className = 'container-header container-header-expand noLanding'
         // this.refs.buttonLabel.className = 'hidden'
         $('body').css( 'overflow-y', 'hidden');
         this.componentDidMount()
@@ -77,14 +77,14 @@ class BarChartComponent extends Component {
 
   }
 
-  filtetStoreData = () =>
+  filterStoreData = () =>
   {
       let filterStore = this.props.store;
       if(!this.state.expanded){
         filterStore = []
         let arrayField;
         this.props.store.map( (field, i) =>{
-          arrayField = field.values.slice(Math.max(field.values.length - 7, 0))
+          arrayField = field.values.slice(Math.max(field.values.length - 5, 0))
           filterStore.push({label:field.label, values: arrayField})
         })
       }
@@ -163,11 +163,7 @@ class BarChartComponent extends Component {
         </p>
         <div className="additional-info">
           <div className="unattributed-label" ref="buttonLabel">
-            <ButtonLabel
-              backgroundColor=""
-              color="#85919F"
-              border="1px solid #E8E8E8"
-              title="580,500 unattributed"/>
+            580,500 unattributed
           </div>
           <ButtonBarChartDropdown
             click={this.setType}
@@ -186,11 +182,9 @@ class BarChartComponent extends Component {
           <div className="right-content-expand">
             <div className="right-content-expand-button">
               <ToolTip tooltipText="# of sillaby that we cannot date">
-                <ButtonLabel
-                  backgroundColor=""
-                  color="#85919F"
-                  border="1px solid #E8E8E8"
-                  title="580,500 unattributed"/>
+                <div className="unattributed-label">
+                  580,500 unattributed
+                </div>
               </ToolTip>
             </div>
             {this.renderExpandIcon()}
@@ -206,7 +200,7 @@ class BarChartComponent extends Component {
         <div className="wrapper-container-chart">
           <div className="container-chart">
             <BarChart
-              data={this.filtetStoreData()}
+              data={this.filterStoreData()}
               // data={this.props.store}
               width={this.state.width}
               height={this.state.height}

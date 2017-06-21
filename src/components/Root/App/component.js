@@ -6,6 +6,7 @@ import {saveState} from '../../../os-toolkit/SyllabusLocalStorage/component'
 
 //----------------------- SMART COMPONENTS ----------------------------------
 import SmartLanding from '../../Smart/Landing/component.js'
+import SmartUniversityLanding from '../../Smart/UniversityLanding/component.js'
 // import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
 // import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
 // import SmartFieldResultsList from '../../Smart/FieldResultsList/component.js'
@@ -23,8 +24,7 @@ import SmartLanding from '../../Smart/Landing/component.js'
 //-----------------------------END SMART COMPONENTS-----------------------------------
 
 //-----------------------------CONTAINERS-----------------------------------
-import ResultContainer from '../../../components/Containers/ResultContainer/component.js'
-import ResultsListContainer from '../../../components/Containers/ResultsListContainer/component.js'
+import LogedContainer from '../../../components/Containers/LogedContainer/component.js'
 import UIContainer from '../../../components/Containers/UIContainer/component.js'
 //-----------------------------END CONTAINERS-----------------------------------
 
@@ -75,6 +75,14 @@ history.listen(location => {
   });
 });
 
+const universityInfo = {
+  pathName: 'columbia_university',
+  name: 'Columbia University',
+  field: 'architecture',
+  year: '2017',
+  syllabi: 4300
+}
+
 class App extends Component {
     render() {
         return (
@@ -82,23 +90,18 @@ class App extends Component {
                 <Router history={history}>
                     <Route path="/" component={UIContainer}>
                         <IndexRoute component={SmartLanding}/>
-                        <Route path="search" component={ResultContainer}>
-                            {/* <Route path="title" component={SmartTitleResult}/>
-                            <Route path="author" component={SmartAuthorResult}/>
-                            <Route path="field" component={SmartFieldResult}/>
-                            <Route path="school" component={SmartInstitutionResult}/>
-                            <Route path="country" component={SmartCountryResult}/>
-                            <Route path="publisher" component={SmartPublisherResult}/>
-                            <Route path="school-field" component={SmartInstitutionFieldResult}/>
-                            <Route path="country-field" component={SmartCountryFieldResult}/> */}
-                        </Route>
-                        <Route path="university-portal" component={ResultsListContainer}>
-                            {/* <Route path="title" component={SmartTitleResultsList}/>
-                            <Route path="author" component={SmartAuthorResultsList}/>
-                            <Route path="field" component={SmartFieldResultsList}/>
-                            <Route path="school" component={SmartInstitutionResultsList}/>
-                            <Route path="country" component={SmartCountryResultsList}/>
-                            <Route path="publisher" component={SmartPublisherResultsList}/> */}
+                        <Route
+                          path={`${universityInfo.pathName}`}
+                          component={LogedContainer}
+                          universityInfo={universityInfo}
+                          >
+                          <IndexRoute component={SmartUniversityLanding}/>
+                          {/* <Route path={`${universityInfo.field}`} component={SmartUniversityField}>
+                            <Route path={`${universityInfo.year}`} component={SmartUniversityFieldYear}/>
+                          </Route> */}
+                          {/* <Route path="innerView" component={SmartUniversityLanding}>
+                            <Route path="title" component={SmartTitleResultsList}/>
+                          </Route> */}
                         </Route>
                         <Route path="login" component={Login}/>
                         <Route path="*" component={SmartLanding}/>

@@ -44,10 +44,10 @@ class MostFrecuentlyAssignedTextList extends Component {
     let button;
     if(this.props.store.length <= 3) button = (<div></div>)
     else if (this.state.pagination !== 3) {
-      button =(<ButtonLabel title="SEE LESS" color="#A9B4C0" backgroundColor="" border="1px solid #E8E8E8" click={this.showLess}/>)
+      button =(<ButtonLabel title="See less" color="#FFFFFF" backgroundColor="#C8CFD7" border="1px solid #C8CFD7" click={this.showLess}/>)
     }
     else if (this.state.pagination === 3) {
-      button = (<ButtonLabel title="SEE MORE" color="#A9B4C0" backgroundColor="" border="1px solid #E8E8E8" click={this.showMore}/>)
+      button = (<ButtonLabel title="See more" color="#FFFFFF" backgroundColor="#C8CFD7" border="1px solid #C8CFD7" click={this.showMore}/>)
     }
 
     return button;
