@@ -10,18 +10,18 @@ class LogedContainer extends Component {
         return (
           <div className="logged-container">
             <div className="view huge-container">
-              {/* <div className="search-view">
+              <div className="search-view">
                 <div className="search-view-header">
                   <div className="search-view-header-title">
                     <span>University Portal</span>
-                    <p>{universityInfo.name}</p>
+                    {/* <p>{universityInfo.name}</p> */}
                     <p>Columbia University</p>
                   </div>
                 </div>
                 <div className="search-view-internal-navbar">
                   <InternalNavbar router={this.props}/>
                 </div>
-              </div> */}
+              </div>
               <div className="body-view">
                 {this.props.children}
               </div>
