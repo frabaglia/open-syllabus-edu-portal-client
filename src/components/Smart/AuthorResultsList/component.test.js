@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import SmartAuthorResultList from './component'
+import SmartAuthorResultsList from './component'
 import {Provider} from 'react-redux'
 import store from '../../../store/index.js'
 
@@ -9,7 +9,7 @@ it('renders without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(
       <Provider store={store}>
-        <SmartAuthorResultList/>
+        <SmartAuthorResultsList/>
       </Provider>
-        , div)
+      , div)
 })

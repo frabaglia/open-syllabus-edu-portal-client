@@ -14,11 +14,12 @@ class LogedContainer extends Component {
                 <div className="search-view-header">
                   <div className="search-view-header-title">
                     <span>University Portal</span>
-                    <p>{universityInfo.name}</p>
+                    {/* <p>{universityInfo.name}</p> */}
+                    <p>Columbia University</p>
                   </div>
                 </div>
                 <div className="search-view-internal-navbar">
-                  <InternalNavbar/>
+                  <InternalNavbar router={this.props}/>
                 </div>
               </div>
               <div className="body-view">

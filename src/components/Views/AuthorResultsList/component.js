@@ -1,38 +1,92 @@
 import React, {Component} from 'react'
-import ContainerList from '../../Dummy/ContainerList/component.js'
-import Filter from '../../Dummy/Filter/component.js'
+import {Link} from 'react-router';
+import Filter from '../../Dummy/Filter/component'
+import AutorList from '../../Dummy/Lists/AuthorList/component'
 import './component.sass'
 
-class DummyAuthorResultsList extends Component {
+const autorList = [{
+  "_id": 51,
+  "author_first": "Neil",
+  "author_middle": null,
+  "author_last": "Cambell",
+  "rank": 1,
+  "appearences": {
+      "total": 4000
+  },
+  "text_count": 20,
+  image:null
+},
+{
+  "_id": 51,
+  "author_first": "Neil",
+  "author_middle": null,
+  "author_last": "Cambell",
+  "rank": 1,
+  "appearences": {
+      "total": 4000
+  },
+  "text_count": 20,
+  image:null
+},
+{
+  "_id": 51,
+  "author_first": "Neil",
+  "author_middle": null,
+  "author_last": "Cambell",
+  "rank": 1,
+  "appearences": {
+      "total": 4000
+  },
+  "text_count": 20,
+  image:null
+},
+{
+  "_id": 51,
+  "author_first": "Neil",
+  "author_middle": null,
+  "author_last": "Cambell",
+  "rank": 1,
+  "appearences": {
+      "total": 4000
+  },
+  "text_count": 20,
+  image:null
+},
+{
+  "_id": 51,
+  "author_first": "Neil",
+  "author_middle": null,
+  "author_last": "Cambell",
+  "rank": 1,
+  "appearences": {
+      "total": 4000
+  },
+  "text_count": 20,
+  image:null
+}]
+
+
+class AuthorResultsList extends Component {
+
     render() {
-      let filter = {
-        title: 'Authors',
-        number: `${this.props.store.length}`
-      }
-      const filtersCategory = ['Author','School','Field','Country']
+      let store = this.props.store;
         return (
-            <div className="result-list-view">
-                <div className="center-content">
-                  <Filter
-                    filter={filter}
-                    currentCategory={this.props.currentCategory}
-                    category={this.props.category}
-                    filtersCategory={filtersCategory}
-                    inputString={this.props.inputString}
-                    makeSearch={this.props.makeSearch}
-                    paramData={this.props.currentParamData}
-                    currentParamsQuery={this.props.currentParamsQuery}
-                    clearAdvancedFilter={()=>{}}
-                  />
-                  <ContainerList
-                    list={"authorList"}
-                    store={this.props.store}
-                    pagination={this.props.pagination}
-                  />
+            <div className="title-result-list">
+              <div className="filter-container">
+                <Filter/>
+                <div className="search-view-syllabi-counter">
+                  <p>
+                    <span>438</span>
+                    Syllabi
+                  </p>
                 </div>
+              </div>
+              <div className="content-container">
+                <AutorList store={autorList}/>
+              </div>
             </div>
         )
     }
 }
 
-export default DummyAuthorResultsList
+export default AuthorResultsList

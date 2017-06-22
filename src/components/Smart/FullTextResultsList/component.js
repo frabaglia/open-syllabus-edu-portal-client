@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import DummyAuthorResultsList from '../../Views/AuthorResultsList/component.js'
+import DummyFullTextResultsList from '../../Views/FullTextResultsList/component.js'
 // import {connect} from 'react-redux'
 // import {
 //     TYPE_TITLE,
@@ -36,14 +36,14 @@ import DummyAuthorResultsList from '../../Views/AuthorResultsList/component.js'
 const store ={
 }
 
-class SmartAuthorResultsList extends Component {
+class SmartFullTextResultsList extends Component {
 
   componentDidMount = () => {}
 
 
   render() {
       return (
-          <DummyAuthorResultsList
+          <DummyFullTextResultsList
             store={store}
             router={this.props.router}
           />
@@ -51,5 +51,5 @@ class SmartAuthorResultsList extends Component {
   }
 }
 
-export default SmartAuthorResultsList
-// export default connect(mapStateToProps)(SmartAuthorResultsList)
+export default SmartFullTextResultsList
+// export default connect(mapStateToProps)(SmartFullTextResultsList)

@@ -8,6 +8,10 @@ import {saveState} from '../../../os-toolkit/SyllabusLocalStorage/component'
 import SmartLanding from '../../Smart/Landing/component.js'
 import SmartUniversityLanding from '../../Smart/UniversityLanding/component.js'
 import SmartUniversityField from '../../Smart/UniversityField/component.js'
+import SmartFullTextResultsList from '../../Smart/FullTextResultsList/component.js'
+import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
+import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
+import SmartInstructorEmailsResultsList from '../../Smart/InstructorEmailsResultsList/component.js'
 // import SmartUniversityFieldYear from '../../Smart/UniversityFieldYear/component.js'
 // import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
 // import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
@@ -93,7 +97,8 @@ class App extends Component {
                     <Route path="/" component={UIContainer}>
                         <IndexRoute component={SmartLanding}/>
                         <Route
-                          path={`${universityInfo.pathName}`}
+                          // path={`${universityInfo.pathName}`}
+                          path="university-portal"
                           component={LogedContainer}
                           universityInfo={universityInfo}
                           >
@@ -101,8 +106,15 @@ class App extends Component {
                           <Route path="field" component={SmartUniversityField}>
                             {/* <Route path="year" component={SmartUniversityFieldYear}/> */}
                           </Route>
-                          {/* <Route path="innerView" component={SmartUniversityLanding}>
+                          <Route path="result-list">
+                            <Route path="full-texts" component={SmartFullTextResultsList}/>
+                            <Route path="titles" component={SmartTitleResultsList}/>
+                            <Route path="authors" component={SmartAuthorResultsList}/>
+                            <Route path="instructor-emails" component={SmartInstructorEmailsResultsList}/>
+                          </Route>
+                          {/* <Route path="result" component={SmartUniversityLanding}>
                             <Route path="title" component={SmartTitleResultsList}/>
+                            <Route path="author" component={SmartTitleResultsList}/>
                           </Route> */}
                         </Route>
                         <Route path="login" component={Login}/>

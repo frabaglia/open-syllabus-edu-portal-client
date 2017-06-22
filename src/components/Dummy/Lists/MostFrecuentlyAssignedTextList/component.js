@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router';
 import './component.sass';
 import ButtonLabel from '../../Buttons/ButtonLabel/component.js'
 import MostFrecuentlyAssignedTextItemList from '../../ItemList/MostFrecuentlyAssignedTextItemList/component.js'
@@ -7,10 +6,10 @@ import MostFrecuentlyAssignedTextItemList from '../../ItemList/MostFrecuentlyAss
 
 class MostFrecuentlyAssignedTextList extends Component {
 
-  constructor(){
+  constructor(props){
     super();
     this.state = {
-      pagination: 3
+      pagination: props.initPagination
     }
   }
 
@@ -18,7 +17,7 @@ class MostFrecuentlyAssignedTextList extends Component {
   {
     let mostFrecuentlyAssignedTextItemList = [];
 
-    if(this.props.store.length <= 3) {
+    if(this.props.store.length <= this.state.pagination) {
       if(this.props.store !== []) {
         this.props.store.map ( (item, i) => {
           mostFrecuentlyAssignedTextItemList.push(<MostFrecuentlyAssignedTextItemList key={i} objectItem={item}/>)
@@ -38,28 +37,34 @@ class MostFrecuentlyAssignedTextList extends Component {
 
   showMore = () => this.setState({pagination:this.props.store.length})
 
-  showLess = () => this.setState({pagination:3})
+  showLess = () => this.setState({pagination:this.props.initPagination})
 
   renderButtonPagination = () => {
     let button;
-    if(this.props.store.length <= 3) button = (<div></div>)
-    else if (this.state.pagination !== 3) {
+    if(this.props.store.length <= this.props.initPagination) button = (<div></div>)
+    else if (this.state.pagination !== this.props.initPagination) {
       button =(<ButtonLabel title="See less" color="#FFFFFF" backgroundColor="#C8CFD7" border="1px solid #C8CFD7" click={this.showLess}/>)
     }
-    else if (this.state.pagination === 3) {
+    else if (this.state.pagination === this.props.initPagination) {
       button = (<ButtonLabel title="See more" color="#FFFFFF" backgroundColor="#C8CFD7" border="1px solid #C8CFD7" click={this.showMore}/>)
     }
 
     return button;
   }
 
+  renderTitle = () =>{
+    return (this.props.title) ?
+    (<p className="name-seccion">
+      Most Frequently Assigned Text
+    </p>
+  ) : (<div></div>)
+  }
+
   render() {
 
       return (
         <div className="most-frecuently-assigned-text-list">
-          <p className="name-seccion">
-            Most Frequently Assigned Text
-          </p>
+          {this.renderTitle()}
           <ul>
             {this.renderMostFrecuentlyAssignedTextItemList()}
           </ul>

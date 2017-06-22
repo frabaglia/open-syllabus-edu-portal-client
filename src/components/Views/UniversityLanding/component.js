@@ -198,7 +198,7 @@ const most_frecuently_assigned_texts = [
             "syllabus_count": 9
         }
     }
-},
+  },
   {
     "_id": 12,
     "title": "Introduction to Economics",
@@ -248,7 +248,11 @@ class UniversityLanding extends Component {
                     />
                   </div>
                   <div className="most-frequently-assigned-text-container">
-                    <MostFrecuentlyAssignedTextList store={most_frecuently_assigned_texts}/>
+                    <MostFrecuentlyAssignedTextList
+                      store={most_frecuently_assigned_texts}
+                      title={true}
+                      initPagination={3}
+                    />
                   </div>
                 </div>
                 <div className="right-side">
