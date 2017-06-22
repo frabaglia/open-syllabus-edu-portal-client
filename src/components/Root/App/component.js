@@ -12,21 +12,8 @@ import SmartFullTextResultsList from '../../Smart/FullTextResultsList/component.
 import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
 import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
 import SmartInstructorEmailsResultsList from '../../Smart/InstructorEmailsResultsList/component.js'
-// import SmartUniversityFieldYear from '../../Smart/UniversityFieldYear/component.js'
-// import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
-// import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
-// import SmartFieldResultsList from '../../Smart/FieldResultsList/component.js'
-// import SmartInstitutionResultsList from '../../Smart/InstitutionResultsList/component.js'
-// import SmartCountryResultsList from '../../Smart/CountryResultsList/component.js'
-// import SmartPublisherResultsList from '../../Smart/PublisherResultsList/component.js'
-// import SmartTitleResult from '../../Smart/TitleResult/component.js'
-// import SmartAuthorResult from '../../Smart/AuthorResult/component.js'
-// import SmartFieldResult from '../../Smart/FieldResult/component.js'
-// import SmartPublisherResult from '../../Smart/PublisherResult/component.js'
-// import SmartCountryResult from '../../Smart/CountryResult/component.js'
-// import SmartInstitutionResult from '../../Smart/InstitutionResult/component.js'
-// import SmartInstitutionFieldResult from '../../Smart/InstitutionFieldResult/component.js'
-// import SmartCountryFieldResult from '../../Smart/CountryFieldResult/component.js'
+import SmartTitleResult from '../../Smart/TitleResult/component.js'
+import SmartAuthorResult from '../../Smart/AuthorResult/component.js'
 //-----------------------------END SMART COMPONENTS-----------------------------------
 
 //-----------------------------CONTAINERS-----------------------------------
@@ -112,10 +99,10 @@ class App extends Component {
                             <Route path="authors" component={SmartAuthorResultsList}/>
                             <Route path="instructor-emails" component={SmartInstructorEmailsResultsList}/>
                           </Route>
-                          {/* <Route path="result" component={SmartUniversityLanding}>
-                            <Route path="title" component={SmartTitleResultsList}/>
-                            <Route path="author" component={SmartTitleResultsList}/>
-                          </Route> */}
+                          <Route path="result">
+                            <Route path="title" component={SmartTitleResult}/>
+                            <Route path="author" component={SmartAuthorResult}/>
+                          </Route>
                         </Route>
                         <Route path="login" component={Login}/>
                         <Route path="*" component={SmartLanding}/>

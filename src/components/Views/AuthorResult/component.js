@@ -7,7 +7,6 @@ import SVGTwitterLogo from '../../Dummy/SVG/TwitterLogo/component.js'
 import BadgesList from '../../Dummy/Lists/BadgesList/component.js'
 import AuthorTitlesList from '../../Dummy/Lists/AuthorTitlesList/component.js'
 import BarChart from '../../Dummy/BarChart/component.js'
-import Map from '../../Dummy/Map/component.js'
 import images from './Fredric_Jameson.png'
 
 class DummyAuthorResult extends Component {
@@ -37,11 +36,11 @@ class DummyAuthorResult extends Component {
                   {store.author_description}
                 </p>
                 <div className="buttons-label">
-                  <ButtonLabel title={`APPEARANCES ${store.appearences.total}`} backgroundColor="#A9B4C0" color="#FFFFFF" border=""/>
-
+                  <ButtonLabel title={`APPEARANCES ${store.appearences.total}`} backgroundColor="#9BD331" color="#FFFFFF" border=""/>
                 </div>
-                <div className="badge">
-                  <BadgesList store={store.appearences.by_field} />
+                <div className="badge-list-component">
+                  <p className="badge-list-component-title">Appearances by field</p>
+                  <BadgesList store={store.appearences.by_field} type={0}/>
                 </div>
                 <div className="author-titles">
                   <AuthorTitlesList store={store.author_titles}/>
@@ -49,22 +48,15 @@ class DummyAuthorResult extends Component {
               </div>
 
               <aside className="right-content">
-                <div className="field-container-map">
-                  <Map
-                    title={'Syllaby Map'}
-                    lat={store.country_map.initialPosition.lat}
-                    lng={store.country_map.initialPosition.lng}
-                    zoom={store.country_map.initialPosition.zoom}
-                    store={store.country_map.data}
+                <div className="barchart-component">
+                  <BarChart
+                    title={"Top Titles by Year"}
+                    legend={false}
+                    store={store.top_titles_by_year.data}
+                    isNormalizable={false}
+                    getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
                   />
                 </div>
-                <BarChart
-                  title={"Top Titles by Year"}
-                  legend={false}
-                  store={store.top_titles_by_year.data}
-                  isNormalizable={true}
-                  getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
-                />
               </aside>
             </div>
           </div>

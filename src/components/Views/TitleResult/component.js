@@ -9,7 +9,6 @@ import BadgesList from '../../Dummy/Lists/BadgesList/component.js'
 import TextAssignedList from '../../Dummy/Lists/TextAssignedList/component.js'
 import SeeTheTextOnSyllabiList from '../../Dummy/Lists/SeeTheTextOnSyllabiList/component.js'
 import BarChart from '../../Dummy/BarChart/component.js'
-import Map from '../../Dummy/Map/component.js'
 
 
 class DummyTitleResult extends Component {
@@ -53,11 +52,12 @@ class DummyTitleResult extends Component {
                       {store.title_description}
                     </p>
                     <div className="buttons-label">
-                      <ButtonLabel title={`RANK ${store.rank}`} backgroundColor="#3188D3" color="#FFFFFF" border=""/>
-                      <ButtonLabel title={`APPEARANCES ${store.appearences.total}`} backgroundColor="#A9B4C0" color="#FFFFFF" border=""/>
+                      <ButtonLabel title={`RANK ${store.rank}`} backgroundColor="#9BD331" color="#FFFFFF" border=""/>
+                      <ButtonLabel title={`APPEARANCES ${store.appearences.total}`} backgroundColor="#9BD331" color="#FFFFFF" border=""/>
                       <ButtonLabel title={`SCORE ${store.score}`} backgroundColor="#9BD331" color="#FFFFFF" border=""/>
                     </div>
-                    <div className="badge">
+                    <div className="badge-list-component">
+                      <p className="badge-list-component-title">Appearances by field</p>
                       <BadgesList store={store.appearences.by_field} type={0}/>
                     </div>
                     <div className="text-assigned">
@@ -91,20 +91,15 @@ class DummyTitleResult extends Component {
                     <div className="text-syllabi">
                       <SeeTheTextOnSyllabiList store={store.seeTheTextOn}/>
                     </div>
-                    <Map
-                      title={'Syllaby Map'}
-                      lat={store.country_map.initialPosition.lat}
-                      lng={store.country_map.initialPosition.lng}
-                      zoom={store.country_map.initialPosition.zoom}
-                      store={store.country_map.data}
-                    />
-                    <BarChart
-                      title={"Top Field by Year"}
-                      legend={false}
-                      store={store.top_fields_by_year.data}
-                      isNormalizable={true}
-                      getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
-                    />
+                    <div className="barchart-component">
+                      <BarChart
+                        title={"Top Field by Year"}
+                        legend={false}
+                        store={store.top_fields_by_year.data}
+                        isNormalizable={false}
+                        getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
+                      />
+                    </div>
                   </aside>
                 </div>
             </div>

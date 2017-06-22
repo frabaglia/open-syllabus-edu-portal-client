@@ -1,15 +1,20 @@
 .result-view-content
   background-color: #FFFFFF
-  padding: 1.9rem
   overflow: auto
+  .btnLabel
+    padding: 0 1.4em
+    height: 34px
+    line-height: 34px
   .title-view
     display: flex
     margin-bottom: 1.5em
     div, svg
       align-self: center
     svg
+      width: 32px
+      height: 32px
       &:nth-child(2)
-        margin: 0 1em 0 2em
+        margin: 0 0.8em 0 1em
   .left-content
     p
       margin: 0
@@ -20,7 +25,7 @@
       margin-bottom: 1rem
     .author-view
       a
-        color: #3188D3
+        color: #94CD28
         font-style: italic
     .editorial
       a
@@ -30,8 +35,12 @@
     .buttons-label
       div
         margin: 0 1em 1em 0
-    .badge
-      margin: 0.5em 0 1em 0
+    .badge-list-component
+      margin: 0.7em 0 1em 0
+      .badge-list-component-title
+        font-size: 1.1em
+        font-family: 'Adelle Sans W01 Bold'
+        margin-bottom: 1em
     .text-assigned
       .text-assigned-discription
           font-size: 1.1em
@@ -42,7 +51,7 @@
     .availability
       border: 1px solid #E8E8E8
       border-radius: 5px
-      padding: 2em
+      padding: 1.5em 2em
       margin: 2em 0
       p
         margin: 0
@@ -50,29 +59,31 @@
           font-size: 1.1em
           font-family: 'Adelle Sans W01 Bold'
         &:nth-child(2)
-          margin: 1em 0
+          margin: 0.6em 0
         span
           display: block
           a
             text-decoration: none
-            color: #3188D3
+            color: #94CD28
     .text-syllabi
       border: 1px solid #E8E8E8
       border-radius: 5px
-      padding: 2em
+      padding: 1.5em 2em
       p
         margin: 0
         font-size: 1.1em
         font-family: 'Adelle Sans W01 Bold'
       ul
-        margin: 1em 0
-        color: #67AAF9
+        margin: 0.5em 0 1em 0
         list-style-type: disc
         li
+          color: #94CD28
+          margin: 0
           span
-            color: #405063
           &:last-child
             margin: 0
+  .barchart-component
+    margin-top: 3em
 
 @media (min-width: 361px)
   .result-view-content
@@ -92,7 +103,6 @@
 
 @media (min-width: 768px)
   .result-view-content
-    padding: 4rem
     .left-content
       .title-view
         font-size: 2.2em
@@ -115,4 +125,4 @@
       float: right
       width: 400px
       .availability
-        margin: 0 0 2em 0
+        margin: 0 0 1.5em 0
