@@ -7,6 +7,8 @@ import {saveState} from '../../../os-toolkit/SyllabusLocalStorage/component'
 //----------------------- SMART COMPONENTS ----------------------------------
 import SmartLanding from '../../Smart/Landing/component.js'
 import SmartUniversityLanding from '../../Smart/UniversityLanding/component.js'
+import SmartUniversityField from '../../Smart/UniversityField/component.js'
+// import SmartUniversityFieldYear from '../../Smart/UniversityFieldYear/component.js'
 // import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
 // import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
 // import SmartFieldResultsList from '../../Smart/FieldResultsList/component.js'
@@ -96,9 +98,9 @@ class App extends Component {
                           universityInfo={universityInfo}
                           >
                           <IndexRoute component={SmartUniversityLanding}/>
-                          {/* <Route path={`${universityInfo.field}`} component={SmartUniversityField}>
-                            <Route path={`${universityInfo.year}`} component={SmartUniversityFieldYear}/>
-                          </Route> */}
+                          <Route path="field" component={SmartUniversityField}>
+                            {/* <Route path="year" component={SmartUniversityFieldYear}/> */}
+                          </Route>
                           {/* <Route path="innerView" component={SmartUniversityLanding}>
                             <Route path="title" component={SmartTitleResultsList}/>
                           </Route> */}

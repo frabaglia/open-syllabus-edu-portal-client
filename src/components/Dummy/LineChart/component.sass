@@ -1,0 +1,151 @@
+.container-map
+  border-radius: 5px
+  background-color: #FFFFFF
+  margin: 4rem 0
+  .container-header
+    display: flex
+    .right-content-title
+      margin: 0
+      align-self: center
+      font-family: "Adelle Sans W01 SemiBold"
+      font-size: 1.1em
+    .right-content-expand
+      margin-left: auto
+      align-items: center
+      display: flex
+      .right-content-expand-button
+        display: none
+
+.container-barchart
+  margin: 0
+
+.wrapper-container-chart
+  height: calc(100% - 72px)
+  display: flex
+  .container-chart
+    align-self: center
+
+.legend
+  text-align: center
+  padding-bottom: 1rem
+  .item
+    display: inline-block
+    margin-left: 1rem
+    &:first-child
+      margin: 0
+    .figure
+      display: inline-block
+      margin-right: 0.5rem
+      width: 10px
+      height: 10px
+
+.legend-expand
+  margin-top: 3rem
+  .item
+    margin-left: 3rem
+
+.economics
+  background-color: #FC976D
+
+.literature
+  background-color: #DF6161
+
+.history
+  background-color: #FBD669
+
+.english
+  background-color: #85919F
+
+.biology
+  background-color: #B76AC4
+
+.container-header-expand
+  box-shadow: 0px 0px 50px 0px rgba(0,0,0,0.2)
+  padding: 1.9rem
+
+.expand-barchart
+  position: fixed
+  z-index: 20000
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  border-radius: 0 !important
+  margin: 0 !important
+
+.noLanding
+  flex-direction: row
+  .right-content-expand-button
+    display: none
+  .titleNoLanding
+    align-self: flex-start
+    margin: 0 0 1.9rem 0
+    font-family: "Adelle Sans W01 SemiBold"
+    font-size: 1.1em
+
+.unattributed-label
+  display: none
+  border: 1px solid #E8E8E8
+  color: #85919F
+  font-size: 0.8em
+  padding: 0.4em 0.9em
+
+.additional-info
+  margin-left: auto
+
+.hidden
+  display: none
+
+.tooltip-wrapper
+  position: absolute
+  top: -35px
+  left: -50px
+  .tooltip
+    width: 100px
+    text-align: center
+    position: relative
+    .tooltip-content
+      background-color: #405063
+      padding: 0.5rem
+      border-radius: 5px
+      .tooltip-content-field
+        display: block
+      .tooltip-content-syllabi
+        color: #FFFFFF
+    .tooltip-tail
+      display: inline-block
+      position: absolute
+      left: 44px
+      width: 0
+      height: 0
+      border-right: 7px solid transparent
+      border-bottom: 7px solid transparent
+      border-left: 7px solid transparent
+      border-top: 7px solid #405063
+
+@media (min-width : 643px)
+  .container-map
+    .container-header
+      .right-content-expand
+        .right-content-expand-button
+          display: block
+          margin-right: 2rem
+
+  .additional-info
+    display: flex
+    margin: 0
+    align-items: center
+    div
+      display: inline-block
+    .right-content-expand-button
+      margin-left: auto
+      display: inline-block
+
+  .unattributed-label
+    display: inline-block
+    margin-right: 1em
+
+  .noLanding
+    flex-direction: column
+    .titleNoLanding
+      align-self: flex-start

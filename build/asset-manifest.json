@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.50108f2c.css",
-  "main.css.map": "static/css/main.50108f2c.css.map",
-  "main.js": "static/js/main.5574993f.js",
-  "main.js.map": "static/js/main.5574993f.js.map",
+  "main.css": "static/css/main.bc34d165.css",
+  "main.css.map": "static/css/main.bc34d165.css.map",
+  "main.js": "static/js/main.000a1e6c.js",
+  "main.js.map": "static/js/main.000a1e6c.js.map",
   "static/media/186081425f588a894cd7876472413453.eot": "static/media/186081425f588a894cd7876472413453.696a92c6.eot",
   "static/media/186081425f588a894cd7876472413453.svg": "static/media/186081425f588a894cd7876472413453.aa959263.svg",
   "static/media/186081425f588a894cd7876472413453.ttf": "static/media/186081425f588a894cd7876472413453.18608142.ttf",
@@ -23,7 +23,5 @@
   "static/media/7ff3a37e1e7b7ffa2fd8845f7351d0bc.ttf": "static/media/7ff3a37e1e7b7ffa2fd8845f7351d0bc.7ff3a37e.ttf",
   "static/media/7ff3a37e1e7b7ffa2fd8845f7351d0bc.woff": "static/media/7ff3a37e1e7b7ffa2fd8845f7351d0bc.596936d4.woff",
   "static/media/7ff3a37e1e7b7ffa2fd8845f7351d0bc.woff2": "static/media/7ff3a37e1e7b7ffa2fd8845f7351d0bc.67896fc4.woff2",
-  "static/media/EEUU.svg": "static/media/EEUU.b347789b.svg",
-  "static/media/network_graph.jpg": "static/media/network_graph.bb76e6cb.jpg",
-  "static/media/parallax_image.jpg": "static/media/parallax_image.e8f90ae2.jpg"
+  "static/media/parallax.png": "static/media/parallax.d4b5510b.png"
 }

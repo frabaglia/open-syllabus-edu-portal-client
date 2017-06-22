@@ -4,9 +4,10 @@ import ExpandIcon from "../../Dummy/SVG/ExpandIcon/component.js"
 import ExpandCloseIcon from "../../Dummy/SVG/ExpandCloseIcon/component.js"
 import ButtonBarChartDropdown from "../Buttons/ButtonBarChartDropdown/component.js"
 import ToolTip from "../ToolTip/component.js"
-import {BarChart} from 'react-d3-components'
+import BarChart from 'react-d3-components/lib/BarChart.js'
 import './component.sass'
-import * as d3 from 'd3'
+// import * as d3 from 'd3'
+import {scaleOrdinal} from "d3-scale";
 import $ from 'jquery'
 
 const listType = ["Normalized","RAW"];
@@ -97,7 +98,10 @@ class BarChartComponent extends Component {
 
   // COLOR PALLETTE #3188D3 #9BD331 #5AC4C7 #FBD669 #FC976D #DF6161 #B76AC4 #85919F #405063 #855845
 
-  colorScale = d3.scaleOrdinal()
+  // colorScale = d3.scaleOrdinal()
+  //     .domain(["Economics", "Literature", "History", "English","Biology"])
+  //     .range(['#FC976D','#DF6161','#FBD669','#85919F','#B76AC4']);
+  colorScale = scaleOrdinal()
       .domain(["Economics", "Literature", "History", "English","Biology"])
       .range(['#FC976D','#DF6161','#FBD669','#85919F','#B76AC4']);
 

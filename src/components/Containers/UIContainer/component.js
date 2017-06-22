@@ -20,11 +20,11 @@ class UIContainer extends Component {
   }
 
   componentDidMount = () =>{
-    $(window).scroll(function() {
+  $(window).scroll(function() {
       if ($(document).scrollTop() > 50) {
-        $('.navbar-fixed').addClass('shrink');
+      $('.navbar-fixed').addClass('shrink');
       } else {
-        $('.navbar-fixed').removeClass('shrink');
+      $('.navbar-fixed').removeClass('shrink');
       }
     });
   }
