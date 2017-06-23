@@ -1,6 +1,6 @@
 import {
     TYPE_TITLE
-} from '../../../store/storeTypes.js'
+} from '../../store-types'
 
 const RESULTS_LIST = "RESULTS_LIST"
 const TITLE_RESULTS_LIST = TYPE_TITLE + RESULTS_LIST

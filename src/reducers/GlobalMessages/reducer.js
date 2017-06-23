@@ -6,7 +6,7 @@ import {
   ERROR,
   WARNING,
   MSG
-} from '../../constants/action-types/GlobalMessages'
+} from '../../constants/explorer/action-types/GlobalMessages'
 
 const initialGlobalMessages = Map({
   lastMessage: false,

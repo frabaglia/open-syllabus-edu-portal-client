@@ -1,6 +1,6 @@
 import {
     TYPE_PUBLISHER
-} from '../../../store/storeTypes.js'
+} from '../../store-types'
 
 const RESULTS_LIST = "RESULTS_LIST"
 const PUBLISHER_RESULTS_LIST = TYPE_PUBLISHER + RESULTS_LIST

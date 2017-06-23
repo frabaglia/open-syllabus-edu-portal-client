@@ -9,10 +9,8 @@ import {
     TYPE_INSTITUTION,
     TYPE_FIELD,
     TYPE_COUNTRY,
-    TYPE_PUBLISHER,
-    TYPE_INSTITUTION_FIELD
-
-} from '../../store/storeTypes'
+    TYPE_PUBLISHER
+} from '../../constants/explorer/store-types'
 
 import {
     MOST_FRECUENT_TYPE_UPDATE,
@@ -22,23 +20,13 @@ import {
     MOST_FRECUENT_INSTITUTION_REQUEST,
     MOST_FRECUENT_COUNTRY_REQUEST,
     MOST_FRECUENT_PUBLISHER_REQUEST,
-    MOST_FRECUENT_TITLE_ERROR,
-    MOST_FRECUENT_FIELD_ERROR,
-    MOST_FRECUENT_AUTHOR_ERROR,
-    MOST_FRECUENT_INSTITUTION_ERROR,
-    MOST_FRECUENT_COUNTRY_ERROR,
-    MOST_FRECUENT_PUBLISHER_ERROR,
     MOST_FRECUENT_TITLE_SUCCESS,
     MOST_FRECUENT_FIELD_SUCCESS,
     MOST_FRECUENT_AUTHOR_SUCCESS,
     MOST_FRECUENT_INSTITUTION_SUCCESS,
     MOST_FRECUENT_COUNTRY_SUCCESS,
     MOST_FRECUENT_PUBLISHER_SUCCESS
-} from '../../constants/action-types/Landing'
-
-import {
-    isStoredDataUpToDate
-} from '../../os-toolkit/Date/component'
+} from '../../constants/explorer/action-types/Landing'
 
 const mostFrecuent = Map({
     current: TYPE_TITLE,

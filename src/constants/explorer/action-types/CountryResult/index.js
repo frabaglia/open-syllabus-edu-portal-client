@@ -1,6 +1,6 @@
 import {
     TYPE_COUNTRY
-} from '../../../store/storeTypes.js'
+} from '../../store-types'
 
 const RESULT = "RESULT"
 const COUNTRY_RESULT = TYPE_COUNTRY + RESULT

@@ -1,6 +1,6 @@
 import {
     TYPE_AUTHOR
-} from '../../../store/storeTypes.js'
+} from '../../store-types'
 
 const RESULT = "RESULT"
 const AUTHOR_RESULT = TYPE_AUTHOR + RESULT
