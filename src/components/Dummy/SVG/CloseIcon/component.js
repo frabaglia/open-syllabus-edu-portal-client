@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CloseIcon = (props) => {
-  return ( <svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+  return ( <svg style={{cursor:'pointer'}} onClick={props.click} width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
       <g id="Visual-Design" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
           <g id="Desktop---Login" transform="translate(-905.000000, -168.000000)">
               <g id="Group-8" transform="translate(520.000000, 168.000000)">

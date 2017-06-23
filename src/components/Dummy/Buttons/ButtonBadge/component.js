@@ -19,12 +19,12 @@ class ButtonBadge extends Component {
     if(this.props.count >= 250){
       console.log(this.props);
       console.log('ir a algun lugar');
-      // if(this.props.id_field !== ""){
-      //   this.props.router.push({
-      //     pathname: '/field',
-      //     query: { id_school:this.props.id_institution,id_field:this.props.id_field}
-      //   })
-      // }
+      if(this.props.id_field !== ""){
+        this.props.router.push({
+          pathname: '/university-portal/field',
+          query: { _id:11}
+        })
+      }
     }
   }
 

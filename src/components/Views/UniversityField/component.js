@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router';
 import Filter from '../../Dummy/Filter/component'
 import SyllabyAvailableByYear from '../../Dummy/SyllabiAvailableByYearContainer/component'
 import CloestPeerTeachingProfiles from '../../Dummy/CloestPeerTeachingProfilesContainer/component'
 import ContainerTopRankedList from '../../Dummy/ContainerTopRankedList/component'
 import BarChart from '../../Dummy/BarChart/component.js'
 import LineChart from '../../Dummy/LineChart/component.js'
+import InternalNavbar from '../../Dummy/InternalNavbar/component'
+import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
 import './component.sass'
 
 const barChartData = [{
@@ -576,13 +577,26 @@ class UniversityField extends Component {
       let store = this.props.store;
         return (
             <div className="university-field">
-              <div className="filter-container">
-                <Filter/>
-                <div className="search-view-syllabi-counter">
-                  <p>
-                    <span>438</span>
-                    Syllabi
-                  </p>
+              <div className="search-view-header">
+                <div className="search-view-header-title">
+                  <span className="third-color small-font-size">University Portal</span>
+                  <p className="large-font-size font-bold">Columbia University: Architecture</p>
+                </div>
+                <div className="search-view-header-navigation">
+                  <div className="internal-navbar-filter-container">
+                    <div className="internal-navbar-component">
+                      <InternalNavbar router={this.props}/>
+                    </div>
+                    <div className="filter-component">
+                      <Filter/>
+                    </div>
+                  </div>
+                  <div className="filter-syllabi-component">
+                    {SyllabiCounter({
+                      count: 438,
+                      subtitle:'Architecture'
+                    })}
+                  </div>
                 </div>
               </div>
               <div className="content-container">

@@ -27,11 +27,11 @@ class NavBar extends Component {
   // }
 
   login = () =>{
-
+    this.props.router.router.push('login')
   }
 
   logout = () =>{
-
+    this.props.router.router.push('/')
   }
 
   renderNavBar = () =>{
@@ -47,7 +47,7 @@ class NavBar extends Component {
                 color:'#FFFFFF',
                 border: '#9BD331',
                 title: 'Logout',
-                click: this.logout()
+                click: this.logout
               })}
               {SVGConfigIcon()}
         </div>
@@ -69,7 +69,7 @@ class NavBar extends Component {
                 color:'#FFFFFF',
                 border: '#9BD331',
                 title: 'University Login',
-                click: this.login()
+                click: this.login
               })}
         </div>
       </div>
@@ -77,6 +77,7 @@ class NavBar extends Component {
   }
 
   render() {
+    console.log(this.props);
       return (this.renderNavBar())
   }
 }

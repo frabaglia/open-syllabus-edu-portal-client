@@ -46,8 +46,11 @@ class ContainerTopRankedList extends Component {
       this.makeAllSchoolsPagination(this.state.pagination);
       this.makeColumbiaPagination(this.state.pagination)
     })
-}
+  }
 
+  changeDataFromSelects = (e) =>{
+    console.log(e);
+  }
 
   renderButtonsNavigation = () =>
   {

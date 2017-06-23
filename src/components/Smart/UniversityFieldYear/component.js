@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import DummyUniversYear from '../../Views/UniversYear/component.js'
+import DummyUniversityFieldYear from '../../Views/UniversityFieldYear/component.js'
 // import {connect} from 'react-redux'
 // import {
 //     TYPE_TITLE,
@@ -43,7 +43,7 @@ class SmartUniversityFieldYear extends Component {
 
   render() {
       return (
-          <DummyUniversYear
+          <DummyUniversityFieldYear
             store={store}
             router={this.props.router}
           />

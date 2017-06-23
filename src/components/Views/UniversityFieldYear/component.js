@@ -4,7 +4,7 @@ import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
 import './component.sass'
 
-class FullTextResultList extends Component {
+class UniversityFieldYear extends Component {
 
 
 
@@ -35,7 +35,7 @@ class FullTextResultList extends Component {
                 </div>
               </div>
               <div className="content-container">
-                FULL TEXT VIEW
+                UNIVERSITY FIELD YEAR
                 <div className="left-side">
 
                 </div>
@@ -48,4 +48,4 @@ class FullTextResultList extends Component {
     }
 }
 
-export default FullTextResultList
+export default UniversityFieldYear
