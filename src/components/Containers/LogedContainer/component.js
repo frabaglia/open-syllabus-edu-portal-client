@@ -4,7 +4,6 @@ import './component.sass'
 class LogedContainer extends Component {
 
     render() {
-      console.log(this.props);
       let universityInfo = this.props.route.universityInfo;
         return (
           <div className="logged-container">

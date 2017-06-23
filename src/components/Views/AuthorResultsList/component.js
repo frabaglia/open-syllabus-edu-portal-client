@@ -81,7 +81,7 @@ class AuthorResultsList extends Component {
                 <div className="search-view-header-navigation">
                   <div className="internal-navbar-filter-container">
                     <div className="internal-navbar-component">
-                      <InternalNavbar router={this.props}/>
+                      <InternalNavbar router={this.props.router}/>
                     </div>
                     <div className="filter-component">
                       <Filter/>
