@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router';
 import Filter from '../../Dummy/Filter/component'
 import AutorList from '../../Dummy/Lists/AuthorList/component'
+import InternalNavbar from '../../Dummy/InternalNavbar/component'
+import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
 import './component.sass'
 
 const autorList = [{
@@ -72,13 +73,26 @@ class AuthorResultsList extends Component {
       let store = this.props.store;
         return (
             <div className="title-result-list">
-              <div className="filter-container">
-                <Filter/>
-                <div className="search-view-syllabi-counter">
-                  <p>
-                    <span>438</span>
-                    Syllabi
-                  </p>
+              <div className="search-view-header">
+                <div className="search-view-header-title">
+                  <span className="third-color small-font-size">University Portal</span>
+                  <p className="large-font-size font-bold">Columbia University</p>
+                </div>
+                <div className="search-view-header-navigation">
+                  <div className="internal-navbar-filter-container">
+                    <div className="internal-navbar-component">
+                      <InternalNavbar router={this.props}/>
+                    </div>
+                    <div className="filter-component">
+                      <Filter/>
+                    </div>
+                  </div>
+                  <div className="filter-syllabi-component">
+                    {SyllabiCounter({
+                      count: 4500,
+                      subtitle:''
+                    })}
+                  </div>
                 </div>
               </div>
               <div className="content-container">

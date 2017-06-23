@@ -8,6 +8,7 @@ import {saveState} from '../../../os-toolkit/SyllabusLocalStorage/component'
 import SmartLanding from '../../Smart/Landing/component.js'
 import SmartUniversityLanding from '../../Smart/UniversityLanding/component.js'
 import SmartUniversityField from '../../Smart/UniversityField/component.js'
+import SmartUniversityFieldYear from '../../Smart/UniversityFieldYear/component.js'
 import SmartFullTextResultsList from '../../Smart/FullTextResultsList/component.js'
 import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
 import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
@@ -68,14 +69,6 @@ history.listen(location => {
   });
 });
 
-const universityInfo = {
-  pathName: 'columbia_university',
-  name: 'Columbia University',
-  field: 'architecture',
-  year: '2017',
-  syllabi: 4300
-}
-
 class App extends Component {
     render() {
         return (
@@ -84,15 +77,12 @@ class App extends Component {
                     <Route path="/" component={UIContainer}>
                         <IndexRoute component={SmartLanding}/>
                         <Route
-                          // path={`${universityInfo.pathName}`}
                           path="university-portal"
                           component={LogedContainer}
-                          universityInfo={universityInfo}
                           >
                           <IndexRoute component={SmartUniversityLanding}/>
-                          <Route path="field" component={SmartUniversityField}>
-                            {/* <Route path="year" component={SmartUniversityFieldYear}/> */}
-                          </Route>
+                          <Route path="field" component={SmartUniversityField}/>
+                          <Route path="field-year" component={SmartUniversityFieldYear}/>
                           <Route path="result-list">
                             <Route path="full-texts" component={SmartFullTextResultsList}/>
                             <Route path="titles" component={SmartTitleResultsList}/>

@@ -20,12 +20,17 @@ class DummyLogin extends Component {
     }
   }
 
-  login = ( ) =>{
+  login = () =>{
     console.log('login');
+    this.props.router.push('/university-portal')
   }
 
   recoverPassword = ( ) =>{
     console.log('recoverPassword');
+  }
+
+  closeLogin = () =>{
+    this.props.router.push('/')
   }
 
   renderMessage = () =>{
@@ -111,7 +116,7 @@ class DummyLogin extends Component {
                 color:'#FFFFFF',
                 border: '#9BD331',
                 title: 'LOGIN',
-                click: this.login()
+                click: this.login
               })}
             </div>
           </div>
@@ -169,7 +174,7 @@ class DummyLogin extends Component {
             </div>
             <div className="login">
               <div className="login-close">
-                {SVGCloseIcon({color:'#C8CFD7'})}
+                {SVGCloseIcon({color:'#C8CFD7', click: this.closeLogin})}
               </div>
               <div className="login-header">
                 {SVGEduPortalLogo({color:'#9BD331', colorEDU:'#3B475B'})}

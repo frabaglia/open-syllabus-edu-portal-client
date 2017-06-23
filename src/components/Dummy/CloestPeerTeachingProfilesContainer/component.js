@@ -8,7 +8,7 @@ class CloestPeerTeachingProfilesContainer  extends Component {
     let badgeList = []
     this.props.store.map( (profiles, i) =>{
       badgeList.push(
-        <a href={`${profiles.url}`} target="_blank" key={i}>{profiles.title}</a>
+        <a href={`http://${profiles.url}`} target="_blank" key={i}>{profiles.title}</a>
       )
     })
     return badgeList;
