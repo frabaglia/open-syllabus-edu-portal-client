@@ -208,8 +208,8 @@ class LineChartComponent extends Component {
               width={this.state.width}
               height={this.state.height}
               margin={{top: 10, bottom: 40, left: 70, right: 10}}
-              colorScale={this.colorScale}
-              tooltipHtml={this.tooltipScatter}
+              // colorScale={this.colorScale}
+              // tooltipHtml={this.tooltipScatter}
             />
             <div ref="legend" className="legend">
               <div className="item">

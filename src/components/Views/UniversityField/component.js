@@ -139,22 +139,13 @@ const lineChartData = [{
   label: 'Economics',
   values: [
     {x: '2010', y: 20},
-    {x: '2011', y: 60},
-    {x: '2012', y: 25},
-    {x: '2013', y: 55},
-    {x: '2014', y: 60},
-    {x: '2015', y: 40},
     {x: '2016', y: 40},
   ]
 },
 {
   label: 'Literature',
   values: [
-    {x: '2011', y: 0},
-    {x: '2012', y: 20},
-    {x: '2013', y: 0},
-    {x: '2014', y: 20},
-    {x: '2015', y: 30},
+    {x: '2010', y: 0},
     {x: '2016', y: 30},
   ]
 }]
@@ -636,7 +627,7 @@ class UniversityField extends Component {
                     {/* <LineChart
                       title={"Syllabi by Field and Year"}
                       legend={false}
-                      store={barChartData}
+                      store={lineChartData}
                       isNormalizable={false}
                       getDataNormalizedOrRAW={"Normalized"}
                     /> */}
