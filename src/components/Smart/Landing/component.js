@@ -9,9 +9,9 @@ import DummyLanding from '../../Views/Landing/component.js'
 //     TYPE_COUNTRY,
 //     TYPE_PUBLISHER,
 //     // TYPE_INSTITUTION_FIELD
-// } from '../../../constants/action-types/store'
+// } from '../../../constants/explorer/action-types/store'
 //
-// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
+// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 // import {
 //   mostFrecuentTypeUpdate,
 //   mostFrecuentTitleRequest,
@@ -26,8 +26,8 @@ import DummyLanding from '../../Views/Landing/component.js'
 //   mostFrecuentCountrySuccess,
 //   mostFrecuentPublisherRequest,
 //   mostFrecuentPublisherSuccess,
-// } from '../../../constants/actions/Landing'
-// import {resultsListError} from '../../../constants/actions/GlobalMessages'
+// } from '../../../constants/eduportal/actions/Landing'
+// import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
 
 // function mapStateToProps(store) {
 //     return {landing: store.get('Landing')}

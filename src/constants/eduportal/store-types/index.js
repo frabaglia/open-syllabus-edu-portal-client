@@ -1,0 +1,4 @@
+export const TYPE_TITLE = 'TYPE_TITLE'
+export const TYPE_AUTHOR = 'TYPE_AUTHOR'
+export const TYPE_FULL_TEXT = 'TYPE_FULL_TEXT'
+export const TYPE_INSTRUCTOR = 'TYPE_INSTRUCTOR'

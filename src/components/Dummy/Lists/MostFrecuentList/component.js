@@ -16,7 +16,7 @@ import {
     TYPE_COUNTRY,
     TYPE_PUBLISHER,
     // TYPE_INSTITUTION_FIELD
-} from '../../../../store/storeTypes'
+} from '../../../../constants/store-types'
 
 class MostFrecuentList extends Component {
 

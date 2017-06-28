@@ -1,9 +1,0 @@
-import {
-    TYPE_COUNTRY
-} from '../../../store/storeTypes.js'
-
-const RESULT = "RESULT"
-const COUNTRY_RESULT = TYPE_COUNTRY + RESULT
-export const COUNTRY_RESULT_REQUEST = COUNTRY_RESULT + "REQUEST"
-export const COUNTRY_RESULT_SUCCESS = COUNTRY_RESULT + "SUCCESS"
-export const COUNTRY_RESULT_ERROR = COUNTRY_RESULT + "ERROR"
