@@ -8,7 +8,7 @@ import store from '../../../store/index.js'
 /* Should inject store just not to fail with this.props.dispatch availability */
 /******************************************************************************/
 
-it('renders without crashing', () => {
+test('renders without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(
         <Provider store={store}>
