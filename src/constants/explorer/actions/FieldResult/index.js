@@ -7,14 +7,14 @@ import {
   API
 } from '../../action-types/API'
 import {
-  SyllabusHTTPService
-} from '../../../os-toolkit/SyllabusHTTPService'
+  SyllabusExplorerHTTPService
+} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 
 export const fieldResultRequest = (id) => {
   return {
     type: API,
     payload: {
-      request: SyllabusHTTPService.getFieldResult(id),
+      request: SyllabusExplorerHTTPService.getFieldResult(id),
       pending: FIELD_RESULT_REQUEST,
       success: FIELD_RESULT_SUCCESS,
       error: FIELD_RESULT_ERROR

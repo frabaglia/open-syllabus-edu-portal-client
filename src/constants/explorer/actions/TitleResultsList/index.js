@@ -7,14 +7,14 @@ import {
   API
 } from '../../action-types/API'
 import {
-  SyllabusHTTPService
-} from '../../../os-toolkit/SyllabusHTTPService'
+  SyllabusExplorerHTTPService
+} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 
 export const titleResultsListRequest = (params) => {
   return {
     type: API,
     payload: {
-      request: SyllabusHTTPService.getTitleResultsList(params),
+      request: SyllabusExplorerHTTPService.getTitleResultsList(params),
       pending: TITLE_RESULTS_LIST_REQUEST,
       success: TITLE_RESULTS_LIST_SUCCESS,
       error: TITLE_RESULTS_LIST_ERROR

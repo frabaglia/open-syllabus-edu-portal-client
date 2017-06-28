@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 
 import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList'
 import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../constants/actions/InstitutionResultsList'

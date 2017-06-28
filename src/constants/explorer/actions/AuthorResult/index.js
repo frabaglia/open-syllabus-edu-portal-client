@@ -7,14 +7,14 @@ import {
   API
 } from '../../action-types/API'
 import {
-  SyllabusHTTPService
-} from '../../../os-toolkit/SyllabusHTTPService'
+  SyllabusExplorerHTTPService
+} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 
 export const authorResultRequest = (id) => {
   return {
     type: API,
     payload: {
-      request: SyllabusHTTPService.getAuthorResult(id),
+      request: SyllabusExplorerHTTPService.getAuthorResult(id),
       pending: AUTHOR_RESULT_REQUEST,
       success: AUTHOR_RESULT_SUCCESS,
       error: AUTHOR_RESULT_ERROR

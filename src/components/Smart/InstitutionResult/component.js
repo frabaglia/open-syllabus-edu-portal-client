@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery'
 import {connect} from 'react-redux'
-import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
+import {syllabusHTTPService} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 
 import {institutionResultRequest, institutionResultSuccess} from '../../../constants/actions/InstitutionResult'
 
