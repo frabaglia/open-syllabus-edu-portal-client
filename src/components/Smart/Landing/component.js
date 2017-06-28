@@ -9,9 +9,9 @@ import DummyLanding from '../../Views/Landing/component.js'
 //     TYPE_COUNTRY,
 //     TYPE_PUBLISHER,
 //     // TYPE_INSTITUTION_FIELD
-// } from '../../../constants/action-types/store'
+// } from '../../../constants/explorer/action-types/store'
 //
-// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
+// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 // import {
 //   mostFrecuentTypeUpdate,
 //   mostFrecuentTitleRequest,

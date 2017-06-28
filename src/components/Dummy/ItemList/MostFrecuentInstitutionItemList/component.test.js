@@ -9,7 +9,7 @@ const object = {
   country: 'country'
 }
 
-it('renders without crashing', () => {
+test('renders without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(
         <MostFrecuentInstitutionItemList
