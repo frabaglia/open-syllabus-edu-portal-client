@@ -1,0 +1,47 @@
+.syllabi-item
+  width: 100%
+  display: flex
+  div
+    display: inline-block
+    font-size: 0.9em
+    line-height: 0.9em
+    text-align: center
+    min-width: 40px
+  .rank
+    width: 10%
+    color: #9BD331
+    align-self: flex-start
+  .title-email-container
+    width: 70%
+    text-align: left
+    .title
+      margin: 0 0 5px 0
+      display: block
+      cursor: pointer
+    .email
+      font-size: 0.8em
+      color: #85919F
+      display: block
+
+@media (min-width: 320px)
+  .syllabi-item
+      .title-email-container
+        .title
+          display: block
+        .email
+          display: inline-block
+
+
+
+@media (min-width: 414px)
+  .syllabi-item
+    div
+      font-size: 1em
+      line-height: 1em
+
+
+@media (min-width: 500px)
+  .syllabi-item
+    div
+      font-size: 1.1em
+      line-height: 1.1em
