@@ -4,10 +4,10 @@ import {connect} from 'react-redux'
 import $ from 'jquery'
 import {syllabusHTTPService} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 
-import {countryResultRequest, countryResultSuccess} from '../../../constants/actions/FieldResult'
+import {countryResultRequest, countryResultSuccess} from '../../../constants/eduportal/actions/FieldResult'
 
 
-import {resultsListError} from '../../../constants/actions/GlobalMessages'
+import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
 import DummyCountryResult from '../../Views/CountryResult/component.js'
 import {TYPE_COUNTRY} from '../../../store/storeTypes'
 

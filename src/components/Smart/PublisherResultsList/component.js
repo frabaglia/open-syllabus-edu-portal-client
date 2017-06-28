@@ -3,11 +3,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {syllabusHTTPService} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 
-import {publisherResultsListRequest, publisherResultsListSuccess} from '../../../constants/actions/PublisherResultsList'
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList'
+import {publisherResultsListRequest, publisherResultsListSuccess} from '../../../constants/eduportal/actions/PublisherResultsList'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/eduportal/actions/FieldResultsList'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/eduportal/actions/CountryResultsList'
 
-import {globalError} from '../../../constants/actions/GlobalMessages'
+import {globalError} from '../../../constants/eduportal/actions/GlobalMessages'
 import DummyPublisherResultsList from '../../Views/PublisherResultsList/component.js'
 import {
         TYPE_FIELD,

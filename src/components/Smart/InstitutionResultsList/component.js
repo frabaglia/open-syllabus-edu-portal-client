@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {syllabusHTTPService} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 
-import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/actions/FieldResultsList'
-import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../constants/actions/InstitutionResultsList'
-import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/actions/CountryResultsList'
+import {fieldResultsListRequest, fieldResultsListSuccess} from '../../../constants/eduportal/actions/FieldResultsList'
+import {institutionResultsListRequest, institutionResultsListSuccess} from '../../../constants/eduportal/actions/InstitutionResultsList'
+import {countryResultsListRequest, countryResultsListSuccess} from '../../../constants/eduportal/actions/CountryResultsList'
 
-import {globalError} from '../../../constants/actions/GlobalMessages'
+import {globalError} from '../../../constants/eduportal/actions/GlobalMessages'
 import DummyInstitutionResultsList from '../../Views/InstitutionResultsList/component.js'
 import {
         TYPE_FIELD,

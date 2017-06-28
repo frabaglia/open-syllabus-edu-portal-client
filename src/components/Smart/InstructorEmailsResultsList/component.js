@@ -26,8 +26,8 @@ import DummyInstructorEmailsResultsList from '../../Views/InstructorEmailsResult
 //   mostFrecuentCountrySuccess,
 //   mostFrecuentPublisherRequest,
 //   mostFrecuentPublisherSuccess,
-// } from '../../../constants/actions/Landing'
-// import {resultsListError} from '../../../constants/actions/GlobalMessages'
+// } from '../../../constants/eduportal/actions/Landing'
+// import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
 
 // function mapStateToProps(store) {
 //     return {landing: store.get('Landing')}

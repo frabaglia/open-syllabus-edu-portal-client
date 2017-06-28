@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import $ from "jquery"
 import {syllabusHTTPService} from '../../../os-toolkit/SyllabusExplorerHTTPService'
-import {publisherResultRequest, publisherResultSuccess} from '../../../constants/actions/PublisherResult'
-import {resultsListError} from '../../../constants/actions/GlobalMessages'
+import {publisherResultRequest, publisherResultSuccess} from '../../../constants/eduportal/actions/PublisherResult'
+import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
 import DummyPublisherResult from '../../Views/PublisherResult/component.js'
 import {TYPE_PUBLISHER} from '../../../store/storeTypes'
 

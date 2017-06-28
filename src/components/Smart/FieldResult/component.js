@@ -4,10 +4,10 @@ import {connect} from 'react-redux'
 import $ from 'jquery'
 import {syllabusHTTPService} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 
-import {fieldResultRequest, fieldResultSuccess} from '../../../constants/actions/FieldResult'
+import {fieldResultRequest, fieldResultSuccess} from '../../../constants/eduportal/actions/FieldResult'
 
 
-import {resultsListError} from '../../../constants/actions/GlobalMessages'
+import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
 import DummyFieldResult from '../../Views/FieldResult/component.js'
 import {  TYPE_TITLE,
           TYPE_AUTHOR,

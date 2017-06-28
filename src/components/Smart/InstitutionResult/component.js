@@ -3,10 +3,10 @@ import $ from 'jquery'
 import {connect} from 'react-redux'
 import {syllabusHTTPService} from '../../../os-toolkit/SyllabusExplorerHTTPService'
 
-import {institutionResultRequest, institutionResultSuccess} from '../../../constants/actions/InstitutionResult'
+import {institutionResultRequest, institutionResultSuccess} from '../../../constants/eduportal/actions/InstitutionResult'
 
 
-import {resultsListError} from '../../../constants/actions/GlobalMessages'
+import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
 import DummyInstitutionResult from '../../Views/InstitutionResult/component.js'
 import {  TYPE_TITLE,
           TYPE_AUTHOR,
