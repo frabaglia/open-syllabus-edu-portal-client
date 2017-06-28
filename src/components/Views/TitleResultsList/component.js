@@ -1,86 +1,197 @@
 import React, {Component} from 'react'
-import ContainerList from '../../Dummy/ContainerList/component.js'
-import Filter from '../../Dummy/Filter/component.js'
+import {Link} from 'react-router';
+import Filter from '../../Dummy/Filter/component'
+import MostFrecuentlyAssignedTextList from '../../Dummy/Lists/MostFrecuentlyAssignedTextList/component.js'
 import './component.sass'
-import AdvancedFilter from '../../Dummy/AdvancedFilter/component.js'
 
-
-class DummyTitleResultsList extends Component {
-
-    constructor(){
-      super();
-      this.state= {
-        clear: false,
-        advancedParamFilter:[],
-        regularParamFilter:[]
-      }
+const most_frecuently_assigned_texts = [
+  {
+    "_id": 12,
+    "title": "Introduction to Economics",
+    "author": {
+        "_id": 32,
+        "author_first": "Neil",
+        "author_middle": null,
+        "author_last": "Cambell",
+    },
+    "publisher": {
+        "_id": 14,
+        "name": "Pengiun Books"
+    },
+    "pub_year": 2000,
+    "appearences": {
+        "by_unique_field": {
+            "_id": 152,
+            "name": "Math",
+            "syllabus_count": 9
+        }
     }
-
-    clearAdvancedFilter = () =>{
-      this.setState({clear:true}, () =>{this.props.currentParamsQuery([])})
-      console.log(this.state.clear, 'filtro limpio')
+  },
+  {
+    "_id": 12,
+    "title": "Introduction to Economics",
+    "author": {
+        "_id": 32,
+        "author_first": "Neil",
+        "author_middle": null,
+        "author_last": "Cambell",
+    },
+    "publisher": {
+        "_id": 14,
+        "name": "Pengiun Books"
+    },
+    "pub_year": 2000,
+    "appearences": {
+        "by_unique_field": {
+            "_id": 152,
+            "name": "Math",
+            "syllabus_count": 9
+        }
     }
-
-    currentParamAdvancedFilter = (paramList) =>
-    {
-      console.log(paramList);
-      console.log(this.state.clear, 'filtro sucio')
-      let filtro = (paramList !== []) ? false : true
-      this.setState({
-        clear:filtro,
-        advancedParamFilter: paramList
-      }, () =>{this.mergeParamsFilter()})
-
+  },
+  {
+    "_id": 12,
+    "title": "Introduction to Economics",
+    "author": {
+        "_id": 32,
+        "author_first": "Neil",
+        "author_middle": null,
+        "author_last": "Cambell",
+    },
+    "publisher": {
+        "_id": 14,
+        "name": "Pengiun Books"
+    },
+    "pub_year": 2000,
+    "appearences": {
+        "by_unique_field": {
+            "_id": 152,
+            "name": "Math",
+            "syllabus_count": 9
+        }
     }
-
-    currentParamRegularFilter = (paramList) => this.setState({regularParamFilter:paramList}, () => {this.mergeParamsFilter()})
-
-    mergeParamsFilter = () =>
-    {
-      let paramQuery;
-      paramQuery = this.state.regularParamFilter.concat(this.state.advancedParamFilter);
-
-      paramQuery = paramQuery.filter((thing, index, self) => self.findIndex((t) => {return t.category === thing.category && t._id === thing._id; }) === index)
-
-      this.props.currentParamsQuery(paramQuery);
+  },
+  {
+    "_id": 12,
+    "title": "Introduction to Economics",
+    "author": {
+        "_id": 32,
+        "author_first": "Neil",
+        "author_middle": null,
+        "author_last": "Cambell",
+    },
+    "publisher": {
+        "_id": 14,
+        "name": "Pengiun Books"
+    },
+    "pub_year": 2000,
+    "appearences": {
+        "by_unique_field": {
+            "_id": 152,
+            "name": "Math",
+            "syllabus_count": 9
+        }
     }
+  },
+  {
+    "_id": 12,
+    "title": "Introduction to Economics",
+    "author": {
+        "_id": 32,
+        "author_first": "Neil",
+        "author_middle": null,
+        "author_last": "Cambell",
+    },
+    "publisher": {
+        "_id": 14,
+        "name": "Pengiun Books"
+    },
+    "pub_year": 2000,
+    "appearences": {
+        "by_unique_field": {
+            "_id": 152,
+            "name": "Math",
+            "syllabus_count": 9
+        }
+    }
+  },
+  {
+    "_id": 12,
+    "title": "Introduction to Economics",
+    "author": {
+        "_id": 32,
+        "author_first": "Neil",
+        "author_middle": null,
+        "author_last": "Cambell",
+    },
+    "publisher": {
+        "_id": 14,
+        "name": "Pengiun Books"
+    },
+    "pub_year": 2000,
+    "appearences": {
+        "by_unique_field": {
+            "_id": 152,
+            "name": "Math",
+            "syllabus_count": 9
+        }
+    }
+  },
+  {
+    "_id": 12,
+    "title": "Introduction to Economics",
+    "author": {
+        "_id": 32,
+        "author_first": "Neil",
+        "author_middle": null,
+        "author_last": "Cambell",
+    },
+    "publisher": {
+        "_id": 14,
+        "name": "Pengiun Books"
+    },
+    "pub_year": 2000,
+    "appearences": {
+        "by_unique_field": {
+            "_id": 152,
+            "name": "Math",
+            "syllabus_count": 9
+        }
+    }
+  },
+]
+
+class TitleResultsList extends Component {
+
+
 
     render() {
-        let filter = {
-            title: 'Titles',
-            number: `${this.props.store.length}`
-        }
-        const filtersCategory = ['Title', 'Author','School','Field','Country']
+      let store = this.props.store;
         return (
-            <div className="result-list-view">
-                <aside className="left-content">
-                  <AdvancedFilter
-                    currentParamsQuery={this.currentParamAdvancedFilter}
-                    clearFilter={this.state.clear}
-                    full={true}
-                  />
-                </aside>
-                <div className="right-content">
-                  <Filter
-                    filter={filter}
-                    currentCategory={this.props.currentCategory}
-                    category={this.props.category}
-                    filtersCategory={filtersCategory}
-                    inputString={this.props.inputString}
-                    makeSearch={this.props.makeSearch}
-                    paramData={this.props.currentParamData}
-                    currentParamsQuery={this.currentParamRegularFilter}
-                    clearAdvancedFilter={this.clearAdvancedFilter}
-                  />
-                  <ContainerList
-                    list={"titleList"}
-                    store={this.props.store}
-                    pagination={this.props.pagination}
+            <div className="title-result-list">
+              <div className="filter-container">
+                <Filter/>
+                <div className="search-view-syllabi-counter">
+                  <p>
+                    <span>438</span>
+                    Syllabi
+                  </p>
+                </div>
+              </div>
+              <div className="content-container">
+                <div className="left-side">
+                  <MostFrecuentlyAssignedTextList
+                    store={most_frecuently_assigned_texts}
+                    title={false}
+                    initPagination={6}
                   />
                 </div>
+                <div className="right-side">
+                </div>
+              </div>
             </div>
         )
     }
 }
 
-export default DummyTitleResultsList
+export default TitleResultsList

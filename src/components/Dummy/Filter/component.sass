@@ -1,39 +1,18 @@
 .filter
-  background-color: #FFFFFF
-  div
-    p
-      margin: 0
-    &:nth-child(2)
-      div
-        overflow-x: auto
-        white-space: nowrap
-        div
-          margin-right: 0.7rem
-      p
-        margin-bottom: 1rem
-  .title
-    display: flex
-    margin-bottom: 1.2rem
-    p
-      display: inline-block
-      font-size: 1.3em
-      span
-        font-family: 'Adelle Sans W01 Bold'
-    div
-      align-self: center
-      margin-left: auto
+  width: 100%
   .search
     display: flex
-    margin: 2rem 0
+    margin: 0
     position: relative
     .search-input-content
       width: 100%
-      margin-right: 2rem
+      margin-right: 1em
       input
         margin: 0
         height: 44px
         width: 100%
         font-size: 1.1em
+        padding: 6px 13px
         &:focus
           border: 1px solid #B7C1CC
           border-top-right-radius: 5px
@@ -75,36 +54,12 @@
                 border-bottom: 1px solid #3188D3
     div
       margin-left: auto
-      width: 3em
 
 
 .show-select-menu
   display: block !important
 
-@media (min-width: 321px)
-  .filter
-    .title
-      p
-        font-size: 1.3em
 
-@media (min-width: 375px)
-  .filter
-    .title
-      p
-        font-size: 1.7em
-
-@media (min-width: 414px)
-  .filter
-    .title
-      p
-        font-size: 1.8em
-
-
-@media (min-width: 500px)
-  .filter
-    .title
-      p
-        font-size: 2.1em
-    .search
-      div
-        width: 144px
+// @media (min-width : 1024px)
+//   .filter
+//     width: 70%

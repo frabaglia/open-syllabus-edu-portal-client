@@ -20,10 +20,10 @@ class Filter extends Component {
   }
 
   componentDidMount = () => {
-    this.setState({
-      selected:this.props.filtersCategory[0],
-      paramDataList:this.props.paramData
-    })
+    // this.setState({
+    //   selected:this.props.filtersCategory[0],
+    //   paramDataList:this.props.paramData
+    // })
 
     $(window).click( (event) => {
       if(event.target.type !== 'text' && this.refs.selectMenu !== undefined) this.refs.selectMenu.className = 'select-menu'
@@ -36,36 +36,8 @@ class Filter extends Component {
     })
   }
 
-  // showPlaceholder = () =>
-  // {
-    // console.log(this.refs.inputSearch.placeholder);
-    // if(this.refs.inputSearch !== undefined && this.refs.inputSearch.placeholder !== undefined ){
-    //   $(window).resize( () => {
-    //     if( $(window).width() <= 414 ) this.refs.inputSearch.placeholder = 'Search for ...';
-    //     else this.refs.inputSearch.placeholder = "Add Filter to Titles filters..."
-    //   });
-    // }
-  // }
-
-  isButtonSelected = (selected) =>
-  {
-    this.props.currentCategory(selected);
-    this.setState({selected:selected, paramDataList:[]})
-    this.refs.inputSearch.value = '';
-  }
-
   componentWillReceiveProps = (nextProps) => {
     this.setState({paramDataList:nextProps.paramData});
-  }
-
-  renderButtonsFilter = () =>
-  {
-    let buttons = [];
-    this.props.filtersCategory.map( (filter, i) => {
-      let button = (this.state.selected === filter) ? <ButtonRegular title={filter} key={i} click={this.isButtonSelected} selected={'#FBD669'}/> : <ButtonRegular title={filter} key={i} click={this.isButtonSelected} selected={'#C8CFD7'}/>
-        buttons.push(button)
-    })
-    return buttons;
   }
 
   sendString = (e) => this.props.inputString(e.target.value)
@@ -241,60 +213,33 @@ class Filter extends Component {
 
   }
 
-  clearFilter = () =>
-  {
-    this.setState(
-      {currentQuery:[]},
-      this.props.inputString(''),
-      this.props.currentParamsQuery([])
-
-    );
-    this.refs.inputSearch.value = ''
-    this.props.clearAdvancedFilter();
-
-  }
-
-  renderTextPlaceholder = () =>{
-    return (this.state.selected !== 'Author') ? `Add a ${this.state.selected}` : `Add an ${this.state.selected}`
-  }
-
   render() {
       return (
         <div className="filter">
-          <div className="title">
-            <p><span>{this.props.filter.number}</span>{` ${this.props.filter.title}`}</p>
-            <ButtonClearFilter click={this.clearFilter}/>
-          </div>
-          <div>
-            <p>Refine search by</p>
-            <div>
-              {this.renderButtonsFilter()}
-            </div>
-          </div>
           <div className="search">
             <div className="search-input-content">
               <input
                 ref='inputSearch'
                 type="text"
-                placeholder={this.renderTextPlaceholder()}
-                onChange={this.sendString}
-                onKeyPress={this.handleEnter}
-                onFocus={this.renderSelectMenu}
+                placeholder="Search..."
+                // onChange={this.sendString}
+                // onKeyPress={this.handleEnter}
+                // onFocus={this.renderSelectMenu}
               >
               </input>
               <div ref="selectMenu" className="select-menu">
                 <ul>
-                  {this.renderSelectContent()}
+                  {/* {this.renderSelectContent()} */}
                 </ul>
               </div>
             </div>
             <ButtonSearch click={this.handleEnter}/>
           </div>
-          <div>
+          {/* <div>
             <BadgesFilterList
               eraseParamFromQuery={this.eraseParamFromQuery}
               paramsList={this.state.currentQuery}/>
-          </div>
+          </div> */}
         </div>
       )
   }

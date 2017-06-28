@@ -31,6 +31,8 @@
           height: 28px
       .login-body
         margin-top: 3em
+        .login-body-title
+          margin: 0 0 1em 0
         .login-body-inputs
           div
             position: relative
@@ -46,15 +48,33 @@
               color: #A9B4C0
             &:focus
               border: 1px solid #9BD331
-          .input-text
-            margin-bottom: 1em
+          .input-password
+            margin-top: 1em
+        .login-body-message
+          min-height: 3em
+          display: flex
+          justify-content: center
+          align-items: center
+          padding: 1.5em 0
+          .message
+            display: flex
+            p
+              margin: 0 0 0 1em
+              color: #F7485D
+              font-size: 0.8em
+            svg
+              width: 18px
+              height: 18px
         .login-body-button
-          margin-top: 3em
           div
             display: block
             height: 41px
             line-height: 41px
             font-size: 1em
+        .login-body-success
+          margin-bottom: 5em
+          .login-body-success-icon
+            margin-bottom: 1em
       .login-footer
         margin-top: 3.3em
         p

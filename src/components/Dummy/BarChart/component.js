@@ -4,9 +4,10 @@ import ExpandIcon from "../../Dummy/SVG/ExpandIcon/component.js"
 import ExpandCloseIcon from "../../Dummy/SVG/ExpandCloseIcon/component.js"
 import ButtonBarChartDropdown from "../Buttons/ButtonBarChartDropdown/component.js"
 import ToolTip from "../ToolTip/component.js"
-import {BarChart} from 'react-d3-components'
+import BarChart from 'react-d3-components/lib/BarChart.js'
 import './component.sass'
-import * as d3 from 'd3'
+// import * as d3 from 'd3'
+import {scaleOrdinal} from "d3-scale";
 import $ from 'jquery'
 
 const listType = ["Normalized","RAW"];
@@ -40,7 +41,7 @@ class BarChartComponent extends Component {
     if(this.props.isNormalizable){
       if(!this.state.expanded) {
         this.refs.barchartContainer.className = 'expand-barchart container-map'
-        this.refs.headerContainer.className = 'container-header noLanding'
+        this.refs.headerContainer.className = 'container-header container-header-expand noLanding'
         // this.refs.buttonLabel.className = 'hidden'
         $('body').css( 'overflow-y', 'hidden');
         this.componentDidMount()
@@ -77,14 +78,14 @@ class BarChartComponent extends Component {
 
   }
 
-  filtetStoreData = () =>
+  filterStoreData = () =>
   {
       let filterStore = this.props.store;
       if(!this.state.expanded){
         filterStore = []
         let arrayField;
         this.props.store.map( (field, i) =>{
-          arrayField = field.values.slice(Math.max(field.values.length - 7, 0))
+          arrayField = field.values.slice(Math.max(field.values.length - 5, 0))
           filterStore.push({label:field.label, values: arrayField})
         })
       }
@@ -97,7 +98,10 @@ class BarChartComponent extends Component {
 
   // COLOR PALLETTE #3188D3 #9BD331 #5AC4C7 #FBD669 #FC976D #DF6161 #B76AC4 #85919F #405063 #855845
 
-  colorScale = d3.scaleOrdinal()
+  // colorScale = d3.scaleOrdinal()
+  //     .domain(["Economics", "Literature", "History", "English","Biology"])
+  //     .range(['#FC976D','#DF6161','#FBD669','#85919F','#B76AC4']);
+  colorScale = scaleOrdinal()
       .domain(["Economics", "Literature", "History", "English","Biology"])
       .range(['#FC976D','#DF6161','#FBD669','#85919F','#B76AC4']);
 
@@ -163,11 +167,7 @@ class BarChartComponent extends Component {
         </p>
         <div className="additional-info">
           <div className="unattributed-label" ref="buttonLabel">
-            <ButtonLabel
-              backgroundColor=""
-              color="#85919F"
-              border="1px solid #E8E8E8"
-              title="580,500 unattributed"/>
+            580,500 unattributed
           </div>
           <ButtonBarChartDropdown
             click={this.setType}
@@ -186,11 +186,9 @@ class BarChartComponent extends Component {
           <div className="right-content-expand">
             <div className="right-content-expand-button">
               <ToolTip tooltipText="# of sillaby that we cannot date">
-                <ButtonLabel
-                  backgroundColor=""
-                  color="#85919F"
-                  border="1px solid #E8E8E8"
-                  title="580,500 unattributed"/>
+                <div className="unattributed-label">
+                  580,500 unattributed
+                </div>
               </ToolTip>
             </div>
             {this.renderExpandIcon()}
@@ -206,7 +204,7 @@ class BarChartComponent extends Component {
         <div className="wrapper-container-chart">
           <div className="container-chart">
             <BarChart
-              data={this.filtetStoreData()}
+              data={this.filterStoreData()}
               // data={this.props.store}
               width={this.state.width}
               height={this.state.height}

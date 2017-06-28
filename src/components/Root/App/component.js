@@ -6,25 +6,18 @@ import {saveState} from '../../../os-toolkit/SyllabusLocalStorage/component'
 
 //----------------------- SMART COMPONENTS ----------------------------------
 import SmartLanding from '../../Smart/Landing/component.js'
-// import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
-// import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
-// import SmartFieldResultsList from '../../Smart/FieldResultsList/component.js'
-// import SmartInstitutionResultsList from '../../Smart/InstitutionResultsList/component.js'
-// import SmartCountryResultsList from '../../Smart/CountryResultsList/component.js'
-// import SmartPublisherResultsList from '../../Smart/PublisherResultsList/component.js'
-// import SmartTitleResult from '../../Smart/TitleResult/component.js'
-// import SmartAuthorResult from '../../Smart/AuthorResult/component.js'
-// import SmartFieldResult from '../../Smart/FieldResult/component.js'
-// import SmartPublisherResult from '../../Smart/PublisherResult/component.js'
-// import SmartCountryResult from '../../Smart/CountryResult/component.js'
-// import SmartInstitutionResult from '../../Smart/InstitutionResult/component.js'
-// import SmartInstitutionFieldResult from '../../Smart/InstitutionFieldResult/component.js'
-// import SmartCountryFieldResult from '../../Smart/CountryFieldResult/component.js'
+import SmartUniversityLanding from '../../Smart/UniversityLanding/component.js'
+import SmartUniversityField from '../../Smart/UniversityField/component.js'
+import SmartFullTextResultsList from '../../Smart/FullTextResultsList/component.js'
+import SmartTitleResultsList from '../../Smart/TitleResultsList/component.js'
+import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
+import SmartInstructorEmailsResultsList from '../../Smart/InstructorEmailsResultsList/component.js'
+import SmartTitleResult from '../../Smart/TitleResult/component.js'
+import SmartAuthorResult from '../../Smart/AuthorResult/component.js'
 //-----------------------------END SMART COMPONENTS-----------------------------------
 
 //-----------------------------CONTAINERS-----------------------------------
-import ResultContainer from '../../../components/Containers/ResultContainer/component.js'
-import ResultsListContainer from '../../../components/Containers/ResultsListContainer/component.js'
+import LogedContainer from '../../../components/Containers/LogedContainer/component.js'
 import UIContainer from '../../../components/Containers/UIContainer/component.js'
 //-----------------------------END CONTAINERS-----------------------------------
 
@@ -75,6 +68,14 @@ history.listen(location => {
   });
 });
 
+const universityInfo = {
+  pathName: 'columbia_university',
+  name: 'Columbia University',
+  field: 'architecture',
+  year: '2017',
+  syllabi: 4300
+}
+
 class App extends Component {
     render() {
         return (
@@ -82,23 +83,26 @@ class App extends Component {
                 <Router history={history}>
                     <Route path="/" component={UIContainer}>
                         <IndexRoute component={SmartLanding}/>
-                        <Route path="search" component={ResultContainer}>
-                            {/* <Route path="title" component={SmartTitleResult}/>
+                        <Route
+                          // path={`${universityInfo.pathName}`}
+                          path="university-portal"
+                          component={LogedContainer}
+                          universityInfo={universityInfo}
+                          >
+                          <IndexRoute component={SmartUniversityLanding}/>
+                          <Route path="field" component={SmartUniversityField}>
+                            {/* <Route path="year" component={SmartUniversityFieldYear}/> */}
+                          </Route>
+                          <Route path="result-list">
+                            <Route path="full-texts" component={SmartFullTextResultsList}/>
+                            <Route path="titles" component={SmartTitleResultsList}/>
+                            <Route path="authors" component={SmartAuthorResultsList}/>
+                            <Route path="instructor-emails" component={SmartInstructorEmailsResultsList}/>
+                          </Route>
+                          <Route path="result">
+                            <Route path="title" component={SmartTitleResult}/>
                             <Route path="author" component={SmartAuthorResult}/>
-                            <Route path="field" component={SmartFieldResult}/>
-                            <Route path="school" component={SmartInstitutionResult}/>
-                            <Route path="country" component={SmartCountryResult}/>
-                            <Route path="publisher" component={SmartPublisherResult}/>
-                            <Route path="school-field" component={SmartInstitutionFieldResult}/>
-                            <Route path="country-field" component={SmartCountryFieldResult}/> */}
-                        </Route>
-                        <Route path="university-portal" component={ResultsListContainer}>
-                            {/* <Route path="title" component={SmartTitleResultsList}/>
-                            <Route path="author" component={SmartAuthorResultsList}/>
-                            <Route path="field" component={SmartFieldResultsList}/>
-                            <Route path="school" component={SmartInstitutionResultsList}/>
-                            <Route path="country" component={SmartCountryResultsList}/>
-                            <Route path="publisher" component={SmartPublisherResultsList}/> */}
+                          </Route>
                         </Route>
                         <Route path="login" component={Login}/>
                         <Route path="*" component={SmartLanding}/>
