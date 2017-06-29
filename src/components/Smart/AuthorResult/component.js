@@ -291,7 +291,7 @@ class SmartAuthorResult extends Component {
 
   componentDidMount = () => {
     let dispatch = this.props.dispatch;
-    dispatch(authorResultRequest("1"));
+    dispatch(authorResultRequest(1));
   }
 
 

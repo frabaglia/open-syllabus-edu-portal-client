@@ -3,6 +3,7 @@ export const apiMiddleware = ({
 }) => next => action => {
   if (action.type !== 'API') return next(action)
 
+  console.debug("Dispatching");
   const {
     request,
     success,
@@ -10,7 +11,9 @@ export const apiMiddleware = ({
     error
   } = action.payload
 
-  dispatch(pending)
+  dispatch({
+    type: pending
+  })
 
   request.then(response =>
       dispatch({
