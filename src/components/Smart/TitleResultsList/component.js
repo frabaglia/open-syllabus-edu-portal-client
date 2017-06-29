@@ -1,55 +1,32 @@
 import React, {Component} from 'react';
 import DummyTitleResultsList from '../../Views/TitleResultsList/component.js'
-// import {connect} from 'react-redux'
-// import {
-//     TYPE_TITLE,
-//     TYPE_AUTHOR,
-//     TYPE_INSTITUTION,
-//     TYPE_FIELD,
-//     TYPE_COUNTRY,
-//     TYPE_PUBLISHER,
-//     // TYPE_INSTITUTION_FIELD
-// } from '../../../constants/action-types/store'
-//
-// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
-// import {
-//   mostFrecuentTypeUpdate,
-//   mostFrecuentTitleRequest,
-//   mostFrecuentTitleSuccess,
-//   mostFrecuentAuthorRequest,
-//   mostFrecuentAuthorSuccess,
-//   mostFrecuentFieldRequest,
-//   mostFrecuentFieldSuccess,
-//   mostFrecuentInstitutionRequest,
-//   mostFrecuentInstitutionSuccess,
-//   mostFrecuentCountryRequest,
-//   mostFrecuentCountrySuccess,
-//   mostFrecuentPublisherRequest,
-//   mostFrecuentPublisherSuccess,
-// } from '../../../constants/eduportal/actions/Landing'
-// import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
+import { TYPE_TITLE } from '../../../constants/eduportal/store-types'
+import {connect} from 'react-redux'
+import {titleResultsListRequest} from '../../../constants/eduportal/actions/TitleResultsList'
 
-// function mapStateToProps(store) {
-//     return {landing: store.get('Landing')}
-// }
-
-const store ={
+function mapStateToProps(store) {
+    return {resultsList: store.get('ResultsList')}
 }
 
 class SmartTitleResultsList extends Component {
 
-  componentDidMount = () => {}
+  componentDidMount = () => {
+    let dispatch = this.props.dispatch;
+    dispatch(titleResultsListRequest({pages:[1,2],query:'someTitle'}));
+  }
+
 
 
   render() {
-      return (
-          <DummyTitleResultsList
-            store={store}
-            router={this.props.router}
-          />
-      )
+    return (Object.getOwnPropertyNames(this.props.resultsList.getIn([TYPE_TITLE, 'data']).toJS()).length === 0) ?
+    (<div></div>) :
+    (
+      <DummyTitleResultsList
+        store={this.props.resultsList.getIn([TYPE_TITLE, 'data']).toJS()}
+        router={this.props.router}
+      />
+    )
   }
 }
 
-export default SmartTitleResultsList
-// export default connect(mapStateToProps)(SmartTitleResultsList)
+export default connect(mapStateToProps)(SmartTitleResultsList)

@@ -7,14 +7,14 @@ import {
   API
 } from '../../action-types/API'
 import {
-  SyllabusEduPortalHTTPService
-} from '../../../os-toolkit/SyllabusEduPortalHTTPService'
+  syllabusEduPortalHTTPService
+} from '../../../../os-toolkit/SyllabusEduPortalHTTPService'
 
 export const titleResultRequest = (id) => {
   return {
     type: API,
     payload: {
-      request: SyllabusEduPortalHTTPService.getTitleResult(id),
+      request: syllabusEduPortalHTTPService.getTitleResult(id),
       pending: TITLE_RESULT_REQUEST,
       success: TITLE_RESULT_SUCCESS,
       error: TITLE_RESULT_ERROR

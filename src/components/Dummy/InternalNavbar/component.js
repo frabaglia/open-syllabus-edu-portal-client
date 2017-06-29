@@ -59,7 +59,6 @@ class InternalNavbar extends Component {
   }
 
   render() {
-    console.log(this.props.router);
       return (
         <div className="internal-navbar">
           <ButtonRegular title={'Full Text'} click={this.isButtonSelected} selected={this.styleSelected('FULLTEXTS')}/>

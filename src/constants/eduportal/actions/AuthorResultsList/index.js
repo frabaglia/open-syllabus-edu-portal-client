@@ -7,14 +7,14 @@ import {
   API
 } from '../../action-types/API'
 import {
-  SyllabusEduPortalHTTPService
-} from '../../../os-toolkit/SyllabusEduPortalHTTPService'
+  syllabusEduPortalHTTPService
+} from '../../../../os-toolkit/SyllabusEduPortalHTTPService'
 
 export const authorResultsListRequest = (params) => {
   return {
     type: API,
     payload: {
-      request: SyllabusEduPortalHTTPService.getAuthorResultsList(params),
+      request: syllabusEduPortalHTTPService.getAuthorResultsList(params),
       pending: AUTHOR_RESULTS_LIST_REQUEST,
       success: AUTHOR_RESULTS_LIST_SUCCESS,
       error: AUTHOR_RESULTS_LIST_ERROR
