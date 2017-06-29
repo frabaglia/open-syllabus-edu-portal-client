@@ -9,7 +9,6 @@ class AuthorResultsList extends Component {
 
     render() {
       let store = this.props.store;
-      console.log(store);
         return (
             <div className="title-result-list">
               <div className="search-view-header">
