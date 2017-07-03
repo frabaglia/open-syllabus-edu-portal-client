@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Filter from '../../Dummy/Filter/component'
 import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
+import SyllabiList from '../../Dummy/Lists/SyllabiList/component'
 import './component.sass'
 
 class FullTextResultList extends Component {
@@ -28,16 +29,15 @@ class FullTextResultList extends Component {
                   </div>
                   <div className="filter-syllabi-component">
                     {SyllabiCounter({
-                      count: 4500,
+                      count: store.syllabus_count,
                       subtitle:''
                     })}
                   </div>
                 </div>
               </div>
               <div className="content-container">
-                FULL TEXT VIEW
                 <div className="left-side">
-
+                  <SyllabiList store={store.syllabi_list}/>
                 </div>
                 <div className="right-side">
 

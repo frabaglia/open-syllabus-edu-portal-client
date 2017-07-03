@@ -1,55 +1,32 @@
 import React, {Component} from 'react';
 import DummyInstructorEmailsResultsList from '../../Views/InstructorEmailsResultsList/component.js'
-// import {connect} from 'react-redux'
-// import {
-//     TYPE_TITLE,
-//     TYPE_AUTHOR,
-//     TYPE_INSTITUTION,
-//     TYPE_FIELD,
-//     TYPE_COUNTRY,
-//     TYPE_PUBLISHER,
-//     // TYPE_INSTITUTION_FIELD
-// } from '../../../constants/action-types/store'
-//
-// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
-// import {
-//   mostFrecuentTypeUpdate,
-//   mostFrecuentTitleRequest,
-//   mostFrecuentTitleSuccess,
-//   mostFrecuentAuthorRequest,
-//   mostFrecuentAuthorSuccess,
-//   mostFrecuentFieldRequest,
-//   mostFrecuentFieldSuccess,
-//   mostFrecuentInstitutionRequest,
-//   mostFrecuentInstitutionSuccess,
-//   mostFrecuentCountryRequest,
-//   mostFrecuentCountrySuccess,
-//   mostFrecuentPublisherRequest,
-//   mostFrecuentPublisherSuccess,
-// } from '../../../constants/eduportal/actions/Landing'
-// import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
+import { TYPE_INSTRUCTOR } from '../../../constants/eduportal/store-types'
+import {connect} from 'react-redux'
+import {instructorResultsListRequest} from '../../../constants/eduportal/actions/InstructorResultsList'
 
-// function mapStateToProps(store) {
-//     return {landing: store.get('Landing')}
-// }
-
-const store ={
+function mapStateToProps(store) {
+    return {resultsList: store.get('ResultsList')}
 }
+
+
 
 class SmartInstructorEmailsResultsList extends Component {
 
-  componentDidMount = () => {}
-
+  componentDidMount = () => {
+    let dispatch = this.props.dispatch;
+    dispatch(instructorResultsListRequest({query:'someInstructor'}));
+  }
 
   render() {
-      return (
-          <DummyInstructorEmailsResultsList
-            store={store}
-            router={this.props.router}
-          />
-      )
+    return (Object.getOwnPropertyNames(this.props.resultsList.getIn([TYPE_INSTRUCTOR, 'data']).toJS()).length === 0) ?
+    (<div></div>) :
+    (
+      <DummyInstructorEmailsResultsList
+        store={this.props.resultsList.getIn([TYPE_INSTRUCTOR, 'data']).toJS()}
+        router={this.props.router}
+      />
+    )
   }
 }
 
-export default SmartInstructorEmailsResultsList
-// export default connect(mapStateToProps)(SmartInstructorEmailsResultsList)
+export default connect(mapStateToProps)(SmartInstructorEmailsResultsList)
