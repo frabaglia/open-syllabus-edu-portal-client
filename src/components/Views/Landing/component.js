@@ -13,10 +13,14 @@ import $ from 'jquery'
 class DummyLanding extends Component {
 
   scrollToTop = () => {
-    $("html, body").animate({scrollTop: $('.feature-container').offset().top - 400 }, 2000);
+    if(document.body.scrollTop+1 <= $('.feature-container').offset().top - 400){
+      $("html, body").animate({scrollTop: $('.feature-container').offset().top - 400 }, 2000);
+    }
 }
 
   render() {
+
+
     return (
         <div className="landing">
             <div className="landing-title">
