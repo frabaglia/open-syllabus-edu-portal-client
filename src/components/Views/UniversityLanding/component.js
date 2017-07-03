@@ -243,7 +243,9 @@ class UniversityLanding extends Component {
                       <InternalNavbar router={this.props.router}/>
                     </div>
                     <div className="filter-component">
-                      <Filter/>
+                      <Filter
+                        router={this.props.router}
+                      />
                     </div>
                   </div>
                   <div className="filter-syllabi-component">

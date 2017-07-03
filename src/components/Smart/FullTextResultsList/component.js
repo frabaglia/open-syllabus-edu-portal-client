@@ -11,11 +11,32 @@ function mapStateToProps(store) {
 
 class SmartFullTextResultsList extends Component {
 
-  componentDidMount = () => {
-    let dispatch = this.props.dispatch;
-    dispatch(fullTextResultsListRequest({query:'someFullText'}));
+  constructor(){
+    super();
+    this.state = {
+      currentParamsQuery:[],
+    }
   }
 
+  componentDidMount = () => {
+    this.makeRequest([])
+  }
+
+
+
+  makeRequest = (queryList) =>{
+    let dispatch = this.props.dispatch;
+    if(queryList.length !== 0){
+      console.log(queryList);
+      let queryArray = [];
+      queryList.map( (query, i) =>{
+        queryArray.push(query.name)
+      })
+
+      dispatch(fullTextResultsListRequest({query:queryArray}));
+    }
+    else dispatch(fullTextResultsListRequest({}));
+  }
 
   render() {
     return (Object.getOwnPropertyNames(this.props.resultsList.getIn([TYPE_FULL_TEXT, 'data']).toJS()).length === 0) ?
@@ -24,6 +45,7 @@ class SmartFullTextResultsList extends Component {
       <DummyFullTextResultsList
         store={this.props.resultsList.getIn([TYPE_FULL_TEXT, 'data']).toJS()}
         router={this.props.router}
+        _makeSearch={this.makeRequest}
       />
     )
   }

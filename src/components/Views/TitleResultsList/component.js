@@ -3,6 +3,7 @@ import Filter from '../../Dummy/Filter/component'
 import MostFrecuentlyAssignedTextList from '../../Dummy/Lists/MostFrecuentlyAssignedTextList/component.js'
 import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
+import {Link} from 'react-router';
 import './component.sass'
 
 class TitleResultsList extends Component {
@@ -14,7 +15,9 @@ class TitleResultsList extends Component {
               <div className="search-view-header">
                 <div className="search-view-header-title">
                   <span className="third-color small-font-size">University Portal</span>
-                  <p className="large-font-size font-bold">Columbia University</p>
+                  <Link to="/university-portal">
+                    <p className="large-font-size font-bold">Columbia University</p>
+                  </Link>
                 </div>
                 <div className="search-view-header-navigation">
                   <div className="internal-navbar-filter-container">
@@ -22,7 +25,11 @@ class TitleResultsList extends Component {
                       <InternalNavbar router={this.props.router}/>
                     </div>
                     <div className="filter-component">
-                      <Filter/>
+                      <Filter
+                        filtersCategory={'Titles'}
+                        _makeSearch={this.props._makeSearch}
+                        router={this.props.router}
+                      />
                     </div>
                   </div>
                   <div className="filter-syllabi-component">

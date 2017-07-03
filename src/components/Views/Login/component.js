@@ -174,7 +174,7 @@ class DummyLogin extends Component {
             </div>
             <div className="login">
               <div className="login-close">
-                {SVGCloseIcon({color:'#C8CFD7', click: this.closeLogin})}
+                {SVGCloseIcon({color:'#FFFFFF',backgroundColor:'#C8CFD7' , click: this.closeLogin})}
               </div>
               <div className="login-header">
                 {SVGEduPortalLogo({color:'#9BD331', colorEDU:'#3B475B'})}

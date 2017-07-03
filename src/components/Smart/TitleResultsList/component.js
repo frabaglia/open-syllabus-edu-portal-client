@@ -10,12 +10,31 @@ function mapStateToProps(store) {
 
 class SmartTitleResultsList extends Component {
 
+  constructor(){
+    super();
+    this.state = {
+      currentParamsQuery:[],
+    }
+  }
+
   componentDidMount = () => {
-    let dispatch = this.props.dispatch;
-    dispatch(titleResultsListRequest({pages:[1,2],query:'someTitle'}));
+    this.makeRequest([])
   }
 
 
+  makeRequest = (queryList) =>{
+    let dispatch = this.props.dispatch;
+    if(queryList.length !== 0){
+      console.log(queryList);
+      let queryArray = [];
+      queryList.map( (query, i) =>{
+        queryArray.push(query.name)
+      })
+
+      dispatch(titleResultsListRequest({query:queryArray}));
+    }
+    else dispatch(titleResultsListRequest({}));
+  }
 
   render() {
     return (Object.getOwnPropertyNames(this.props.resultsList.getIn([TYPE_TITLE, 'data']).toJS()).length === 0) ?
@@ -24,6 +43,7 @@ class SmartTitleResultsList extends Component {
       <DummyTitleResultsList
         store={this.props.resultsList.getIn([TYPE_TITLE, 'data']).toJS()}
         router={this.props.router}
+        _makeSearch={this.makeRequest}
       />
     )
   }

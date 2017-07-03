@@ -17,7 +17,7 @@ class AuthorItemList extends Component {
           <div className="rank">{objectItem.rank}</div>
           <div className="author">
             <Link to={{
-              pathname: "/result/author",
+              pathname: "/university-portal/result/author",
               query: {id:objectItem._id}
             }}>
               <img src={image} alt="author-name"/>

@@ -12,9 +12,29 @@ function mapStateToProps(store) {
 
 class SmartInstructorEmailsResultsList extends Component {
 
+  constructor(){
+    super();
+    this.state = {
+      currentParamsQuery:[],
+    }
+  }
+
   componentDidMount = () => {
+    this.makeRequest([])
+  }
+
+  makeRequest = (queryList) =>{
     let dispatch = this.props.dispatch;
-    dispatch(instructorResultsListRequest({query:'someInstructor'}));
+    if(queryList.length !== 0){
+      console.log(queryList);
+      let queryArray = [];
+      queryList.map( (query, i) =>{
+        queryArray.push(query.name)
+      })
+
+      dispatch(instructorResultsListRequest({query:queryArray}));
+    }
+    else dispatch(instructorResultsListRequest({}));
   }
 
   render() {
@@ -24,6 +44,7 @@ class SmartInstructorEmailsResultsList extends Component {
       <DummyInstructorEmailsResultsList
         store={this.props.resultsList.getIn([TYPE_INSTRUCTOR, 'data']).toJS()}
         router={this.props.router}
+        _makeSearch={this.makeRequest}
       />
     )
   }
