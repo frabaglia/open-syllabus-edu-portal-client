@@ -1,169 +1,139 @@
 import {
-    List,
-    Map,
+  List,
+  Map,
 } from 'immutable';
 
-import {
-    TYPE_TITLE,
-    TYPE_AUTHOR,
-    TYPE_INSTITUTION,
-    TYPE_FIELD,
-    TYPE_COUNTRY,
-    TYPE_PUBLISHER
-} from '../../constants/explorer/store-types'
+// import {
+//   TYPE_TITLE,
+//   TYPE_AUTHOR,
+//   TYPE_FULL_TEXT,
+//   TYPE_INSTRUCTOR
+// } from '../../constants/eduportal/store-types'
 
 import {
-    MOST_FRECUENT_TYPE_UPDATE,
-    MOST_FRECUENT_TITLE_REQUEST,
-    MOST_FRECUENT_FIELD_REQUEST,
-    MOST_FRECUENT_AUTHOR_REQUEST,
-    MOST_FRECUENT_INSTITUTION_REQUEST,
-    MOST_FRECUENT_COUNTRY_REQUEST,
-    MOST_FRECUENT_PUBLISHER_REQUEST,
-    MOST_FRECUENT_TITLE_SUCCESS,
-    MOST_FRECUENT_FIELD_SUCCESS,
-    MOST_FRECUENT_AUTHOR_SUCCESS,
-    MOST_FRECUENT_INSTITUTION_SUCCESS,
-    MOST_FRECUENT_COUNTRY_SUCCESS,
-    MOST_FRECUENT_PUBLISHER_SUCCESS
-} from '../../constants/explorer/action-types/Landing'
+  LANDING_UNIVERSITY_REQUEST,
+  LANDING_UNIVERSITY_SUCCESS,
+  LANDING_UNIVERSITY_FIELD_REQUEST,
+  LANDING_UNIVERSITY_FIELD_SUCCESS,
+  LANDING_UNIVERSITY_FIELD_YEAR_REQUEST,
+  LANDING_UNIVERSITY_FIELD_YEAR_SUCCESS,
+  LANDING_UNIVERSITY_SELECTED_YEAR,
+  LANDING_UNIVERSITY_FIELD_SHOW_ALL,
+  LANDING_UNIVERSITY_FIELD_SHOW_OWN,
+  LANDING_UNIVERSITY_FIELD_SELECTED_YEAR,
+  LANDING_UNIVERSITY_FIELD_YEAR_SELECTED_TEXT
+} from '../../constants/eduportal/action-types/Landing'
 
-const mostFrecuent = Map({
-    current: TYPE_TITLE,
-    TYPE_TITLE: Map({
-        isFetching: false,
-        data: new List(),
-        updatedAt: false
-    }),
-    TYPE_AUTHOR: Map({
-        isFetching: false,
-        data: new List(),
-        updatedAt: false
-    }),
-    TYPE_INSTITUTION: Map({
-        isFetching: false,
-        data: new List(),
-        updatedAt: false
-    }),
-    TYPE_FIELD: Map({
-        isFetching: false,
-        data: new List(),
-        updatedAt: false
-    }),
-    TYPE_COUNTRY: Map({
-        isFetching: false,
-        data: new List(),
-        updatedAt: false
-    }),
-    TYPE_PUBLISHER: Map({
-        isFetching: false,
-        data: new List(),
-        updatedAt: false
-    }),
-    updatedAt: false
+const universityLandingState = Map({
+  isFetching: false,
+  mostFrecuent: Map({
+    selectedYear: null,
+    data: new List()
+  }),
+  fieldChart: new List(),
+  updatedAt: false
 })
 
-const locationList = Map({
-    isFetching: false,
-    data: new List(),
-    updatedAt: false
+const universityFieldLandingState = Map({
+  isFetching: false,
+  closestPeerTeachingProfiles: Map({
+    showAll: false,
+    selectedYear: null,
+    data: new List()
+  }),
+  mostFrecuent: new List(),
+  updatedAt: false
 })
 
-const fieldChart = Map({
-    isFetching: false,
+const universityFieldYearLandingState = Map({
+  isFetching: false,
+  mostFrecuent: Map({
     data: new List(),
-    updatedAt: false
+    selectedText: 0
+  }),
+  updatedAt: false
 })
 
 const initialLandingState = Map({
-    mostFrecuent,
-    locationList,
-    fieldChart,
-    updatedAt: false
+  universityLandingState,
+  universityFieldLandingState,
+  universityFieldYearLandingState
 })
 
+//TODO: Add all filtering UI + Data Store (fulltexts, authors, titles, instructors)
 export default function landing(landingState = initialLandingState, action) {
 
-    switch (action.type) {
-        case MOST_FRECUENT_TYPE_UPDATE:
-            {
-                let _landingState = landingState.setIn(['mostFrecuent', 'updatedAt'], new Date())
-                return _landingState.setIn(['mostFrecuent', 'current'], action.payload)
-                break
-            }
-        case MOST_FRECUENT_INSTITUTION_REQUEST:
-            {
-                return landingState.setIn(['mostFrecuent',TYPE_INSTITUTION, 'isFetching'], true)
-                break
-            }
-        case MOST_FRECUENT_TITLE_REQUEST:
-            {
-                return landingState.setIn(['mostFrecuent',TYPE_TITLE, 'isFetching'], true)
-                break
-            }
-        case MOST_FRECUENT_FIELD_REQUEST:
-            {
-                return landingState.setIn(['mostFrecuent',TYPE_FIELD, 'isFetching'], true)
-                break
-            }
-        case MOST_FRECUENT_AUTHOR_REQUEST:
-            {
-                return landingState.setIn(['mostFrecuent',TYPE_AUTHOR, 'isFetching'], true)
-                break
-            }
-        case MOST_FRECUENT_COUNTRY_REQUEST:
-            {
-                return landingState.setIn(['mostFrecuent',TYPE_COUNTRY, 'isFetching'], true)
-                break
-            }
-        case MOST_FRECUENT_PUBLISHER_REQUEST:
-            {
-                return landingState.setIn(['mostFrecuent',TYPE_PUBLISHER, 'isFetching'], true)
-                break
-            }
-        case MOST_FRECUENT_TITLE_SUCCESS:
-            {
-                let _landingState = landingState.setIn(['mostFrecuent',TYPE_TITLE, 'data'], new List(action.payload.data))
-                let __landingState = _landingState.setIn(['mostFrecuent',TYPE_TITLE,'updatedAt'], new Date())
-                return __landingState.setIn(['mostFrecuent',TYPE_TITLE, 'isFetching'], false)
-                break
-            }
-        case MOST_FRECUENT_FIELD_SUCCESS:
-            {
-                let _landingState = landingState.setIn(['mostFrecuent',TYPE_FIELD, 'data'], new List(action.payload.data))
-                let __landingState = _landingState.setIn(['mostFrecuent',TYPE_FIELD,'updatedAt'], new Date())
-                return __landingState.setIn(['mostFrecuent',TYPE_FIELD, 'isFetching'], false)
-                break
-            }
-        case MOST_FRECUENT_AUTHOR_SUCCESS:
-            {
-                let _landingState = landingState.setIn(['mostFrecuent',TYPE_AUTHOR, 'data'], new List(action.payload.data))
-                let __landingState = _landingState.setIn(['mostFrecuent',TYPE_AUTHOR,'updatedAt'], new Date())
-                return __landingState.setIn(['mostFrecuent',TYPE_AUTHOR, 'isFetching'], false)
-                break
-            }
-        case MOST_FRECUENT_INSTITUTION_SUCCESS:
-            {
-                let _landingState = landingState.setIn(['mostFrecuent',TYPE_INSTITUTION, 'data'], new List(action.payload.data))
-                let __landingState = _landingState.setIn(['mostFrecuent',TYPE_INSTITUTION,'updatedAt'], new Date())
-                return __landingState.setIn(['mostFrecuent',TYPE_INSTITUTION, 'isFetching'], false)
-                break
-            }
-        case MOST_FRECUENT_COUNTRY_SUCCESS:
-            {
-                let _landingState = landingState.setIn(['mostFrecuent',TYPE_COUNTRY, 'data'], new List(action.payload.data))
-                let __landingState = _landingState.setIn(['mostFrecuent',TYPE_COUNTRY,'updatedAt'], new Date())
-                return __landingState.setIn(['mostFrecuent',TYPE_COUNTRY, 'isFetching'], false)
-                break
-            }
-        case MOST_FRECUENT_PUBLISHER_SUCCESS:
-            {
-                let _landingState = landingState.setIn(['mostFrecuent',TYPE_PUBLISHER, 'data'], new List(action.payload.data))
-                let __landingState = _landingState.setIn(['mostFrecuent',TYPE_PUBLISHER,'updatedAt'], new Date())
-                return __landingState.setIn(['mostFrecuent',TYPE_PUBLISHER, 'isFetching'], false)
-                break
-            }
-        default:
-            return landingState
-    }
+  switch (action.type) {
+    /* UI */
+    case LANDING_UNIVERSITY_SELECTED_YEAR:
+      {
+        return landingState.setIn(['universityLandingState', 'closestPeerTeachingProfiles', 'showAll'], action.payload)
+        break
+      }
+    case LANDING_UNIVERSITY_FIELD_SHOW_ALL:
+      {
+        return landingState.setIn(['universityFieldLandingState', 'closestPeerTeachingProfiles', 'showAll'], true)
+        break
+      }
+    case LANDING_UNIVERSITY_FIELD_SHOW_OWN:
+      {
+        return landingState.setIn(['universityFieldLandingState', 'closestPeerTeachingProfiles', 'showAll'], false)
+        break
+      }
+    case LANDING_UNIVERSITY_FIELD_SELECTED_YEAR:
+      {
+        return landingState.setIn(['universityFieldLandingState', 'closestPeerTeachingProfiles', 'selectedYear'], action.payload)
+        break
+      }
+    case LANDING_UNIVERSITY_FIELD_YEAR_SELECTED_TEXT:
+      {
+        if (action.payload < landingState.getIn(['universityFieldYearLandingState', 'mostFrecuent','data']).size) {
+          return landingState.setIn(['universityFieldYearLandingState', 'mostFrecuent', 'selectedText'], action.payload)
+        } else {
+          return landingState
+        }
+        break
+      }
+      /* DATA STORE */
+    case LANDING_UNIVERSITY_REQUEST:
+      {
+        return landingState.setIn(['universityLandingState', 'isFetching'], true)
+        break
+      }
+    case LANDING_UNIVERSITY_FIELD_REQUEST:
+      {
+        return landingState.setIn(['universityFieldYearLandingState', 'isFetching'], true)
+        break
+      }
+    case LANDING_UNIVERSITY_FIELD_YEAR_REQUEST:
+      {
+        return landingState.setIn(['universityFieldYearLandingState', 'isFetching'], true)
+        break
+      }
+
+    case LANDING_UNIVERSITY_SUCCESS:
+      {
+        let _landingState = landingState.setIn(['universityLandingState', 'mostFrecuent', 'data'], new List(action.payload.data.mostFrecuent))
+        let __landingState = _landingState.setIn(['universityLandingState', 'fieldChart'], new List(action.payload.data.fieldChart))
+        let ___landingState = __landingState.setIn(['universityLandingState', 'updatedAt'], new Date())
+        return ___landingState.setIn(['universityLandingState', 'isFetching'], false)
+        break
+      }
+    case LANDING_UNIVERSITY_FIELD_SUCCESS:
+      {
+        let _landingState = landingState.setIn(['universityFieldLandingState', 'mostFrecuent'], new List(action.payload.data.mostFrecuent))
+        let __landingState = _landingState.setIn(['universityFieldLandingState', 'closestPeerTeachingProfiles', 'data'], new List(action.payload.data.fieldChart))
+        let ___landingState = __landingState.setIn(['universityFieldLandingState', 'updatedAt'], new Date())
+        return ___landingState.setIn(['universityFieldLandingState', 'isFetching'], false)
+      }
+    case LANDING_UNIVERSITY_FIELD_YEAR_SUCCESS:
+      {
+        let _landingState = landingState.setIn(['universityFieldYearLandingState', 'mostFrecuent', 'data'], new List(action.payload.data.mostFrecuent))
+        let __landingState = _landingState.setIn(['universityFieldYearLandingState', 'updatedAt'], new Date())
+        return __landingState.setIn(['universityFieldYearLandingState', 'isFetching'], false)
+        break
+      }
+    default:
+      return landingState
+  }
 }
