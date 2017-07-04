@@ -8,10 +8,19 @@ import SVGContactIconEmail from '../../Dummy/SVG/ContactIconEmail/component'
 import SVGContactIconPhone from '../../Dummy/SVG/ContactIconPhone/component'
 import FeatureContainer from '../../Dummy/FeatureContainer/component'
 import './component.sass'
+import $ from 'jquery'
 
 class DummyLanding extends Component {
 
+  scrollToTop = () => {
+    if(document.body.scrollTop+1 <= $('.feature-container').offset().top - 400){
+      $("html, body").animate({scrollTop: $('.feature-container').offset().top - 400 }, 2000);
+    }
+}
+
   render() {
+
+
     return (
         <div className="landing">
             <div className="landing-title">
@@ -20,7 +29,7 @@ class DummyLanding extends Component {
                   This is a short, explicative and super <span>persuasive text</span> for our future potential customers
                 </p>
               </div>
-                <div className="oval-arrow-down">
+                <div className="oval-arrow-down" onClick={() =>{this.scrollToTop()}}>
                   {SVGOvalArrowDown()}
                 </div>
             </div>

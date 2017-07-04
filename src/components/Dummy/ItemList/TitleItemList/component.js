@@ -16,16 +16,16 @@ class TitleItemList extends Component {
           <div className="title">
             <p>
               <Link to={{
-                // pathname: "/result/title",
-                // query: {id:objectItem._id}
+                pathname: "/university-portal/result/title",
+                query: {id:objectItem._id}
               }}>
                 {objectItem.name}
               </Link>
             </p>
             <span className="name">
               <Link to={{
-                // pathname: "/result/author",
-                // query: {id:objectItem._id}
+                pathname: "/university-portal/result/author",
+                query: {id:objectItem._id}
               }}>
                 {`${first_name} ${middle_name} ${last_name}`}
               </Link>

@@ -1,22 +1,19 @@
 import React, {Component} from 'react'
 import './component.sass'
-import CloseIcon from '../../SVG/CloseIcon/component.js'
+import SVGCloseIcon from '../../SVG/CloseIcon/component'
 
 
 class ButtonBadgeFilter extends Component {
 
-  handleClick = () => this.props.click(this.button)
+  handleClick = () => this.props.click(this.props.title)
 
   render() {
       return (
         <div
           className="btnBadgeFilter"
-          ref={() => { this.button = this.props.id }}
           >
             {this.props.title}
-            <span onClick={this.handleClick}>
-              <CloseIcon color="#A9B4C0"/>
-            </span>
+            {SVGCloseIcon({color:'#C8CFD7',backgroundColor:'#FFFFFF' , click: this.handleClick})}
         </div>
       )
   }

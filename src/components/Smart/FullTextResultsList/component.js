@@ -1,55 +1,54 @@
 import React, {Component} from 'react';
 import DummyFullTextResultsList from '../../Views/FullTextResultsList/component.js'
-// import {connect} from 'react-redux'
-// import {
-//     TYPE_TITLE,
-//     TYPE_AUTHOR,
-//     TYPE_INSTITUTION,
-//     TYPE_FIELD,
-//     TYPE_COUNTRY,
-//     TYPE_PUBLISHER,
-//     // TYPE_INSTITUTION_FIELD
-// } from '../../../constants/action-types/store'
-//
-// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
-// import {
-//   mostFrecuentTypeUpdate,
-//   mostFrecuentTitleRequest,
-//   mostFrecuentTitleSuccess,
-//   mostFrecuentAuthorRequest,
-//   mostFrecuentAuthorSuccess,
-//   mostFrecuentFieldRequest,
-//   mostFrecuentFieldSuccess,
-//   mostFrecuentInstitutionRequest,
-//   mostFrecuentInstitutionSuccess,
-//   mostFrecuentCountryRequest,
-//   mostFrecuentCountrySuccess,
-//   mostFrecuentPublisherRequest,
-//   mostFrecuentPublisherSuccess,
-// } from '../../../constants/eduportal/actions/Landing'
-// import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
+import { TYPE_FULL_TEXT } from '../../../constants/eduportal/store-types'
+import {connect} from 'react-redux'
+import {fullTextResultsListRequest} from '../../../constants/eduportal/actions/FullTextResultsList'
 
-// function mapStateToProps(store) {
-//     return {landing: store.get('Landing')}
-// }
-
-const store ={
+function mapStateToProps(store) {
+    return {resultsList: store.get('ResultsList')}
 }
+
 
 class SmartFullTextResultsList extends Component {
 
-  componentDidMount = () => {}
+  constructor(){
+    super();
+    this.state = {
+      currentParamsQuery:[],
+    }
+  }
 
+  componentDidMount = () => {
+    this.makeRequest([])
+  }
+
+
+
+  makeRequest = (queryList) =>{
+    let dispatch = this.props.dispatch;
+    if(queryList.length !== 0){
+      console.log(queryList);
+      let queryArray = [];
+      queryList.map( (query, i) =>{
+        queryArray.push(query.name)
+      })
+
+      dispatch(fullTextResultsListRequest({query:queryArray}));
+    }
+    else dispatch(fullTextResultsListRequest({}));
+  }
 
   render() {
-      return (
-          <DummyFullTextResultsList
-            store={store}
-            router={this.props.router}
-          />
-      )
+    return (Object.getOwnPropertyNames(this.props.resultsList.getIn([TYPE_FULL_TEXT, 'data']).toJS()).length === 0) ?
+    (<div></div>) :
+    (
+      <DummyFullTextResultsList
+        store={this.props.resultsList.getIn([TYPE_FULL_TEXT, 'data']).toJS()}
+        router={this.props.router}
+        _makeSearch={this.makeRequest}
+      />
+    )
   }
 }
 
-export default SmartFullTextResultsList
-// export default connect(mapStateToProps)(SmartFullTextResultsList)
+export default connect(mapStateToProps)(SmartFullTextResultsList)

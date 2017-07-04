@@ -15,6 +15,8 @@ import SmartAuthorResultsList from '../../Smart/AuthorResultsList/component.js'
 import SmartInstructorEmailsResultsList from '../../Smart/InstructorEmailsResultsList/component.js'
 import SmartTitleResult from '../../Smart/TitleResult/component.js'
 import SmartAuthorResult from '../../Smart/AuthorResult/component.js'
+import Login from '../../Views/Login/component.js'
+import RecoverPassword from '../../Views/RecoverPassword/component.js'
 //-----------------------------END SMART COMPONENTS-----------------------------------
 
 //-----------------------------CONTAINERS-----------------------------------
@@ -23,7 +25,7 @@ import UIContainer from '../../../components/Containers/UIContainer/component.js
 //-----------------------------END CONTAINERS-----------------------------------
 
 //-----------------------------COMPONENTS-----------------------------------
-import Login from '../../Views/Login/component.js'
+
 import store from '../../../store/index.js'
 //-----------------------------END COMPONENTS-----------------------------------
 
@@ -95,6 +97,7 @@ class App extends Component {
                           </Route>
                         </Route>
                         <Route path="login" component={Login}/>
+                        <Route path="recover-password" component={RecoverPassword}/>
                         <Route path="*" component={SmartLanding}/>
                     </Route>
                 </Router>

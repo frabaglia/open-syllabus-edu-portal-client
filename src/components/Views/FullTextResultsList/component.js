@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Filter from '../../Dummy/Filter/component'
 import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
+import SyllabiList from '../../Dummy/Lists/SyllabiList/component'
+import {Link} from 'react-router';
 import './component.sass'
 
 class FullTextResultList extends Component {
@@ -15,7 +17,9 @@ class FullTextResultList extends Component {
               <div className="search-view-header">
                 <div className="search-view-header-title">
                   <span className="third-color small-font-size">University Portal</span>
-                  <p className="large-font-size font-bold">Columbia University</p>
+                  <Link to="/university-portal">
+                    <p className="large-font-size font-bold">Columbia University</p>
+                  </Link>
                 </div>
                 <div className="search-view-header-navigation">
                   <div className="internal-navbar-filter-container">
@@ -23,21 +27,24 @@ class FullTextResultList extends Component {
                       <InternalNavbar router={this.props.router}/>
                     </div>
                     <div className="filter-component">
-                      <Filter/>
+                      <Filter
+                        filtersCategory={'FullTexts'}
+                        _makeSearch={this.props._makeSearch}
+                        router={this.props.router}
+                      />
                     </div>
                   </div>
                   <div className="filter-syllabi-component">
                     {SyllabiCounter({
-                      count: 4500,
+                      count: store.syllabus_count,
                       subtitle:''
                     })}
                   </div>
                 </div>
               </div>
               <div className="content-container">
-                FULL TEXT VIEW
                 <div className="left-side">
-
+                  <SyllabiList store={store.syllabi_list}/>
                 </div>
                 <div className="right-side">
 

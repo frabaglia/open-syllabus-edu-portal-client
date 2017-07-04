@@ -10,11 +10,30 @@ function mapStateToProps(store) {
 
 class SmartAuthorResultsList extends Component {
 
-  componentDidMount = () => {
-    let dispatch = this.props.dispatch;
-    dispatch(authorResultsListRequest({pages:[1,2],query:'someAuthor'}));
+  constructor(){
+    super();
+    this.state = {
+      currentParamsQuery:[],
+    }
   }
 
+  componentDidMount = () => {
+    this.makeRequest([])
+  }
+
+  makeRequest = (queryList) =>{
+    let dispatch = this.props.dispatch;
+    if(queryList.length !== 0){
+      console.log(queryList);
+      let queryArray = [];
+      queryList.map( (query, i) =>{
+        queryArray.push(query.name)
+      })
+
+      dispatch(authorResultsListRequest({query:queryArray}));
+    }
+    else dispatch(authorResultsListRequest({}));
+  }
 
   render() {
     return (Object.getOwnPropertyNames(this.props.resultsList.getIn([TYPE_AUTHOR, 'data']).toJS()).length === 0) ?
@@ -23,6 +42,7 @@ class SmartAuthorResultsList extends Component {
       <DummyAuthorResultsList
         store={this.props.resultsList.getIn([TYPE_AUTHOR, 'data']).toJS()}
         router={this.props.router}
+        _makeSearch={this.makeRequest}
       />
     )
   }
