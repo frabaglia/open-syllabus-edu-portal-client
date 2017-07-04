@@ -1,47 +1,34 @@
 import React, {Component} from 'react';
 import DummyUniversityFieldYear from '../../Views/UniversityFieldYear/component.js'
-// import {connect} from 'react-redux'
-// import {
-//     TYPE_TITLE,
-//     TYPE_AUTHOR,
-//     TYPE_INSTITUTION,
-//     TYPE_FIELD,
-//     TYPE_COUNTRY,
-//     TYPE_PUBLISHER,
-//     // TYPE_INSTITUTION_FIELD
-// } from '../../../constants/action-types/store'
-//
-// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
-// import {
-//   mostFrecuentTypeUpdate,
-//   mostFrecuentTitleRequest,
-//   mostFrecuentTitleSuccess,
-//   mostFrecuentAuthorRequest,
-//   mostFrecuentAuthorSuccess,
-//   mostFrecuentFieldRequest,
-//   mostFrecuentFieldSuccess,
-//   mostFrecuentInstitutionRequest,
-//   mostFrecuentInstitutionSuccess,
-//   mostFrecuentCountryRequest,
-//   mostFrecuentCountrySuccess,
-//   mostFrecuentPublisherRequest,
-//   mostFrecuentPublisherSuccess,
-// } from '../../../constants/eduportal/actions/Landing'
-// import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
+import {connect} from 'react-redux'
 
-// function mapStateToProps(store) {
-//     return {landing: store.get('Landing')}
-// }
+import {landingUniversityRequest} from '../../../constants/eduportal/actions/Landing'
+
+function mapStateToProps(store) {
+    return {landing: store.get('Landing')}
+}
 
 const store ={
 }
 
 class SmartUniversityFieldYear extends Component {
 
-  componentDidMount = () => {}
+  componentDidMount = () => {
+    let dispatch = this.props.dispatch;
+    dispatch(landingUniversityRequest(1));
+  }
 
 
   render() {
+    // return (Object.getOwnPropertyNames(this.props.result.getIn([TYPE_AUTHOR, 'data']).toJS()).length === 0) ?
+    // (<div></div>) :
+    // (
+    //   <DummyAuthorResult
+    //     store={this.props.result.getIn([TYPE_AUTHOR, 'data']).toJS()}
+    //     router={this.props.router}
+    //   />
+    // )
+    console.log(this.props.landing.getIn(['universityFieldYearLandingState']).toJS());
       return (
           <DummyUniversityFieldYear
             store={store}
@@ -51,5 +38,4 @@ class SmartUniversityFieldYear extends Component {
   }
 }
 
-export default SmartUniversityFieldYear
-// export default connect(mapStateToProps)(SmartUniversityFieldYear)
+export default connect(mapStateToProps)(SmartUniversityFieldYear)

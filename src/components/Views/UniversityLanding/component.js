@@ -224,6 +224,29 @@ const most_frecuently_assigned_texts = [
   },
 ]
 
+const badge = [
+  {
+    name: 'History',
+    syllabus_count: 360,
+    _id: 1
+  },
+  {
+    name: 'Political Science',
+    syllabus_count: 316,
+    _id: 2
+  },
+  {
+    name: 'Astronomy',
+    syllabus_count: 290,
+    _id: 3
+  },
+  {
+    name: 'Classics',
+    syllabus_count: 22,
+    _id: 4
+  },
+]
+
 class UniversityLanding extends Component {
 
 
@@ -261,6 +284,7 @@ class UniversityLanding extends Component {
                   <div className="badge-component">
                     <BadgeContainer
                       router={this.props.router}
+                      store={badge}
                     />
                   </div>
                   <div className="most-frequently-assigned-text-container">
