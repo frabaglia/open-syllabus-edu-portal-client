@@ -48,6 +48,8 @@ class DummyLogin extends Component {
 
   handleChangeInput = (type, event) => this.setState({[`${type}`]:event.target.value})
 
+  loginWithEnter = (e) => (e.key === 'Enter') ? this.login() : null
+
   render() {
     return (
         <div className="fixed-container">
@@ -62,11 +64,21 @@ class DummyLogin extends Component {
               <div className="login-body">
                 <div className="login-body-inputs">
                   <div className="input-text">
-                    <input type="text" placeholder="Email: use EDU" onChange={(e) => {this.handleChangeInput('email',e)}}/>
+                    <input
+                      type="text"
+                      placeholder="Email: use EDU"
+                      onChange={(e) => {this.handleChangeInput('email',e)}}
+                      onKeyPress={this.loginWithEnter}
+                    />
                     {SVGUserIcon()}
                   </div>
                   <div className="input-password">
-                    <input type="password" placeholder="Password: use EDUPASS" onChange={(e) => {this.handleChangeInput('password',e)}}/>
+                    <input
+                      type="password"
+                      placeholder="Password: use EDUPASS"
+                      onChange={(e) => {this.handleChangeInput('password',e)}}
+                      onKeyPress={this.loginWithEnter}
+                    />
                     {SVGKeyIcon()}
                   </div>
                 </div>

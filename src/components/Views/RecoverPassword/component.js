@@ -42,6 +42,8 @@ class DummyLogin extends Component {
 
   handleChangeInput = (type, event) => this.setState({[`${type}`]:event.target.value})
 
+  loginWithEnter = (e) => (e.key === 'Enter') ? this.recoverPassword() : null
+
   renderBody = () =>{
     let component;
     if(!this.state.recoverState){
@@ -53,7 +55,12 @@ class DummyLogin extends Component {
             </p>
             <div className="login-body-inputs">
               <div className="input-text">
-                <input type="text" placeholder="Email" onChange={(e) => {this.handleChangeInput('email',e)}}/>
+                <input
+                  type="text"
+                  placeholder="Email"
+                  onChange={(e) => {this.handleChangeInput('email',e)}}
+                  onKeyPress={this.loginWithEnter}
+                />
                 {SVGUserIcon()}
               </div>
             </div>

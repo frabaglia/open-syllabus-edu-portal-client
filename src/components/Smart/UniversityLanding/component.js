@@ -8,32 +8,28 @@ function mapStateToProps(store) {
     return {landing: store.get('Landing')}
 }
 
-const store ={
-}
-
 class SmartUniverstiyLanding extends Component {
 
   componentDidMount = () => {
+    this.makeRequest('')
+  }
+
+  makeRequest = (year) => {
     let dispatch = this.props.dispatch;
-    dispatch(landingUniversityRequest(1));
+    if(year !== '') dispatch(landingUniversityRequest({years:[year]}));
+    else dispatch(landingUniversityRequest(1));
   }
 
   render() {
-    // return (Object.getOwnPropertyNames(this.props.result.getIn([TYPE_AUTHOR, 'data']).toJS()).length === 0) ?
-    // (<div></div>) :
-    // (
-    //   <DummyAuthorResult
-    //     store={this.props.result.getIn([TYPE_AUTHOR, 'data']).toJS()}
-    //     router={this.props.router}
-    //   />
-    // )
-    console.log(this.props.landing.getIn(['universityLandingState']).toJS());
-      return (
-          <DummyUniverstiyLanding
-            store={store}
-            router={this.props.router}
-          />
-      )
+    return (this.props.landing.getIn(['universityLandingState','fieldChart']).toJS().length === 0) ?
+    (<div></div>) :
+    (
+      <DummyUniverstiyLanding
+        store={this.props.landing.getIn(['universityLandingState']).toJS()}
+        router={this.props.router}
+        _makeRequest={this.makeRequest}
+      />
+    )
   }
 }
 

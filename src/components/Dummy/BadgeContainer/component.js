@@ -6,9 +6,7 @@ import './component.sass';
 
 class BadgeContainer extends Component {
 
-  changeDataFromSelects = (year) =>{
-    console.log(year);
-  }
+  changeDataFromSelects = (year) => this.props._makeRequest(year)
 
   render () {
     return (

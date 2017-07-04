@@ -48,9 +48,7 @@ class ContainerTopRankedList extends Component {
     })
   }
 
-  changeDataFromSelects = (e) =>{
-    console.log(e);
-  }
+  changeDataFromSelects = (year) => this.props._makeRequest(year)
 
   renderButtonsNavigation = () =>
   {

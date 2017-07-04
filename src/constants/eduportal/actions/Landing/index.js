@@ -14,44 +14,10 @@ import {
   LANDING_UNIVERSITY_FIELD_REQUEST,
   LANDING_UNIVERSITY_FIELD_SUCCESS,
   LANDING_UNIVERSITY_FIELD_YEAR_REQUEST,
-  LANDING_UNIVERSITY_FIELD_YEAR_SUCCESS,
-  LANDING_UNIVERSITY_SELECTED_YEAR,
-  LANDING_UNIVERSITY_FIELD_SHOW_ALL,
-  LANDING_UNIVERSITY_FIELD_SHOW_OWN,
-  LANDING_UNIVERSITY_FIELD_SELECTED_YEAR,
-  LANDING_UNIVERSITY_FIELD_YEAR_SELECTED_TEXT
+  LANDING_UNIVERSITY_FIELD_YEAR_SUCCESS
 } from '../../action-types/Landing'
 
-/* UI */
 
-export const landingUniversitySelectedYear = (selectedYear) => {
-  return {
-    type: LANDING_UNIVERSITY_SELECTED_YEAR,
-    payload: selectedYear
-  }
-}
-export const landingUniversityFieldShowAll = () => {
-  return {
-    type: LANDING_UNIVERSITY_FIELD_SHOW_ALL
-  }
-}
-export const landingUniversityFieldShowOwn = () => {
-  return {
-    type: LANDING_UNIVERSITY_FIELD_SHOW_OWN
-  }
-}
-export const landingUniversityFieldSelectedYear = (selectedYear) => {
-  return {
-    type: LANDING_UNIVERSITY_FIELD_SELECTED_YEAR,
-    payload: selectedYear
-  }
-}
-export const landingUniversityFieldYearSelectedText = (selectedText) => {
-  return {
-    type: LANDING_UNIVERSITY_FIELD_YEAR_SELECTED_TEXT,
-    payload: selectedText
-  }
-}
 export const landingUniversityRequest = (params) => {
   return {
     type: API,

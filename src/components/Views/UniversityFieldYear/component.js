@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import Filter from '../../Dummy/Filter/component'
 import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
-import SyllabiList from '../../Dummy/Lists/SyllabiList/component'
+// import SyllabiList from '../../Dummy/Lists/SyllabiList/component'
+import MostFrecuentlyAssignedTextList from '../../Dummy/Lists/MostFrecuentlyAssignedTextList/component.js'
 import './component.sass'
 
 const syllabi = [
@@ -59,6 +60,7 @@ class UniversityFieldYear extends Component {
 
     render() {
       let store = this.props.store;
+      console.log(store);
         return (
             <div className="university-field">
               <div className="search-view-header">
@@ -87,7 +89,11 @@ class UniversityFieldYear extends Component {
               </div>
               <div className="content-container">
                 <div className="left-side">
-                  <SyllabiList store={syllabi}/>
+                  <MostFrecuentlyAssignedTextList
+                    store={store.mostFrecuent}
+                    title={true}
+                    initPagination={3}
+                  />
                 </div>
                 <div className="right-side">
 
