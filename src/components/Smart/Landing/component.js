@@ -27,7 +27,7 @@ import DummyLanding from '../../Views/Landing/component.js'
 //   mostFrecuentPublisherRequest,
 //   mostFrecuentPublisherSuccess,
 // } from '../../../constants/eduportal/actions/Landing'
-// import {resultsListError} from '../../../constants/eduportal/actions/GlobalMessages'
+// import {resultsListError} from '../../../constants/eduportal/actions/Global'
 
 // function mapStateToProps(store) {
 //     return {landing: store.get('Landing')}

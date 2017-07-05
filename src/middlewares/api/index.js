@@ -3,7 +3,6 @@ export const apiMiddleware = ({
 }) => next => action => {
   if (action.type !== 'API') return next(action)
 
-  console.debug("Dispatching");
   const {
     request,
     success,
@@ -15,6 +14,9 @@ export const apiMiddleware = ({
     type: pending
   })
 
+  // https://opensyllabus.github.io/osp-api/rest-api.html#meta
+  // https://opensyllabus.github.io/osp-api/rest-api.html#errors
+  
   request.then(response =>
       dispatch({
         type: success,

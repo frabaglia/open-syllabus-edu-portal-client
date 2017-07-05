@@ -2,7 +2,7 @@ import {
   ERROR,
   WARNING,
   MSG
-} from '../../action-types/GlobalMessages'
+} from '../../action-types/Global'
 
 export const globalError = (error) => {
   return {
