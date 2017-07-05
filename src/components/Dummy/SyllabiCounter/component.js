@@ -2,7 +2,7 @@ import React from 'react'
 import './component.sass'
 
 const SyllabiCounter = (props) => {
-  this.renderSubtitle = () =>{
+  const renderSubtitle = () =>{
     return (props.subtitle !== '') ?
     (<span className="font-bold small-font-size">{props.subtitle}</span>):
     (<div></div>)
@@ -10,7 +10,7 @@ const SyllabiCounter = (props) => {
 
   return (
     <div className="search-view-syllabi-counter">
-      {this.renderSubtitle()}
+      {renderSubtitle()}
       <p className="third-color">
         <span className="first-color">{props.count}</span>
         Syllabi

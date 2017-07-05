@@ -4,7 +4,6 @@ import './component.sass'
 class LogedContainer extends Component {
 
     render() {
-      let universityInfo = this.props.route.universityInfo;
         return (
           <div className="logged-container">
             <div className="view huge-container">
