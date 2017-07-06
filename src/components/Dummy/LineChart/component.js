@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import ButtonLabel from "../../Dummy/Buttons/ButtonLabel/component.js"
 import ExpandIcon from "../../Dummy/SVG/ExpandIcon/component.js"
 import ExpandCloseIcon from "../../Dummy/SVG/ExpandCloseIcon/component.js"
 import ButtonBarChartDropdown from "../Buttons/ButtonBarChartDropdown/component.js"

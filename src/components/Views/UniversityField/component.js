@@ -4,25 +4,25 @@ import SyllabyAvailableByYear from '../../Dummy/SyllabiAvailableByYearContainer/
 import CloestPeerTeachingProfiles from '../../Dummy/CloestPeerTeachingProfilesContainer/component'
 import ContainerTopRankedList from '../../Dummy/ContainerTopRankedList/component'
 import BarChart from '../../Dummy/BarChart/component.js'
-import LineChart from '../../Dummy/LineChart/component.js'
+// import LineChart from '../../Dummy/LineChart/component.js'
 import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
 import './component.sass'
 
-const lineChartData = [{
-  label: 'Economics',
-  values: [
-    {x: '2010', y: 20},
-    {x: '2016', y: 40},
-  ]
-},
-{
-  label: 'Literature',
-  values: [
-    {x: '2010', y: 0},
-    {x: '2016', y: 30},
-  ]
-}]
+// const lineChartData = [{
+//   label: 'Economics',
+//   values: [
+//     {x: '2010', y: 20},
+//     {x: '2016', y: 40},
+//   ]
+// },
+// {
+//   label: 'Literature',
+//   values: [
+//     {x: '2010', y: 0},
+//     {x: '2016', y: 30},
+//   ]
+// }]
 
 class UniversityField extends Component {
 
