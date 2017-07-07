@@ -44,7 +44,7 @@ class InstructorEmailsResultsList extends Component {
               </div>
               <div className="content-container">
                 <div className="left-side">
-                  <SyllabiList store={store.syllabi_list}/>
+                  <SyllabiList store={store.syllabi_list} isInstructorEmails={true}/>
                 </div>
                 <div className="right-side">
 

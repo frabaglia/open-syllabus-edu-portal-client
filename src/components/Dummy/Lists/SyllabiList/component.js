@@ -32,7 +32,7 @@ class SyllabiList extends Component {
               _syllabiPreviewWrapperID={this.isOpen}
               id={i}
               >
-              <SyllabiItemList objectItem={item.data}/>
+              <SyllabiItemList objectItem={item.data} isInstructorEmails={this.props.isInstructorEmails}/>
             </SyllabiPreviewWrapper>
           </li>
         )

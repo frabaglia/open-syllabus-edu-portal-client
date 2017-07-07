@@ -44,7 +44,7 @@ class FullTextResultList extends Component {
               </div>
               <div className="content-container">
                 <div className="left-side">
-                  <SyllabiList store={store.syllabi_list}/>
+                  <SyllabiList store={store.syllabi_list} isInstructorEmails={false}/>
                 </div>
                 <div className="right-side">
 

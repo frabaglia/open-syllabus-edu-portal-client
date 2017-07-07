@@ -4,19 +4,39 @@ import './component.sass';
 
 class SyllabiItemList extends Component {
 
+  renderSyllabi = () =>{
+    let syllabi;
+    if(this.props.isInstructorEmails){
+      syllabi = (
+        <div className="title-email-container">
+          <p onClick={this.props.click} className="title small-font-size">
+              {this.props.objectItem.title.titleName}
+          </p>
+          <span className="email">
+              {this.props.objectItem.title.titleEmail}
+          </span>
+        </div>
+      )
+    }
+    else {
+      syllabi = (
+        <div className="title-email-container">
+          <p onClick={this.props.click} className="title small-font-size">
+              {`..."${this.props.objectItem.title.titleName}"...`}
+          </p>
+        </div>
+      )
+    }
+
+    return syllabi
+  }
+
   render() {
       let objectItem = this.props.objectItem;
       return (
         <div className="syllabi-item">
           <div className="rank">{objectItem.rank}</div>
-          <div className="title-email-container">
-            <p onClick={this.props.click} className="title mid-font-size">
-                {objectItem.title.titleName}
-            </p>
-            <span className="email">
-                {objectItem.title.titleEmail}
-            </span>
-          </div>
+          {this.renderSyllabi()}
         </div>
       )
   }
