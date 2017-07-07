@@ -1,241 +1,149 @@
 import React, {Component} from 'react'
-import ExpandIcon from "../../Dummy/SVG/ExpandIcon/component.js"
-import ExpandCloseIcon from "../../Dummy/SVG/ExpandCloseIcon/component.js"
-import ButtonBarChartDropdown from "../Buttons/ButtonBarChartDropdown/component.js"
-import ToolTip from "../ToolTip/component.js"
-import LineChart from 'react-d3-components/lib/LineChart.js'
+import {LineChart, Line, Legend, Tooltip, XAxis, YAxis, CartesianGrid} from 'recharts'
+import ButtonFilterDropdown from '../Buttons/ButtonFilterDropdown/component'
 import './component.sass'
-// import * as d3 from 'd3'
-import {scaleOrdinal} from "d3-scale";
 import $ from 'jquery'
 
-const listType = ["Normalized","RAW"];
+const yearsFrom=[
+  {_id:1, name:'1977-1979' , param: '1977-1979'},
+  {_id:1, name:'1979-1981' , param: '1979-1981'},
+  {_id:1, name:'1981-1983' , param: '1981-1983'},
+  {_id:1, name:'1983-1985' , param: '1983-1985'},
+]
+
+const yearsTo=[
+  {_id:1, name:'2010-2012' , param: '2010-2012'},
+  {_id:1, name:'2012-2014' , param: '2012-2014'},
+  {_id:1, name:'2014-2016' , param: '2014-2016'},
+  {_id:1, name:'2016-2018' , param: '2016-2018'},
+]
 
 class LineChartComponent extends Component {
 
   constructor() {
     super();
     this.state = {
+      data: undefined,
       width: 0,
       height: 400,
-      expanded: false,
-      normalized: "Normalized"
+      yearsFrom: undefined,
+      yearsTo: undefined
     };
   }
 
   componentDidMount = () =>
   {
-    let width = Number($(this.refs.barchartContainer).width());
+    let width = Number($(this.refs.linechartContainer).width());
     this.setState({width: width});
     $(window).resize( () =>{
-      width = Number($(this.refs.barchartContainer).width())
-      if(this.refs.barchartContainer !== undefined) this.setState({width:width});
+      width = Number($(this.refs.linechartContainer).width())
+      if(this.refs.linechartContainer !== undefined) this.setState({width:width});
     })
-
-    if(!this.props.legend) this.refs.legend.className = 'hidden'
+    this.setState({data:this.props.data})
   }
+  // for (let i in data) {
+  //   if(this.state.yearsFrom !== undefined && this.state.yearsFrom === data[i].name) {
+  //
+  //   }
+  //   if(this.state.yearsTo !== undefined && this.state.yearsTo === data[i].name) {
+  //     dataFilter.push(data[i])
+  //     console.log(data[i]);
+  //   }
+  //
+  // }
 
-  makeFullScreen = () =>
-  {
-    if(this.props.isNormalizable){
-      if(!this.state.expanded) {
-        this.refs.barchartContainer.className = 'expand-barchart container-map'
-        this.refs.headerContainer.className = 'container-header container-header-expand noLanding'
-        // this.refs.buttonLabel.className = 'hidden'
-        $('body').css( 'overflow-y', 'hidden');
-        this.componentDidMount()
+  filterData = () =>{
+    console.log(this.state.yearsFrom, this.state.yearsTo);
+    let dataFilter=[];
+    if(this.state.data !== undefined){
+      let data = this.state.data;
+      if(this.state.yearsFrom !== undefined || this.state.yearsTo !== undefined){
+        if(this.state.yearsFrom !== undefined && this.state.yearsTo === undefined) {
+          console.log('from si, to no');
+          dataFilter.push(this.state.yearsFrom);
+          dataFilter.push(data[data.length-1]);
+        }
+        if(this.state.yearsFrom === undefined && this.state.yearsTo !== undefined) {
+          console.log('from no, to si');
+          dataFilter.push(data[0]);
+          dataFilter.push(this.state.yearsTo);
+        }
+        if(this.state.yearsFrom !== undefined && this.state.yearsTo !== undefined) {
+          console.log('from si, to si');
+          dataFilter.push(this.state.yearsFrom);
+          dataFilter.push(this.state.yearsTo);
+        }
       }
       else {
-        this.refs.barchartContainer.className = 'container-map'
-        this.refs.headerContainer.className = 'container-header noLanding'
-        // this.refs.buttonLabel.className = 'unattributed-label'
-        $('body').css( 'overflow-y', 'scroll');
-        this.componentDidMount()
-      }
-      this.setState({expanded:!this.state.expanded})
+          dataFilter.push(data[0]);
+          dataFilter.push(data[data.length-1]);
+        }
     }
-    else {
-      if(!this.state.expanded) {
-        this.refs.barchartContainer.className = 'expand-barchart container-map'
-        this.refs.headerContainer.className = 'container-header container-header-expand'
-        this.refs.legend.className = 'legend legend-expand'
-        // this.refs.buttonLabel.className = 'hidden'
-        $('body').css( 'overflow-y', 'hidden');
-        this.componentDidMount()
-      }
-      else {
-        this.refs.barchartContainer.className = 'container-map'
-        this.refs.headerContainer.className = 'container-header'
-        this.refs.legend.className = 'legend'
-        // this.refs.buttonLabel.className = 'unattributed-label'
-        $('body').css( 'overflow-y', 'scroll');
-        this.componentDidMount()
-      }
-      this.setState({expanded:!this.state.expanded})
-    }
-
-
+    return dataFilter
   }
 
-  filterStoreData = () =>
-  {
-      let filterStore = this.props.store;
-      if(!this.state.expanded){
-        filterStore = []
-        let arrayField;
-        this.props.store.map( (field, i) =>{
-          arrayField = field.values.slice(Math.max(field.values.length - 5, 0))
-          filterStore.push({label:field.label, values: arrayField})
-        })
-      }
-      return filterStore
-  }
-
-  renderExpandIcon = () =>  {
-    return (!this.state.expanded) ? <ExpandIcon click={this.makeFullScreen}/> : <ExpandCloseIcon click={this.makeFullScreen}/>
-  }
-
-  // COLOR PALLETTE #3188D3 #9BD331 #5AC4C7 #FBD669 #FC976D #DF6161 #B76AC4 #85919F #405063 #855845
-
-  // colorScale = d3.scaleOrdinal()
-  //     .domain(["Economics", "Literature", "History", "English","Biology"])
-  //     .range(['#FC976D','#DF6161','#FBD669','#85919F','#B76AC4']);
-  colorScale = scaleOrdinal()
-      .domain(["Economics", "Literature", "History", "English","Biology"])
-      .range(['#FC976D','#DF6161','#FBD669','#85919F','#B76AC4']);
-
-
-  tooltipScatter = (x, y0, y,f,g) => {
-    let field;
-    switch (f) {
-      case "Economics":
-        field = (<span style={{color:'#FC976D'}} className="tooltip-content-field">{"Economics"}</span>)
-        break;
-
-      case "Literature":
-        field = (<span style={{color:'#DF6161'}} className="tooltip-content-field">{"Literature"}</span>)
-        break;
-
-      case "History":
-        field = (<span style={{color:'#FBD669'}} className="tooltip-content-field">{"History"}</span>)
-        break;
-
-      case "English":
-        field = (<span style={{color:'#85919F'}} className="tooltip-content-field">{"English"}</span>)
-        break;
-
-      case "Biology":
-        field = (<span style={{color:'#B76AC4'}} className="tooltip-content-field">{"Biology"}</span>)
-        break;
-
-      default:
-
-    }
-    return(
-      <div className="tooltip-wrapper">
-      <div className="tooltip">
-        <div className="tooltip-content">
-          {field}
-          <span className="tooltip-content-syllabi">{y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
-        </div>
-        <div className="tooltip-tail"></div>
-      </div>
-      </div>
-    );
-  };
-
-  renderCategoryName = () =>{
-    let typeSelected;
-    listType.map( (type,i) =>{
-      if(this.state.normalized === type) typeSelected = type;
+  changeDataFrom = (yearsFrom) => {
+    this.state.data.map( (data,i) =>{
+      if(data.name === yearsFrom) this.setState({yearsFrom:data})
     })
-
-    return typeSelected;
   }
 
-  setType = (type) => this.setState({normalized:type}, () =>{this.props.getDataNormalizedOrRAW(this.state.normalized)})
-  // setType = (type) => this.setState({normalized:type}, () =>{console.log(this.state.normalized);})
-
-
-  renderContainerHeader = () =>
-  {
-    return (this.props.isNormalizable) ? (
-      <div ref="headerContainer" className="container-header noLanding">
-        <p className="titleNoLanding">
-          {this.props.title}
-        </p>
-        <div className="additional-info">
-          <div className="unattributed-label" ref="buttonLabel">
-            580,500 unattributed
-          </div>
-          <ButtonBarChartDropdown
-            click={this.setType}
-            title={this.renderCategoryName()}
-            listType={listType}/>
-          <div className="right-content-expand-button">
-            {this.renderExpandIcon()}
-          </div>
-        </div>
-      </div>
-      ) : (
-        <div ref="headerContainer" className="container-header">
-          <p className="right-content-title">
-            {this.props.title}
-          </p>
-          <div className="right-content-expand">
-            <div className="right-content-expand-button">
-              <ToolTip tooltipText="# of sillaby that we cannot date">
-                <div className="unattributed-label">
-                  580,500 unattributed
-                </div>
-              </ToolTip>
-            </div>
-            {this.renderExpandIcon()}
-          </div>
-        </div>
-      )
+  changeDataTo = (yearsTo) => {
+    this.state.data.map( (data,i) =>{
+      if(data.name === yearsTo) this.setState({yearsTo:data})
+    })
   }
 
   render() {
+    console.log(this.filterData());
     return (
-      <div ref="barchartContainer" className="container-map container-barchart">
-        {this.renderContainerHeader()}
-        <div className="wrapper-container-chart">
-          <div className="container-chart">
-            <LineChart
-              data={this.filterStoreData()}
-              width={this.state.width}
-              height={this.state.height}
-              margin={{top: 10, bottom: 40, left: 70, right: 10}}
-              // colorScale={this.colorScale}
-              // tooltipHtml={this.tooltipScatter}
+      <div ref="linechartContainer" className="linechart-container">
+        <p className="linechart-title font-bold mid-font-size">Share of employed people working 50 hours or more per week</p>
+        <LineChart width={this.state.width} height={this.state.height} data={this.filterData()}
+          margin={{ top: 5, right: 40, left: 7, bottom: 5 }}>
+          <XAxis dataKey="name" />
+          <YAxis />
+          <CartesianGrid vertical={false} />
+          <Tooltip />
+          {/* <Legend /> */}
+          <Line type="monotone" dataKey="Professional men" stroke="#df6161" legendType="square" strokeWidth={2}/>
+          <Line type="monotone" dataKey="Professional women" stroke="#2e2edb" legendType="square" strokeWidth={2}/>
+          <Line type="monotone" dataKey="Middle-income men" stroke="#61aedd" legendType="square" strokeWidth={2}/>
+          <Line type="monotone" dataKey="Middle-income women" stroke="#65b23c" legendType="square" strokeWidth={2}/>
+          <Line type="monotone" dataKey="Low-income men" stroke="#465568" legendType="square" strokeWidth={2}/>
+          <Line type="monotone" dataKey="Low-income women" stroke="#8afca3" legendType="square" strokeWidth={2}/>
+        </LineChart>
+        <div className="linechart-legend">
+          <div className="linechart-legend-left">
+            <p className="legend-item"><span className="square professional-men"></span>Professional men</p>
+            <p className="legend-item"><span className="square middle-income-men"></span>Middle-income men</p>
+            <p className="legend-item"><span className="square low-income-men"></span>Low-income men</p>
+          </div>
+          <div className="linechart-legend-right">
+            <p className="legend-item"><span className="square professional-women"></span>Professional women</p>
+            <p className="legend-item"><span className="square middle-income-women"></span>Middle-income women</p>
+            <p className="legend-item"><span className="square low-income-women"></span>Low-income women</p>
+          </div>
+        </div>
+        <div className="linechart-filter">
+          <p className="linechart-filter-title">Biggest changes between</p>
+          <div className="linechart-filter-body">
+            <ButtonFilterDropdown
+              title="From"
+              arrayData={yearsFrom}
+              color="#A9B4C0"
+              changeDataFromSelects={this.changeDataFrom}
             />
-            <div ref="legend" className="legend">
-              <div className="item">
-                <div className="figure economics"></div>
-                <span>Economics</span>
-              </div>
-              <div className="item">
-                <div className="figure history"></div>
-                <span>History</span>
-              </div>
-              <div className="item">
-                <div className="figure literature"></div>
-                <span>Literature</span>
-              </div>
-              <div className="item">
-                <div className="figure english"></div>
-                <span>English</span>
-              </div>
-              <div className="item">
-                <div className="figure biology"></div>
-                <span>Biology</span>
-              </div>
-            </div>
+            <p>and</p>
+            <ButtonFilterDropdown
+              title="To"
+              arrayData={yearsTo}
+              color="#A9B4C0"
+              changeDataFromSelects={this.changeDataTo}
+            />
           </div>
         </div>
       </div>
-
     );
   }
 }

@@ -4,25 +4,86 @@ import SyllabyAvailableByYear from '../../Dummy/SyllabiAvailableByYearContainer/
 import CloestPeerTeachingProfiles from '../../Dummy/CloestPeerTeachingProfilesContainer/component'
 import ContainerTopRankedList from '../../Dummy/ContainerTopRankedList/component'
 import BarChart from '../../Dummy/BarChart/component.js'
-// import LineChart from '../../Dummy/LineChart/component.js'
+import LineChart from '../../Dummy/LineChart/component.js'
 import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
+
 import './component.sass'
 
-// const lineChartData = [{
-//   label: 'Economics',
-//   values: [
-//     {x: '2010', y: 20},
-//     {x: '2016', y: 40},
-//   ]
-// },
-// {
-//   label: 'Literature',
-//   values: [
-//     {x: '2010', y: 0},
-//     {x: '2016', y: 30},
-//   ]
-// }]
+const data = [
+  {
+    name: '1977-1979',
+    'Professional men': 2,
+    'Professional women': 5,
+    'Middle-income men': 20,
+    'Middle-income women': 15,
+    'Low-income women': 50,
+    'Low-income men': 10,
+  },
+  {
+    name: '1979-1981',
+    'Professional men': 7,
+    'Professional women': 10,
+    'Middle-income men': 20,
+    'Middle-income women': 60,
+    'Low-income women': 50,
+    'Low-income men': 10,
+  },
+  {
+    name: '1981-1983',
+    'Professional men': 9,
+    'Professional women': 15,
+    'Middle-income men': 20,
+    'Middle-income women': 50,
+    'Low-income women': 50,
+    'Low-income men': 10,
+  },
+  {
+    name: '1983-1985',
+    'Professional men': 12,
+    'Professional women': 20,
+    'Middle-income men': 20,
+    'Middle-income women': 40,
+    'Low-income women': 50,
+    'Low-income men': 10,
+  },
+  {
+    name: '2010-2012',
+    'Professional men': 20,
+    'Professional women': 40,
+    'Middle-income men': 20,
+    'Middle-income women': 10,
+    'Low-income women': 50,
+    'Low-income men': 10,
+  },
+  {
+    name: '2012-2014',
+    'Professional men': 25,
+    'Professional women': 35,
+    'Middle-income men': 20,
+    'Middle-income women': 20,
+    'Low-income women': 50,
+    'Low-income men': 10,
+  },
+  {
+    name: '2014-2016',
+    'Professional men': 30,
+    'Professional women': 30,
+    'Middle-income men': 20,
+    'Middle-income women': 30,
+    'Low-income women': 50,
+    'Low-income men': 10,
+  },
+  {
+    name: '2016-2018',
+    'Professional men': 25,
+    'Professional women': 25,
+    'Middle-income men': 20,
+    'Middle-income women': 40,
+    'Low-income women': 50,
+    'Low-income men': 10,
+  },
+];
 
 class UniversityField extends Component {
 
@@ -90,14 +151,9 @@ class UniversityField extends Component {
                     />
                   </div>
                   <div className="line-chart-component">
-                    {/* // FIXME:  */}
-                    {/* <LineChart
-                      title={"Syllabi by Field and Year"}
-                      legend={false}
-                      store={lineChartData}
-                      isNormalizable={false}
-                      getDataNormalizedOrRAW={"Normalized"}
-                    /> */}
+                    <LineChart
+                      data={data}
+                    />
                   </div>
                 </div>
               </div>

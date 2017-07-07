@@ -161,7 +161,7 @@ class BarChartComponent extends Component {
   {
     return (this.props.isNormalizable) ? (
       <div ref="headerContainer" className="container-header noLanding">
-        <p className="titleNoLanding">
+        <p className="titleNoLanding font-bold mid-font-size">
           {this.props.title}
         </p>
         <div className="additional-info">
@@ -179,7 +179,7 @@ class BarChartComponent extends Component {
       </div>
       ) : (
         <div ref="headerContainer" className="container-header">
-          <p className="right-content-title">
+          <p className="right-content-title font-bold mid-font-size">
             {this.props.title}
           </p>
           <div className="right-content-expand">
