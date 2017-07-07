@@ -29,8 +29,14 @@ const store ={
   ]
 }
 
+const router ={
+  location:{
+    pathname: 'somePathname'
+  }
+}
+
 it('renders without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(
-        <UniversityFieldYear store={store}/>, div)
+        <UniversityFieldYear store={store} router={router}/>, div)
 })

@@ -6,54 +6,6 @@ import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
 import MostFrecuentlyAssignedTextList from '../../Dummy/Lists/MostFrecuentlyAssignedTextList/component.js'
 import './component.sass'
 
-const syllabi = [
-  {
-    data: {
-      rank: 1,
-      title:{
-        titleName: 'More Sons About Buildings and Food',
-        titleEmail: 'asd@gmail.com'
-      }
-    },
-    dataWrapper: {
-      field: 'Architecture',
-      year: 'Spring 2010',
-      title: "More Sons About Buildings and Food",
-      email: 'asd@gmail.com'
-    }
-  },
-  {
-    data: {
-      rank: 1,
-      title:{
-        titleName: 'More Sons About Buildings and Food',
-        titleEmail: 'asd@gmail.com'
-      }
-    },
-    dataWrapper: {
-      field: 'History',
-      year: 'Spring 2010',
-      title: "More Sons About Buildings and Food",
-      email: 'asd@gmail.com'
-    }
-  },
-  {
-    data: {
-      rank: 1,
-      title:{
-        titleName: 'More Sons About Buildings and Food',
-        titleEmail: 'asd@gmail.com'
-      }
-    },
-    dataWrapper: {
-      field: 'Math',
-      year: 'Spring 2010',
-      title: "More Sons About Buildings and Food",
-      email: 'asd@gmail.com'
-    }
-  },
-]
-
 class UniversityFieldYear extends Component {
 
 

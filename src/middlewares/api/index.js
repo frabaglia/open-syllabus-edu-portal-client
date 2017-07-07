@@ -3,7 +3,7 @@ export const apiMiddleware = ({
 }) => next => action => {
   if (action.type !== 'API') return next(action)
 
-  console.debug("Dispatching");
+  // console.debug("Dispatching");
   const {
     request,
     success,

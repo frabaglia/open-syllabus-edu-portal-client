@@ -3,11 +3,41 @@ import ReactDOM from 'react-dom'
 import TitleResultsList from './component'
 
 const store={
-  syllabus_count: 2000
+  _id: 42,
+  syllbi_count: 400,
+  most_frecuently_assigned_texts: [{
+      "_id": 12,
+      "title": "Introduction to Economics",
+      "author": {
+        "_id": 32,
+        "author_first": "Neil",
+        "author_middle": null,
+        "author_last": "Cambell",
+      },
+      "publisher": {
+        "_id": 14,
+        "name": "Pengiun Books"
+      },
+      "pub_year": 2000,
+      "appearences": {
+        "by_unique_field": {
+          "_id": 152,
+          "name": "Math",
+          "syllabus_count": 9
+        }
+      }
+    }
+  ]
+}
+
+const router ={
+  location:{
+    pathname: 'somePathname'
+  }
 }
 
 test('renders without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(
-        <TitleResultsList store={store}/>, div)
+        <TitleResultsList store={store} router={router}/>, div)
 })
