@@ -41,35 +41,21 @@ class LineChartComponent extends Component {
     })
     this.setState({data:this.props.data})
   }
-  // for (let i in data) {
-  //   if(this.state.yearsFrom !== undefined && this.state.yearsFrom === data[i].name) {
-  //
-  //   }
-  //   if(this.state.yearsTo !== undefined && this.state.yearsTo === data[i].name) {
-  //     dataFilter.push(data[i])
-  //     console.log(data[i]);
-  //   }
-  //
-  // }
 
   filterData = () =>{
-    console.log(this.state.yearsFrom, this.state.yearsTo);
     let dataFilter=[];
     if(this.state.data !== undefined){
       let data = this.state.data;
       if(this.state.yearsFrom !== undefined || this.state.yearsTo !== undefined){
         if(this.state.yearsFrom !== undefined && this.state.yearsTo === undefined) {
-          console.log('from si, to no');
           dataFilter.push(this.state.yearsFrom);
           dataFilter.push(data[data.length-1]);
         }
         if(this.state.yearsFrom === undefined && this.state.yearsTo !== undefined) {
-          console.log('from no, to si');
           dataFilter.push(data[0]);
           dataFilter.push(this.state.yearsTo);
         }
         if(this.state.yearsFrom !== undefined && this.state.yearsTo !== undefined) {
-          console.log('from si, to si');
           dataFilter.push(this.state.yearsFrom);
           dataFilter.push(this.state.yearsTo);
         }
@@ -95,7 +81,6 @@ class LineChartComponent extends Component {
   }
 
   render() {
-    console.log(this.filterData());
     return (
       <div ref="linechartContainer" className="linechart-container">
         <p className="linechart-title font-bold mid-font-size">Share of employed people working 50 hours or more per week</p>
