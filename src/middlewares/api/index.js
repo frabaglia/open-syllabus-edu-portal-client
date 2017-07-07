@@ -15,6 +15,9 @@ export const apiMiddleware = ({
     type: pending
   })
 
+  // https://opensyllabus.github.io/osp-api/rest-api.html#meta
+  // https://opensyllabus.github.io/osp-api/rest-api.html#errors
+
   request.then(response =>
       dispatch({
         type: success,

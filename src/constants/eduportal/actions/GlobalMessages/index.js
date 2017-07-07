@@ -2,31 +2,25 @@ import {
   ERROR,
   WARNING,
   MSG
-} from '../../action-types/GlobalMessages'
+} from '../../action-types/Global'
 
 export const globalError = (error) => {
   return {
     type: ERROR,
-    payload: {
-      error: error
-    }
+    payload: error
   }
 }
 
 export const globalWarning = (warning) => {
   return {
     type: WARNING,
-    payload: {
-      warning: warning
-    }
+    payload: warning
   }
 }
 
 export const globalMessage = (msg) => {
   return {
     type: MSG,
-    payload: {
-      msg: msg
-    }
+    payload: msg
   }
 }

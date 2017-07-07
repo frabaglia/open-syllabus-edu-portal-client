@@ -11,21 +11,27 @@ import reduxThunk from 'redux-thunk'
 import {
   apiMiddleware
 } from '../middlewares/api'
-import GlobalMessages from '../reducers/GlobalMessages/reducer.js'
-import Landing from '../reducers/Landing/reducer.js'
-import Result from '../reducers/Result/reducer.js'
-import ResultsList from '../reducers/ResultsList/reducer.js'
-import Router from '../reducers/Router/reducer.js'
+import {
+  errorMiddleware
+} from '../middlewares/error'
+import {
+  redirectMiddleware
+} from '../middlewares/redirect'
+import Global from '../reducers/Global'
+import Landing from '../reducers/Landing'
+import Result from '../reducers/Result'
+import ResultsList from '../reducers/ResultsList'
+import Router from '../reducers/Router'
 import Immutable from 'immutable'
 
 import {
   loadState
 } from '../os-toolkit/SyllabusLocalStorage'
 
-const middleware = applyMiddleware(apiMiddleware, reduxLogger())
+const middleware = applyMiddleware(apiMiddleware, errorMiddleware, redirectMiddleware, reduxLogger())
 
 let rootReducer = combineReducers({
-  GlobalMessages,
+  Global,
   Landing,
   Result,
   ResultsList,

@@ -6,14 +6,17 @@ import {
 } from '../../../../os-toolkit/SyllabusEduPortalHTTPService'
 import {
   ERROR
-} from '../../action-types/GlobalMessages'
+} from '../../action-types/Global'
 
 import {
   LANDING_UNIVERSITY_REQUEST,
+  LANDING_UNIVERSITY_ERROR,
   LANDING_UNIVERSITY_SUCCESS,
   LANDING_UNIVERSITY_FIELD_REQUEST,
+  LANDING_UNIVERSITY_FIELD_ERROR,
   LANDING_UNIVERSITY_FIELD_SUCCESS,
   LANDING_UNIVERSITY_FIELD_YEAR_REQUEST,
+  LANDING_UNIVERSITY_FIELD_YEAR_ERROR,
   LANDING_UNIVERSITY_FIELD_YEAR_SUCCESS
 } from '../../action-types/Landing'
 
@@ -25,7 +28,7 @@ export const landingUniversityRequest = (params) => {
       request: syllabusEduPortalHTTPService.getLandingUniversity(params),
       pending: LANDING_UNIVERSITY_REQUEST,
       success: LANDING_UNIVERSITY_SUCCESS,
-      error: ERROR
+      error: LANDING_UNIVERSITY_ERROR
     }
   }
 }
@@ -36,7 +39,7 @@ export const landingUniversityFieldRequest = (params) => {
       request: syllabusEduPortalHTTPService.getLandingUniversityField(params),
       pending: LANDING_UNIVERSITY_FIELD_REQUEST,
       success: LANDING_UNIVERSITY_FIELD_SUCCESS,
-      error: ERROR
+      error: LANDING_UNIVERSITY_FIELD_ERROR
     }
   }
 }
@@ -47,7 +50,7 @@ export const landingUniversityFieldYearRequest = (params) => {
       request: syllabusEduPortalHTTPService.getLandingUniversityFieldYear(params),
       pending: LANDING_UNIVERSITY_FIELD_YEAR_REQUEST,
       success: LANDING_UNIVERSITY_FIELD_YEAR_SUCCESS,
-      error: ERROR
+      error: LANDING_UNIVERSITY_FIELD_YEAR_ERROR
     }
   }
 }
