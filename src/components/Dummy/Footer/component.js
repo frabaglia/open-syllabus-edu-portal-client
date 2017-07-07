@@ -7,10 +7,10 @@ const Footer = (props) => {
   return (
     <div className="footer">
       <div className="footer-open-syllabus-logo">
-        {OpenSyllabusLogo()}
+          <a href="http://opensyllabusproject.herokuapp.com/" target="_blank">{OpenSyllabusLogo()}</a>
       </div>
       <div className="footer-taacu-logo">
-        {TAACULogo()}
+        <a href="http://americanassembly.org/" target="_blank">{TAACULogo()}</a>
       </div>
     </div>
   );

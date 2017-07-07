@@ -1,55 +1,31 @@
 import React, {Component} from 'react';
 import DummyUniversityFieldYear from '../../Views/UniversityFieldYear/component.js'
-// import {connect} from 'react-redux'
-// import {
-//     TYPE_TITLE,
-//     TYPE_AUTHOR,
-//     TYPE_INSTITUTION,
-//     TYPE_FIELD,
-//     TYPE_COUNTRY,
-//     TYPE_PUBLISHER,
-//     // TYPE_INSTITUTION_FIELD
-// } from '../../../constants/action-types/store'
-//
-// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
-// import {
-//   mostFrecuentTypeUpdate,
-//   mostFrecuentTitleRequest,
-//   mostFrecuentTitleSuccess,
-//   mostFrecuentAuthorRequest,
-//   mostFrecuentAuthorSuccess,
-//   mostFrecuentFieldRequest,
-//   mostFrecuentFieldSuccess,
-//   mostFrecuentInstitutionRequest,
-//   mostFrecuentInstitutionSuccess,
-//   mostFrecuentCountryRequest,
-//   mostFrecuentCountrySuccess,
-//   mostFrecuentPublisherRequest,
-//   mostFrecuentPublisherSuccess,
-// } from '../../../constants/actions/Landing'
-// import {resultsListError} from '../../../constants/actions/GlobalMessages'
+import {connect} from 'react-redux'
 
-// function mapStateToProps(store) {
-//     return {landing: store.get('Landing')}
-// }
+import {landingUniversityFieldYearRequest} from '../../../constants/eduportal/actions/Landing'
 
-const store ={
+function mapStateToProps(store) {
+    return {landing: store.get('Landing')}
 }
 
 class SmartUniversityFieldYear extends Component {
 
-  componentDidMount = () => {}
+  componentDidMount = () => {
+    let dispatch = this.props.dispatch;
+    dispatch(landingUniversityFieldYearRequest(1));
+  }
 
 
   render() {
-      return (
-          <DummyUniversityFieldYear
-            store={store}
-            router={this.props.router}
-          />
-      )
+    return (this.props.landing.getIn(['universityFieldYearLandingState','mostFrecuent']).toJS().length === 0) ?
+    (<div></div>) :
+    (
+      <DummyUniversityFieldYear
+        store={this.props.landing.getIn(['universityFieldYearLandingState']).toJS()}
+        router={this.props.router}
+      />
+    )
   }
 }
 
-export default SmartUniversityFieldYear
-// export default connect(mapStateToProps)(SmartUniversityFieldYear)
+export default connect(mapStateToProps)(SmartUniversityFieldYear)

@@ -19,7 +19,7 @@ const objectItem = {
   "pub_year":1943
 }
 
-it('renders without crashing', () => {
+test('renders without crashing', () => {
     const div = document.createElement('div')
     ReactDOM.render(
         <TitleItemList objectItem={objectItem}/>, div)

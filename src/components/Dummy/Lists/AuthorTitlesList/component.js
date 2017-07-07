@@ -14,19 +14,19 @@ class AuthorTitlesList extends Component {
           <li key={i}>
             <p className="name-title">
               <Link to={{
-                pathname: "/result/title",
+                pathname: "/university-portal/result/title",
                 query: {id:item._id}
               }}>
                 {item.title}
               </Link>
             </p>
             <p className="name-editorial">
-              <Link to={{
-                pathname: "/result/publisher",
-                query: {id:item.publisher._id}
-              }}>
+              {/* <Link to={{
+                // pathname: "/result/publisher",
+                // query: {id:item.publisher._id}
+              }}> */}
               {item.publisher.name}
-              </Link>
+              {/* </Link> */}
               , {item.pub_year}
             </p>
             <div>

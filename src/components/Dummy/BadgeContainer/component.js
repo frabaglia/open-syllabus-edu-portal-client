@@ -4,34 +4,9 @@ import BadgesList from '../Lists/BadgesList/component'
 import {data} from '../../../os-toolkit/Data/component'
 import './component.sass';
 
-const store = [
-  {
-    name: 'History',
-    syllabus_count: 360,
-    _id: 1
-  },
-  {
-    name: 'Political Science',
-    syllabus_count: 316,
-    _id: 2
-  },
-  {
-    name: 'Astronomy',
-    syllabus_count: 290,
-    _id: 3
-  },
-  {
-    name: 'Classics',
-    syllabus_count: 22,
-    _id: 4
-  },
-]
-
 class BadgeContainer extends Component {
 
-  changeDataFromSelects = (year) =>{
-    console.log(year);
-  }
+  changeDataFromSelects = (year) => this.props._makeRequest(year)
 
   render () {
     return (
@@ -47,7 +22,7 @@ class BadgeContainer extends Component {
         </div>
         <div className="badge-container-body">
           <BadgesList
-            store={store}
+            store={this.props.store}
             router={this.props.router}
           />
         </div>

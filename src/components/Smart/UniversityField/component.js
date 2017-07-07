@@ -1,55 +1,37 @@
 import React, {Component} from 'react';
 import DummyUniversityField from '../../Views/UniversityField/component.js'
-// import {connect} from 'react-redux'
-// import {
-//     TYPE_TITLE,
-//     TYPE_AUTHOR,
-//     TYPE_INSTITUTION,
-//     TYPE_FIELD,
-//     TYPE_COUNTRY,
-//     TYPE_PUBLISHER,
-//     // TYPE_INSTITUTION_FIELD
-// } from '../../../constants/action-types/store'
-//
-// import {syllabusHTTPService} from '../../../os-toolkit/SyllabusHTTPService'
-// import {
-//   mostFrecuentTypeUpdate,
-//   mostFrecuentTitleRequest,
-//   mostFrecuentTitleSuccess,
-//   mostFrecuentAuthorRequest,
-//   mostFrecuentAuthorSuccess,
-//   mostFrecuentFieldRequest,
-//   mostFrecuentFieldSuccess,
-//   mostFrecuentInstitutionRequest,
-//   mostFrecuentInstitutionSuccess,
-//   mostFrecuentCountryRequest,
-//   mostFrecuentCountrySuccess,
-//   mostFrecuentPublisherRequest,
-//   mostFrecuentPublisherSuccess,
-// } from '../../../constants/actions/Landing'
-// import {resultsListError} from '../../../constants/actions/GlobalMessages'
+import {connect} from 'react-redux'
 
-// function mapStateToProps(store) {
-//     return {landing: store.get('Landing')}
-// }
+import {landingUniversityFieldRequest} from '../../../constants/eduportal/actions/Landing'
 
-const store ={
+function mapStateToProps(store) {
+    return {landing: store.get('Landing')}
 }
+
 
 class SmartUniversityField extends Component {
 
-  componentDidMount = () => {}
+  componentDidMount = () => {
+    this.makeRequest('')
+  }
 
+  makeRequest = (year) => {
+    let dispatch = this.props.dispatch;
+    if(year !== '') dispatch(landingUniversityFieldRequest({years:[year]}));
+    else dispatch(landingUniversityFieldRequest(1));
+  }
 
   render() {
-      return (
-          <DummyUniversityField
-            store={store}
-            router={this.props.router}
-          />
-      )
+    return (this.props.landing.getIn(['universityFieldLandingState','fieldChart']).toJS().length === 0) ?
+    (<div></div>) :
+    (
+      <DummyUniversityField
+        store={this.props.landing.getIn(['universityFieldLandingState']).toJS()}
+        router={this.props.router}
+        _makeRequest={this.makeRequest}
+      />
+    )
   }
 }
 
-export default SmartUniversityField
-// export default connect(mapStateToProps)(SmartUniversityField)
+export default connect(mapStateToProps)(SmartUniversityField)

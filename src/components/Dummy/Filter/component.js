@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 import './component.sass'
-import ButtonRegular from '../Buttons/ButtonRegular/component.js'
-import ButtonClearFilter from '../Buttons/ButtonClearFilter/component.js'
 import ButtonSearch from '../Buttons/ButtonSearch/component.js'
 import BadgesFilterList from '../Lists/BadgesFilterList/component.js'
-import $ from 'jquery';
 
 
 
@@ -14,203 +11,68 @@ class Filter extends Component {
     super();
     this.state = {
       selected: '',
-      currentQuery: [],
-      paramDataList:[]
+      queryList: [],
+      currentString:''
     }
   }
 
-  componentDidMount = () => {
-    // this.setState({
-    //   selected:this.props.filtersCategory[0],
-    //   paramDataList:this.props.paramData
-    // })
+  addParamToQuery = (e) => {
+    this.isFilterable()
+    if(this.state.currentString !== ''){
+      let currentQuertList = [],
+          paramQuery = {
+            name: this.state.currentString
+          }
+      currentQuertList = this.state.queryList;
 
-    $(window).click( (event) => {
-      if(event.target.type !== 'text' && this.refs.selectMenu !== undefined) this.refs.selectMenu.className = 'select-menu'
-    })
-
-    this.refs.selectMenu.style.width = `${$(this.refs.inputSearch).width()+22}px`
-
-    $(window).resize( () =>{
-      if(this.refs.selectMenu !== undefined) this.refs.selectMenu.style.width = `${$(this.refs.inputSearch).width()+22}px`
-    })
-  }
-
-  componentWillReceiveProps = (nextProps) => {
-    this.setState({paramDataList:nextProps.paramData});
-  }
-
-  sendString = (e) => this.props.inputString(e.target.value)
-
-  handleEnter = (e) => {
-    if(e.target.type === 'text') {
-      if(e.key === 'Enter') this.props.makeSearch(0);
-    }
-    if ( e.target.type === undefined && this.state.selected === this.props.category) this.props.makeSearch(this.props.category);
-  }
-
-  renderSelectMenu = () => this.refs.selectMenu.className = "select-menu show-select-menu"
-
-  addParamToQuery = (e) =>
-  {
-    let currentQuery = this.state.currentQuery,
-        paramQuery = {
-          "_id": e.target.getAttribute('data-id'),
-          "name": e.target.getAttribute('data-name'),
-          "category": e.target.getAttribute('data-category')
+      if(e.target.type === 'text') {
+        if(e.key === 'Enter') {
+          currentQuertList.push(paramQuery)
+          this.setState({
+              queryList:currentQuertList, currentString:''
+            },
+            () =>{
+              this.refs.inputSearch.value = '';
+              this.props._makeSearch(this.state.queryList);
+            }
+          )
         }
-    currentQuery.push(paramQuery);
-
-    this.setState(
-      {currentQuery:currentQuery}, () =>{
-        this.props.inputString(''); this.props.currentParamsQuery(this.state.currentQuery);
-        this.refs.inputSearch.value = '';
-    });
-    this.refs.selectMenu.className = 'select-menu'
-
-  }
-
-  makeItemSelectContent = (field,i) =>
-  {
-    switch (this.state.selected) {
-      case 'Title':
-        return
-        break;
-
-      case 'Author':
-        let name_first = field.author_first || '',
-            name_middle = field.author_middle || '',
-            name_last = field.author_last || '';
-        return (
-          <li
-            key={i}
-            data-id={field._id}
-            data-name={`${name_first} ${name_middle} ${name_last}`}
-            data-category={this.state.selected}
-            onClick={this.addParamToQuery}
-          >
-            <span
-              data-id={field._id}
-              data-name={`${name_first} ${name_middle} ${name_last}`}
-              data-category={this.state.selected}
-            >
-              {`${name_first} ${name_middle} ${name_last}`}
-            </span>
-          </li>
+      }
+      if ( e.target.type === undefined) {
+        currentQuertList.push(paramQuery)
+        this.setState({
+            queryList:currentQuertList, currentString:''
+          },
+          () =>{
+            this.refs.inputSearch.value = '';
+            this.props._makeSearch(this.state.queryList);
+          }
         )
-        break;
-
-      case 'Field':
-        return (
-          <li
-            key={i}
-            data-id={field._id}
-            data-name={field.name}
-            data-category={this.state.selected}
-            onClick={this.addParamToQuery}
-          >
-            <span
-              data-id={field._id}
-              data-name={field.name}
-              data-category={this.state.selected}
-            >
-                {field.name}
-              </span>
-          </li>
-        )
-        break;
-
-      case 'School':
-      return (
-        <li
-          key={i}
-          data-id={field._id}
-          data-name={field.name}
-          data-category={this.state.selected}
-          onClick={this.addParamToQuery}
-        >
-          <span
-            data-id={field._id}
-            data-name={field.name}
-            data-category={this.state.selected}
-            >
-              {field.name}
-            </span>
-        </li>
-      )
-        break;
-
-      case 'Country':
-        return (
-          <li
-            key={i}
-            data-id={field._id}
-            data-name={field.name}
-            data-category={this.state.selected}
-            onClick={this.addParamToQuery}
-          >
-            <span
-              data-id={field._id}
-              data-name={field.name}
-              data-category={this.state.selected}
-            >
-                {field.name}</span>
-          </li>
-        )
-        break;
-
-      case 'Publisher':
-      return (
-        <li
-          key={i}
-          data-id={field._id}
-          data-name={field.name}
-          data-category={this.state.selected}
-          onClick={this.addParamToQuery}
-        >
-          <span
-            data-id={field._id}
-            data-name={field.name}
-            data-category={this.state.selected}
-          >
-            {field.name}
-          </span>
-        </li>
-      )
-        break;
-
-      default:
-
+      }
     }
   }
 
-  renderSelectContent = () =>
+  eraseParamFromQuery = (paramName) =>
   {
-    let fieldsArray = this.state.paramDataList,
-        selectContent = [];
-    fieldsArray.map( (field, i) =>{
-      selectContent.push(
-        this.makeItemSelectContent(field,i)
-      )
-    })
-    return selectContent
-  }
-
-  eraseParamFromQuery = (paramId) =>
-  {
-    let currentQuery = this.state.currentQuery,
+    let queryList = this.state.queryList,
         paramPosition;
 
-    currentQuery.map( (param, i) =>{
-      if(param._id === paramId) paramPosition = i
+    queryList.map( (param, i) =>{
+      if(param.name === paramName) paramPosition = i
     })
 
-    currentQuery.splice(paramPosition,1);
+    queryList.splice(paramPosition,1);
 
     this.setState(
-      {currentQuery:currentQuery}, this.props.currentParamsQuery(this.state.currentQuery)
+      {queryList:queryList}, this.props._makeSearch(this.state.queryList)
     );
 
+  }
+
+  isFilterable = () =>{
+    if(!this.props.router.location.pathname.includes('result-list')) {
+      this.props.router.push('/university-portal/result-list/full-texts')
+    }
   }
 
   render() {
@@ -222,24 +84,20 @@ class Filter extends Component {
                 ref='inputSearch'
                 type="text"
                 placeholder="Search..."
-                // onChange={this.sendString}
-                // onKeyPress={this.handleEnter}
-                // onFocus={this.renderSelectMenu}
+                onChange={(e) =>{this.setState({currentString:e.target.value})}}
+                onKeyPress={this.addParamToQuery}
+                onFocus={this.isFilterable}
               >
               </input>
-              <div ref="selectMenu" className="select-menu">
-                <ul>
-                  {/* {this.renderSelectContent()} */}
-                </ul>
-              </div>
             </div>
-            <ButtonSearch click={this.handleEnter}/>
+            <ButtonSearch click={this.addParamToQuery}/>
           </div>
-          {/* <div>
+          <div>
             <BadgesFilterList
+              type={this.props.filtersCategory}
               eraseParamFromQuery={this.eraseParamFromQuery}
-              paramsList={this.state.currentQuery}/>
-          </div> */}
+              paramsList={this.state.queryList}/>
+          </div>
         </div>
       )
   }

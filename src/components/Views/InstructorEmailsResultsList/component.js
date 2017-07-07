@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Filter from '../../Dummy/Filter/component'
 import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
+import SyllabiList from '../../Dummy/Lists/SyllabiList/component'
+import {Link} from 'react-router';
 import './component.sass'
 
 class InstructorEmailsResultsList extends Component {
@@ -15,29 +17,34 @@ class InstructorEmailsResultsList extends Component {
               <div className="search-view-header">
                 <div className="search-view-header-title">
                   <span className="third-color small-font-size">University Portal</span>
-                  <p className="large-font-size font-bold">Columbia University</p>
+                  <Link to="/university-portal">
+                    <p className="large-font-size font-bold">Columbia University</p>
+                  </Link>
                 </div>
                 <div className="search-view-header-navigation">
                   <div className="internal-navbar-filter-container">
                     <div className="internal-navbar-component">
-                      <InternalNavbar router={this.props}/>
+                      <InternalNavbar router={this.props.router}/>
                     </div>
                     <div className="filter-component">
-                      <Filter/>
+                      <Filter
+                        filtersCategory={'InstructorEmails'}
+                        _makeSearch={this.props._makeSearch}
+                        router={this.props.router}
+                      />
                     </div>
                   </div>
                   <div className="filter-syllabi-component">
                     {SyllabiCounter({
-                      count: 4500,
+                      count: store.syllabus_count,
                       subtitle:''
                     })}
                   </div>
                 </div>
               </div>
               <div className="content-container">
-                INSTRUCTOR EMAILS VIEW
                 <div className="left-side">
-
+                  <SyllabiList store={store.syllabi_list} isInstructorEmails={true}/>
                 </div>
                 <div className="right-side">
 

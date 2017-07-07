@@ -13,17 +13,24 @@ class MostFrecuentlyAssignedTextItemList extends Component {
         <li>
           <p className="name-title">
             <Link
-              // to={{
-              // pathname: "/result/title",
-              // query: {id:objectItem._id}
-              // }}
+              to={{
+              pathname: "/university-portal/result/title",
+              query: {id:objectItem._id}
+              }}
             >
               {objectItem.title}
             </Link>
           </p>
+          <Link
+            to={{
+            pathname: "/university-portal/result/author",
+            query: {id:objectItem._id}
+            }}
+          >
           <p className="name-author">
             {`${first_name} ${middle_name} ${last_name}`}
           </p>
+          </Link>
           <p className="name-editorial">
             <Link
               // to={{

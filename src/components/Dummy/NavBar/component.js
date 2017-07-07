@@ -77,8 +77,7 @@ class NavBar extends Component {
   }
 
   render() {
-    console.log(this.props);
-      return (this.renderNavBar())
+    return (this.renderNavBar())
   }
 }
 

@@ -12,7 +12,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
-var Visualizer = require('webpack-visualizer-plugin');
+// var Visualizer = require('webpack-visualizer-plugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -229,7 +229,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new Visualizer(),
+    // new Visualizer(),
     // extractSass,
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:

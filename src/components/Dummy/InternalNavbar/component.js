@@ -15,19 +15,21 @@ class InternalNavbar extends Component {
   }
 
   styleSelected = (buttonName) =>{
-    let backgroundColor = '#C8CFD7';
+    let backgroundColor = '#C8CFD7',
+        pathname = this.props.router.location.pathname
+
     switch (buttonName) {
       case 'FULLTEXTS':
-        if(this.state.fullTextsSelected) backgroundColor = '#9BD331';
+        if(pathname.includes("full-texts")) backgroundColor = '#9BD331';
         break;
       case 'TITLES':
-        if(this.state.titlesSelected) backgroundColor = '#9BD331';
+        if(pathname.includes("titles")) backgroundColor = '#9BD331';
         break;
       case 'AUTHORS':
-        if(this.state.authorstSelected) backgroundColor = '#9BD331';
+        if(pathname.includes("authors")) backgroundColor = '#9BD331';
         break;
       case 'INSTRUCTOREMAILS':
-        if(this.state.instructorEmailsSelected) backgroundColor = '#9BD331';
+        if(pathname.includes("instructor-emails")) backgroundColor = '#9BD331';
         break;
       default:
     }
@@ -38,39 +40,19 @@ class InternalNavbar extends Component {
   }
 
   isButtonSelected = (buttonName) =>{
+    let pathname = this.props.router.location.pathname
     switch (buttonName) {
       case 'Full Text':
-        if(!this.state.fullTextsSelected){
-          this.setState({fullTextsSelected:true, titlesSelected:false, authorstSelected:false, instructorEmailsSelected:false }
-          //   , ()=>{
-          //   console.log(this.props);
-          //   this.props.router.router.push('result-list/full-texts')
-          // }
-        )
-        }
+        if(!pathname.includes("full-texts")) this.props.router.push("/university-portal/result-list/full-texts")
         break;
       case 'Titles':
-      if(!this.state.titlesSelected){
-        this.setState({fullTextsSelected:false, titlesSelected:true, authorstSelected:false, instructorEmailsSelected:false }
-          // , ()=>{
-          // this.props.router.router.push({
-          //   pathname: 'result-list/titles',
-          //   // state: {  tournament: torneo,
-          //   //           dataTournament: tournament
-          //   //  },
-          // })}
-        )
-      }
+        if(!pathname.includes("titles")) this.props.router.push("/university-portal/result-list/titles")
         break;
       case 'Authors':
-      if(!this.state.authorstSelected){
-        this.setState({fullTextsSelected:false, titlesSelected:false, authorstSelected:true, instructorEmailsSelected:false })
-      }
+        if(!pathname.includes("authors")) this.props.router.push("/university-portal/result-list/authors")
         break;
       case 'Instructor Emails':
-      if(!this.state.instructorEmailsSelected){
-        this.setState({fullTextsSelected:false, titlesSelected:false, authorstSelected:false, instructorEmailsSelected:true })
-      }
+      if(!pathname.includes("instructor-emails")) this.props.router.push("/university-portal/result-list/instructor-emails")
         break;
       default:
     }

@@ -1,0 +1,9 @@
+import {
+    TYPE_TITLE
+} from '../../store-types'
+
+const RESULT = "RESULT"
+const TITLE_RESULT = TYPE_TITLE + RESULT
+export const TITLE_RESULT_REQUEST = TITLE_RESULT + "_REQUEST"
+export const TITLE_RESULT_SUCCESS = TITLE_RESULT + "_SUCCESS"
+export const TITLE_RESULT_ERROR = TITLE_RESULT + "_ERROR"

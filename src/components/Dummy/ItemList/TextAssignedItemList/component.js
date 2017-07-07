@@ -15,7 +15,7 @@ class TextAssignedItemList extends Component {
           <div className="text">
             <p>
               <Link to={{
-                pathname: "/result/title",
+                pathname: "/university-portal/result/title",
                 query: {id:objectItem._id}
               }}>
                 {objectItem.title}
@@ -23,7 +23,7 @@ class TextAssignedItemList extends Component {
             </p>
             <span className="name">
               <Link to={{
-                pathname: "/result/author",
+                pathname: "/university-portal/result/author",
                 query: {id:objectItem.author._id}
               }}>
                 {`${first_name}, ${middle_name} ${last_name}`}

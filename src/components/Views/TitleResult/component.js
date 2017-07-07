@@ -34,7 +34,7 @@ class DummyTitleResult extends Component {
                     </p>
                     <p className="author-view">
                       <Link to={{
-                        pathname: "/result/author",
+                        pathname: "/university-portal/result/author",
                         query: {id:store.author._id}
                       }}>
                         {`${first_name} ${middle_name} ${last_name}`}
@@ -42,8 +42,8 @@ class DummyTitleResult extends Component {
                     </p>
                     <p className="editorial">
                       <Link to={{
-                        pathname: "/result/publisher",
-                        query: {id:store.publisher._id}
+                        // pathname: "/result/publisher",
+                        // query: {id:store.publisher._id}
                       }}>
                         {`${store.publisher.name}, ${store.pub_year}`}
                       </Link>
