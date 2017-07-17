@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {LineChart, Line, Legend, Tooltip, XAxis, YAxis, CartesianGrid} from 'recharts'
+import {LineChart, Line, Tooltip, XAxis, YAxis, CartesianGrid} from 'recharts'
 import ButtonFilterDropdown from '../Buttons/ButtonFilterDropdown/component'
 import './component.sass'
 import $ from 'jquery'
