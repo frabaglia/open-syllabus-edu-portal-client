@@ -8,13 +8,22 @@ import SVGContactIconEmail from '../../Dummy/SVG/ContactIconEmail/component'
 import SVGContactIconPhone from '../../Dummy/SVG/ContactIconPhone/component'
 import FeatureContainer from '../../Dummy/FeatureContainer/component'
 import './component.sass'
-import $ from 'jquery'
+// import $ from 'jquery'
 
 class DummyLanding extends Component {
 
+  state = {
+    $: null
+  }
+
+  componentDidMount = async () =>{
+    const $ = await import('jquery')
+    this.setState({$: $})
+  }
+
   scrollToTop = () => {
-    if(document.body.scrollTop+1 <= $('.feature-container').offset().top - 400){
-      $("html, body").animate({scrollTop: $('.feature-container').offset().top - 400 }, 2000);
+    if(document.body.scrollTop+1 <= this.state.$('.feature-container').offset().top - 400){
+      this.state.$("html, body").animate({scrollTop: this.state.$('.feature-container').offset().top - 400 }, 2000);
     }
 }
 
