@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import './component.sass'
 import ArrowDown from '../../SVG/ArrowDown/component.js'
 import ArrowUp from '../../SVG/ArrowUp/component.js'
-import $ from 'jquery'
+// import $ from 'jquery'
 
 class ButtonDropdown extends Component {
 
@@ -11,14 +11,19 @@ class ButtonDropdown extends Component {
     this.state = {
       open: false,
       title: props.title,
-      color: props.color
+      color: props.color,
+      $: null
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
+    const $ = await import('jquery')
+    this.setState({$: $}, () =>{this.closeIfOpen()})
+  }
 
+  closeIfOpen = () =>{
     if(this.refs.btnDropdown !== undefined){
-      $(window).click( (event) => {
+      this.state.$(window).click( (event) => {
         if (!event.target.matches('.dropbtn')) {
           if(this.state.open) this.setState({open:false}, () => {this.changeClassNames()});
         }

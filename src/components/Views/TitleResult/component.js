@@ -8,12 +8,28 @@ import SVGTwitterLogo from '../../Dummy/SVG/TwitterLogo/component.js'
 import BadgesList from '../../Dummy/Lists/BadgesList/component.js'
 import TextAssignedList from '../../Dummy/Lists/TextAssignedList/component.js'
 import SeeTheTextOnSyllabiList from '../../Dummy/Lists/SeeTheTextOnSyllabiList/component.js'
-import BarChart from '../../Dummy/BarChart/component.js'
+// import BarChart from '../../Dummy/BarChart/component.js'
 
 
 class DummyTitleResult extends Component {
 
+  state = {
+    BarChart: null
+  }
 
+  componentDidMount = async () =>{
+
+    const {default: BarChart} = await import('../../Dummy/BarChart/component.js')
+    this.setState({BarChart:
+      <BarChart
+        title={"Top Field by Year"}
+        legend={false}
+        store={this.props.store.top_fields_by_year.data}
+        isNormalizable={false}
+        getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
+      />
+    })
+  }
 
     render() {
       let store = this.props.store,
@@ -92,13 +108,7 @@ class DummyTitleResult extends Component {
                       <SeeTheTextOnSyllabiList store={store.seeTheTextOn}/>
                     </div>
                     <div className="barchart-component">
-                      <BarChart
-                        title={"Top Field by Year"}
-                        legend={false}
-                        store={store.top_fields_by_year.data}
-                        isNormalizable={false}
-                        getDataNormalizedOrRAW={this.props.getDataNormalizedOrRAW}
-                      />
+                      {this.state.BarChart || <div></div>}
                     </div>
                   </aside>
                 </div>

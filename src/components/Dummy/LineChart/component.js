@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import {LineChart, Line, Legend, Tooltip, XAxis, YAxis, CartesianGrid} from 'recharts'
+import {LineChart, Line, Tooltip, XAxis, YAxis, CartesianGrid} from 'recharts'
 import ButtonFilterDropdown from '../Buttons/ButtonFilterDropdown/component'
 import './component.sass'
-import $ from 'jquery'
+// import $ from 'jquery'
 
 const yearsFrom=[
   {_id:1, name:'1977-1979' , param: '1977-1979'},
@@ -27,16 +27,22 @@ class LineChartComponent extends Component {
       width: 0,
       height: 400,
       yearsFrom: undefined,
-      yearsTo: undefined
+      yearsTo: undefined,
+      $: null
     };
   }
 
-  componentDidMount = () =>
+  componentDidMount = async () =>
   {
-    let width = Number($(this.refs.linechartContainer).width());
+    const $ = await import('jquery')
+    this.setState({$: $}, () =>{this.resizeChart()})
+  }
+
+  resizeChart = () =>{
+    let width = Number(this.state.$(this.refs.linechartContainer).width());
     this.setState({width: width});
-    $(window).resize( () =>{
-      width = Number($(this.refs.linechartContainer).width())
+    this.state.$(window).resize( () =>{
+      width = Number(this.state.$(this.refs.linechartContainer).width())
       if(this.refs.linechartContainer !== undefined) this.setState({width:width});
     })
     this.setState({data:this.props.data})

@@ -12,7 +12,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
-// var Visualizer = require('webpack-visualizer-plugin');
+var Visualizer = require('webpack-visualizer-plugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -164,6 +164,15 @@ module.exports = {
         loader: require.resolve('babel-loader'),
 
       },
+      {
+        'loader': require.resolve('babel-loader'),
+        'test': /\.js$/,
+        'exclude': /node_modules/,
+        'query': {
+          'plugins': ['recharts'],
+          // 'presets': ['es2015']
+        }
+      },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -229,7 +238,7 @@ module.exports = {
     ],
   },
   plugins: [
-    // new Visualizer(),
+    new Visualizer(),
     // extractSass,
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:

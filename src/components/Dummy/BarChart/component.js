@@ -7,7 +7,7 @@ import BarChart from 'react-d3-components/lib/BarChart.js'
 import './component.sass'
 // import * as d3 from 'd3'
 import {scaleOrdinal} from "d3-scale";
-import $ from 'jquery'
+// import $ from 'jquery'
 
 const listType = ["Normalized","RAW"];
 
@@ -19,16 +19,24 @@ class BarChartComponent extends Component {
       width: 0,
       height: 400,
       expanded: false,
-      normalized: "Normalized"
+      normalized: "Normalized",
+      $: null
     };
   }
 
-  componentDidMount = () =>
+
+  componentDidMount = async () =>
   {
-    let width = Number($(this.refs.barchartContainer).width());
+    const $ = await import('jquery')
+    this.setState({$: $}, () =>{this.resizeChart()})
+  }
+
+  resizeChart = () =>
+  {
+    let width = Number(this.state.$(this.refs.barchartContainer).width());
     this.setState({width: width});
-    $(window).resize( () =>{
-      width = Number($(this.refs.barchartContainer).width())
+    this.state.$(window).resize( () =>{
+      width = Number(this.state.$(this.refs.barchartContainer).width())
       if(this.refs.barchartContainer !== undefined) this.setState({width:width});
     })
 
@@ -42,14 +50,14 @@ class BarChartComponent extends Component {
         this.refs.barchartContainer.className = 'expand-barchart container-map'
         this.refs.headerContainer.className = 'container-header container-header-expand noLanding'
         // this.refs.buttonLabel.className = 'hidden'
-        $('body').css( 'overflow-y', 'hidden');
+        this.state.$('body').css( 'overflow-y', 'hidden');
         this.componentDidMount()
       }
       else {
         this.refs.barchartContainer.className = 'container-map'
         this.refs.headerContainer.className = 'container-header noLanding'
         // this.refs.buttonLabel.className = 'unattributed-label'
-        $('body').css( 'overflow-y', 'scroll');
+        this.state.$('body').css( 'overflow-y', 'scroll');
         this.componentDidMount()
       }
       this.setState({expanded:!this.state.expanded})
@@ -60,7 +68,7 @@ class BarChartComponent extends Component {
         this.refs.headerContainer.className = 'container-header container-header-expand'
         this.refs.legend.className = 'legend legend-expand'
         // this.refs.buttonLabel.className = 'hidden'
-        $('body').css( 'overflow-y', 'hidden');
+        this.state.$('body').css( 'overflow-y', 'hidden');
         this.componentDidMount()
       }
       else {
@@ -68,7 +76,7 @@ class BarChartComponent extends Component {
         this.refs.headerContainer.className = 'container-header'
         this.refs.legend.className = 'legend'
         // this.refs.buttonLabel.className = 'unattributed-label'
-        $('body').css( 'overflow-y', 'scroll');
+        this.state.$('body').css( 'overflow-y', 'scroll');
         this.componentDidMount()
       }
       this.setState({expanded:!this.state.expanded})

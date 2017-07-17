@@ -3,8 +3,8 @@ import Filter from '../../Dummy/Filter/component'
 import SyllabyAvailableByYear from '../../Dummy/SyllabiAvailableByYearContainer/component'
 import CloestPeerTeachingProfiles from '../../Dummy/CloestPeerTeachingProfilesContainer/component'
 import ContainerTopRankedList from '../../Dummy/ContainerTopRankedList/component'
-import BarChart from '../../Dummy/BarChart/component.js'
-import LineChart from '../../Dummy/LineChart/component.js'
+// import BarChart from '../../Dummy/BarChart/component.js'
+// import LineChart from '../../Dummy/LineChart/component.js'
 import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
 
@@ -87,6 +87,26 @@ const data = [
 
 class UniversityField extends Component {
 
+  state = {
+    LineChart:null,
+    BarChart: null
+  }
+
+  componentDidMount = async () =>{
+    const {default: LineChart} = await import('../../Dummy/LineChart/component.js')
+    this.setState({LineChart: <LineChart data={data}/>})
+
+    const {default: BarChart} = await import('../../Dummy/BarChart/component.js')
+    this.setState({BarChart:
+      <BarChart
+        title={"Syllabi by Field and Year"}
+        legend={false}
+        store={this.props.store.fieldChart}
+        isNormalizable={false}
+        getDataNormalizedOrRAW={"Normalized"}
+      />
+  })
+  }
 
 
     render() {
@@ -142,18 +162,10 @@ class UniversityField extends Component {
                 </div>
                 <div className="right-side">
                   <div className="bar-chart-component">
-                    <BarChart
-                      title={"Syllabi by Field and Year"}
-                      legend={false}
-                      store={store.fieldChart}
-                      isNormalizable={false}
-                      getDataNormalizedOrRAW={"Normalized"}
-                    />
+                    {this.state.BarChart || <div></div>}
                   </div>
                   <div className="line-chart-component">
-                    <LineChart
-                      data={data}
-                    />
+                    {this.state.LineChart || <div></div>}
                   </div>
                 </div>
               </div>

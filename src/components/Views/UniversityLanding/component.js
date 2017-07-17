@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Filter from '../../Dummy/Filter/component'
 import BadgeContainer from '../../Dummy/BadgeContainer/component'
-import BarChart from '../../Dummy/BarChart/component.js'
+// import BarChart from '../../Dummy/BarChart/component.js'
 import MostFrecuentlyAssignedTextList from '../../Dummy/Lists/MostFrecuentlyAssignedTextList/component.js'
 import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
@@ -9,7 +9,23 @@ import './component.sass'
 
 class UniversityLanding extends Component {
 
+  state = {
+    BarChart: null
+  }
 
+  componentDidMount = async () =>{
+
+    const {default: BarChart} = await import('../../Dummy/BarChart/component.js')
+    this.setState({BarChart:
+      <BarChart
+        title={"Syllabi by Field and Year"}
+        legend={false}
+        store={this.props.store.fieldChart}
+        isNormalizable={false}
+        getDataNormalizedOrRAW={"Normalized"}
+      />
+    })
+  }
 
     render() {
       let store = this.props.store;
@@ -57,13 +73,7 @@ class UniversityLanding extends Component {
                   </div>
                 </div>
                 <div className="right-side">
-                  <BarChart
-                    title={"Syllabi by Field and Year"}
-                    legend={false}
-                    store={store.fieldChart}
-                    isNormalizable={false}
-                    getDataNormalizedOrRAW={"Normalized"}
-                  />
+                  {this.state.BarChart || <div></div>}
                 </div>
               </div>
             </div>

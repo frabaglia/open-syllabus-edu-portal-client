@@ -1,10 +1,14 @@
 import React, {Component} from 'react'
-import $ from 'jquery';
+// import $ from 'jquery';
 import './component.sass'
 import NavBar from '../../Dummy/NavBar/component.js'
 import Footer from '../../Dummy/Footer/component.js'
 
 class UIContainer extends Component {
+
+  state = {
+    $: null
+  }
 
   header = () =>
   {
@@ -19,14 +23,21 @@ class UIContainer extends Component {
     return {header: header, parallax: parallax};
   }
 
-  componentDidMount = () =>{
-  $(window).scroll(function() {
-      if ($(document).scrollTop() > 50) {
-      $('.navbar-fixed').addClass('shrink');
-      } else {
-      $('.navbar-fixed').removeClass('shrink');
-      }
-    });
+  componentDidMount = async () =>{
+    const $ = await import('jquery')
+    this.setState({$: $}, () =>{this.shrink()})
+
+  }
+
+  shrink = ( ) =>{
+    console.log(this.state.$);
+    this.state.$(window).scroll(() => {
+        if (this.state.$(document).scrollTop() > 50) {
+        this.state.$('.navbar-fixed').addClass('shrink');
+        } else {
+        this.state.$('.navbar-fixed').removeClass('shrink');
+        }
+      });
   }
 
     render() {
