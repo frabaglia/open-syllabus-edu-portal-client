@@ -3,13 +3,35 @@ import ExpandIcon from "../../Dummy/SVG/ExpandIcon/component.js"
 import ExpandCloseIcon from "../../Dummy/SVG/ExpandCloseIcon/component.js"
 import ButtonBarChartDropdown from "../Buttons/ButtonBarChartDropdown/component.js"
 import ToolTip from "../ToolTip/component.js"
-import BarChart from 'react-d3-components/lib/BarChart.js'
+import {BarChart, Bar, Tooltip, XAxis, YAxis, CartesianGrid} from 'recharts'
 import './component.sass'
-// import * as d3 from 'd3'
-import {scaleOrdinal} from "d3-scale";
-// import $ from 'jquery'
+// import BarChart from 'react-d3-components/lib/BarChart.js'
+// import {scaleOrdinal} from "d3-scale";
 
 const listType = ["Normalized","RAW"];
+
+const data = [
+  { year: '1997', Economics: 2000, Literature: 3000, History: 4500, English: 5000, Biology: 20000},
+  { year: '1998', Economics: 2000, Literature: 5000, History: 6500, English: 5000, Biology: 20000},
+  { year: '1999', Economics: 2000, Literature: 0, History: 5000, English: 5000, Biology: 20000},
+  { year: '2000', Economics: 2000, Literature: 4000, History: 4000, English: 5000, Biology: 20000},
+  { year: '2001', Economics: 2000, Literature: 0, History: 4000, English: 5000, Biology: 20000},
+  { year: '2002', Economics: 2000, Literature: 1500, History: 4000, English: 4, Biology: 20000},
+  { year: '2003', Economics: 2000, Literature: 3000, History: 4000, English: 4, Biology: 20000},
+  { year: '2004', Economics: 2000, Literature: 0, History: 4000, English: 4, Biology: 20000},
+  { year: '2005', Economics: 2000, Literature: 6000, History: 4000, English: 4, Biology: 20000},
+  { year: '2006', Economics: 2000, Literature: 0, History: 4000, English: 4, Biology: 20000},
+  { year: '2007', Economics: 2000, Literature: 2800, History: 4000, English: 4, Biology: 20000},
+  { year: '2008', Economics: 2000, Literature: 0, History: 4000, English: 4, Biology: 20000},
+  { year: '2009', Economics: 2000, Literature: 2800, History: 4000, English: 4, Biology: 20000},
+  { year: '2010', Economics: 2000, Literature: 2800, History: 4000, English: 4, Biology: 20000},
+  { year: '2011', Economics: 6000, Literature: 20000, History: 4000, English: 4, Biology: 20000},
+  { year: '2012', Economics: 2500, Literature: 2800, History: 4000, English: 5000, Biology: 20000},
+  { year: '2013', Economics: 5500, Literature: 2800, History: 4000, English: 5000, Biology: 20000},
+  { year: '2014', Economics: 6000, Literature: 3000, History: 4000, English: 5000, Biology: 20000},
+  { year: '2015', Economics: 4000, Literature: 2800, History: 4000, English: 6000, Biology: 20000},
+  { year: '2016', Economics: 4000, Literature: 2800, History: 4000, English: 10000, Biology: 20000},
+];
 
 class BarChartComponent extends Component {
 
@@ -87,15 +109,9 @@ class BarChartComponent extends Component {
 
   filterStoreData = () =>
   {
-      let filterStore = this.props.store;
-      if(!this.state.expanded){
-        filterStore = []
-        let arrayField;
-        this.props.store.map( (field, i) =>{
-          arrayField = field.values.slice(Math.max(field.values.length - 5, 0))
-          filterStore.push({label:field.label, values: arrayField})
-        })
-      }
+      // let filterStore = this.props.store;
+      let filterStore = data;
+      if(!this.state.expanded) filterStore = data.slice(Math.max(data.length - 5, 0))
       return filterStore
   }
 
@@ -103,54 +119,7 @@ class BarChartComponent extends Component {
     return (!this.state.expanded) ? <ExpandIcon click={this.makeFullScreen}/> : <ExpandCloseIcon click={this.makeFullScreen}/>
   }
 
-  // COLOR PALLETTE #3188D3 #9BD331 #5AC4C7 #FBD669 #FC976D #DF6161 #B76AC4 #85919F #405063 #855845
-
-  // colorScale = d3.scaleOrdinal()
-  //     .domain(["Economics", "Literature", "History", "English","Biology"])
-  //     .range(['#FC976D','#DF6161','#FBD669','#85919F','#B76AC4']);
-  colorScale = scaleOrdinal()
-      .domain(["Economics", "Literature", "History", "English","Biology"])
-      .range(['#FC976D','#DF6161','#FBD669','#85919F','#B76AC4']);
-
-
-  tooltipScatter = (x, y0, y,f,g) => {
-    let field;
-    switch (f) {
-      case "Economics":
-        field = (<span style={{color:'#FC976D'}} className="tooltip-content-field">{"Economics"}</span>)
-        break;
-
-      case "Literature":
-        field = (<span style={{color:'#DF6161'}} className="tooltip-content-field">{"Literature"}</span>)
-        break;
-
-      case "History":
-        field = (<span style={{color:'#FBD669'}} className="tooltip-content-field">{"History"}</span>)
-        break;
-
-      case "English":
-        field = (<span style={{color:'#85919F'}} className="tooltip-content-field">{"English"}</span>)
-        break;
-
-      case "Biology":
-        field = (<span style={{color:'#B76AC4'}} className="tooltip-content-field">{"Biology"}</span>)
-        break;
-
-      default:
-
-    }
-    return(
-      <div className="tooltip-wrapper">
-      <div className="tooltip">
-        <div className="tooltip-content">
-          {field}
-          <span className="tooltip-content-syllabi">{y.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
-        </div>
-        <div className="tooltip-tail"></div>
-      </div>
-      </div>
-    );
-  };
+  // COLOR PALLETTE ['#FC976D','#DF6161','#FBD669','#85919F','#B76AC4']
 
   renderCategoryName = () =>{
     let typeSelected;
@@ -162,7 +131,6 @@ class BarChartComponent extends Component {
   }
 
   setType = (type) => this.setState({normalized:type}, () =>{this.props.getDataNormalizedOrRAW(this.state.normalized)})
-  // setType = (type) => this.setState({normalized:type}, () =>{console.log(this.state.normalized);})
 
 
   renderContainerHeader = () =>
@@ -211,14 +179,21 @@ class BarChartComponent extends Component {
         <div className="wrapper-container-chart">
           <div className="container-chart">
             <BarChart
-              data={this.filterStoreData()}
-              // data={this.props.store}
               width={this.state.width}
               height={this.state.height}
-              margin={{top: 10, bottom: 40, left: 70, right: 10}}
-              colorScale={this.colorScale}
-              tooltipHtml={this.tooltipScatter}
-            />
+              margin={{top: 10, bottom: 40, left: -10, right: 40}}
+              data={this.filterStoreData()}
+              >
+              <XAxis dataKey="year" />
+              <YAxis />
+              <Tooltip />
+              <CartesianGrid vertical={false}/>
+              <Bar stackId="0" dataKey="Economics" fill="#FC976D" />
+              <Bar stackId="0" dataKey="Literature" fill="#DF6161" />
+              <Bar stackId="0" dataKey="History" fill="#FBD669" />
+              <Bar stackId="0" dataKey="English" fill="#85919F" />
+              <Bar stackId="0" dataKey="Biology" fill="#B76AC4" />
+            </BarChart>
             <div ref="legend" className="legend">
               <div className="item">
                 <div className="figure economics"></div>
