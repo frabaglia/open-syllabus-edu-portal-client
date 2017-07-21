@@ -18,7 +18,7 @@ class TextAssignedItemList extends Component {
                 pathname: "/university-portal/result/title",
                 query: {id:objectItem._id}
               }}>
-                {objectItem.title}
+                {objectItem.name}
               </Link>
             </p>
             <span className="name">

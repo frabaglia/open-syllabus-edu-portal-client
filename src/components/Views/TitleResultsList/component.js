@@ -5,6 +5,7 @@ import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
 import {Link} from 'react-router';
 import './component.sass'
+import SVGArrowLeft from '../../Dummy/SVG/ArrowLeft/component.js'
 
 class TitleResultsList extends Component {
 
@@ -14,7 +15,13 @@ class TitleResultsList extends Component {
             <div className="title-result-list">
               <div className="search-view-header">
                 <div className="search-view-header-title">
-                  <span className="third-color small-font-size">University Portal</span>
+                  <span className="third-color small-font-size breadcrumb">
+                    <Link to="/university-portal/">
+                      University Portal
+                    </Link>
+                    {SVGArrowLeft()}
+                    Titles
+                  </span>
                   <Link to="/university-portal">
                     <p className="large-font-size font-bold">Columbia University</p>
                   </Link>

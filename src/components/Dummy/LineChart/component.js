@@ -86,12 +86,49 @@ class LineChartComponent extends Component {
     })
   }
 
+  renderTooltip = (tooltipData) => {
+    // console.log(tooltipData);
+    let tooltip;
+    if(tooltipData.active && tooltipData.payload.length !== 0){
+      console.log(tooltipData);
+      // tooltipData.payload.map( (dataType) =>{
+      //   // console.log(dataType);
+      //   if(dataType.dataKey === "Professional men") {
+      //     // console.log(dataType);
+      //     // console.log(dataType.payload['dataType']);
+      //     tooltip = <div>{dataType.payload['dataType']}</div>
+      //   }
+      // })
+    }
+
+    // console.log(tooltip);
+    return tooltip;
+  }
+
   render() {
     return (
       <div ref="linechartContainer" className="linechart-container">
-        <p className="linechart-title font-bold mid-font-size">Share of employed people working 50 hours or more per week</p>
+        <p className="linechart-title font-semibold mid-font-size">Share of employed people working 50 hours or more per week</p>
+        <div className="linechart-filter">
+          <p className="linechart-filter-title">Biggest changes between</p>
+          <div className="linechart-filter-body">
+            <ButtonFilterDropdown
+              title="From"
+              arrayData={yearsFrom}
+              color="#A9B4C0"
+              changeDataFromSelects={this.changeDataFrom}
+            />
+            <p>and</p>
+            <ButtonFilterDropdown
+              title="To"
+              arrayData={yearsTo}
+              color="#A9B4C0"
+              changeDataFromSelects={this.changeDataTo}
+            />
+          </div>
+        </div>
         <LineChart width={this.state.width} height={this.state.height} data={this.filterData()}
-          margin={{ top: 5, right: 40, left: 7, bottom: 5 }}>
+          margin={{ top: 5, right: 40, left: -10, bottom: 5 }}>
           <XAxis dataKey="name" />
           <YAxis />
           <CartesianGrid vertical={false} />
@@ -114,24 +151,6 @@ class LineChartComponent extends Component {
             <p className="legend-item"><span className="square professional-women"></span>Professional women</p>
             <p className="legend-item"><span className="square middle-income-women"></span>Middle-income women</p>
             <p className="legend-item"><span className="square low-income-women"></span>Low-income women</p>
-          </div>
-        </div>
-        <div className="linechart-filter">
-          <p className="linechart-filter-title">Biggest changes between</p>
-          <div className="linechart-filter-body">
-            <ButtonFilterDropdown
-              title="From"
-              arrayData={yearsFrom}
-              color="#A9B4C0"
-              changeDataFromSelects={this.changeDataFrom}
-            />
-            <p>and</p>
-            <ButtonFilterDropdown
-              title="To"
-              arrayData={yearsTo}
-              color="#A9B4C0"
-              changeDataFromSelects={this.changeDataTo}
-            />
           </div>
         </div>
       </div>

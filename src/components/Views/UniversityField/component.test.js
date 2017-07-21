@@ -11,7 +11,8 @@ const store = {
       id_year: 2010
     },
   ],
-  topRanked: { "columbia": [
+  topRanked: {
+    "columbia": [
     {
       "_id": 52,
       "rank": 1,
@@ -28,7 +29,7 @@ const store = {
       "score": 9.9,
       "pub_year": 1943
     },
-],
+  ],
   "allSchools": [
     {
       "_id": 52,

@@ -5,6 +5,7 @@ import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
 import SyllabiList from '../../Dummy/Lists/SyllabiList/component'
 import {Link} from 'react-router';
 import './component.sass'
+import SVGArrowLeft from '../../Dummy/SVG/ArrowLeft/component.js'
 
 class InstructorEmailsResultsList extends Component {
 
@@ -16,7 +17,13 @@ class InstructorEmailsResultsList extends Component {
             <div className="university-field">
               <div className="search-view-header">
                 <div className="search-view-header-title">
-                  <span className="third-color small-font-size">University Portal</span>
+                  <span className="third-color small-font-size breadcrumb">
+                    <Link to="/university-portal/">
+                      University Portal
+                    </Link>
+                    {SVGArrowLeft()}
+                    Instructor Emails
+                  </span>
                   <Link to="/university-portal">
                     <p className="large-font-size font-bold">Columbia University</p>
                   </Link>

@@ -29,20 +29,44 @@ const store= {
         }
       ]
   },
-  "textAssignedWith": [
+  topRanked: {
+    "columbia": [
     {
-      "_id": 55,
-      "title": "Thesis #1",
-      "rank": 10,
+      "_id": 52,
+      "rank": 1,
+      "name": "Columbia",
       "author": {
-          "_id": 55,
+          "_id": 51,
           "author_first": "Neil",
           "author_middle": null,
           "author_last": "Cambell",
       },
+      "appearences": {
+          "total": 100
+      },
+      "score": 9.9,
       "pub_year": 1943
-    }
+    },
   ],
+  "allSchools": [
+    {
+      "_id": 52,
+      "rank": 1,
+      "name": "All Schools",
+      "author": {
+          "_id": 51,
+          "author_first": "Neil",
+          "author_middle": null,
+          "author_last": "Cambell",
+      },
+      "appearences": {
+          "total": 100
+      },
+      "score": 9.9,
+      "pub_year": 1943
+    },
+  ]
+  },
   "availability": {
       "openVersion": { // OR EXTERNAL LINKS, NO DB INDEXED?
           "_id": 55,

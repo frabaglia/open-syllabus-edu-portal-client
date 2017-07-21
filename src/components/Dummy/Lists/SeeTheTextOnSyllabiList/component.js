@@ -47,7 +47,7 @@ class SeeTheTextOnSyllabiList extends Component {
 
       return (
         <div className="see-the-text-on-syllabi-list">
-          <p>
+          <p className="font-semibold mid-font-size">
             See the Text on 24 Syllabi
           </p>
           <ul>
