@@ -7,6 +7,8 @@ import ContainerTopRankedList from '../../Dummy/ContainerTopRankedList/component
 // import LineChart from '../../Dummy/LineChart/component.js'
 import InternalNavbar from '../../Dummy/InternalNavbar/component'
 import SyllabiCounter from '../../Dummy/SyllabiCounter/component'
+import SVGArrowLeft from '../../Dummy/SVG/ArrowLeft/component.js'
+import {Link} from 'react-router';
 
 import './component.sass'
 
@@ -115,7 +117,13 @@ class UniversityField extends Component {
             <div className="university-field">
               <div className="search-view-header">
                 <div className="search-view-header-title">
-                  <span className="third-color small-font-size">University Portal</span>
+                  <span className="third-color small-font-size breadcrumb">
+                    <Link to="/university-portal/">
+                      University Portal
+                    </Link>
+                    {SVGArrowLeft()}
+                    Architecture
+                  </span>
                   <p className="large-font-size font-bold">Columbia University: Architecture</p>
                 </div>
                 <div className="search-view-header-navigation">

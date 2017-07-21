@@ -8,6 +8,8 @@ import BadgesList from '../../Dummy/Lists/BadgesList/component.js'
 import AuthorTitlesList from '../../Dummy/Lists/AuthorTitlesList/component.js'
 // import BarChart from '../../Dummy/BarChart/component.js'
 import images from './Fredric_Jameson.png'
+import SVGArrowLeft from '../../Dummy/SVG/ArrowLeft/component.js'
+import {Link} from 'react-router';
 
 class DummyAuthorResult extends Component {
 
@@ -38,6 +40,17 @@ class DummyAuthorResult extends Component {
         return (
           <div className="result-view">
             <div className="result-view-content">
+              <span className="third-color small-font-size breadcrumb">
+                <Link to="/university-portal/">
+                  University Portal
+                </Link>
+                {SVGArrowLeft()}
+                <Link to="/university-portal/result-list/authors">
+                  Authors
+                </Link>
+                {SVGArrowLeft()}
+                {`${first_name} ${middle_name} ${last_name}`}
+              </span>
               <div className="title-view">
                 <ButtonLabel title="AUTHORS" backgroundColor="#9BD331" color="#FFFFFF" border=""/>
                 <SVGFacebookLogo colorOval="#C8CFD7" colorShape="#FFFFFF"/>

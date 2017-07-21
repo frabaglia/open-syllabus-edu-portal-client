@@ -9,6 +9,7 @@ import BadgesList from '../../Dummy/Lists/BadgesList/component.js'
 import ContainerTopRankedList from '../../Dummy/ContainerTopRankedList/component'
 import SeeTheTextOnSyllabiList from '../../Dummy/Lists/SeeTheTextOnSyllabiList/component.js'
 // import BarChart from '../../Dummy/BarChart/component.js'
+import SVGArrowLeft from '../../Dummy/SVG/ArrowLeft/component.js'
 
 
 class DummyTitleResult extends Component {
@@ -39,6 +40,17 @@ class DummyTitleResult extends Component {
         return (
             <div className="result-view">
                 <div className="result-view-content">
+                  <span className="third-color small-font-size breadcrumb">
+                    <Link to="/university-portal/">
+                      University Portal
+                    </Link>
+                    {SVGArrowLeft()}
+                    <Link to="/university-portal/result-list/titles">
+                      Titles
+                    </Link>
+                    {SVGArrowLeft()}
+                    {store.title}
+                  </span>
                   <div className="title-view">
                     <ButtonLabel title="TITLES" backgroundColor="#9BD331" color="#FFFFFF" border=""/>
                     <SVGFacebookLogo colorOval="#C8CFD7" colorShape="#FFFFFF"/>
