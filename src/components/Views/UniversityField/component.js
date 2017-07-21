@@ -153,6 +153,9 @@ class UniversityField extends Component {
                   <div className="most-frequently-assigned-text-component">
                     <ContainerTopRankedList
                       store={store.topRanked}
+                      title={<p className="container-top-ranked-list-title font-semibold mid-font-size">Most Frequently Assigned Texts</p>}
+                      isYearSelectable={true}
+                      isTextAssigned={false}
                       navigation={true}
                       defaultListType={"Columbia"}
                       listTypes={["Columbia","All Schools"]}

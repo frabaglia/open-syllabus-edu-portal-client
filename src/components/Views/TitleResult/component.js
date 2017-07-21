@@ -6,7 +6,7 @@ import ButtonLabel from '../../Dummy/Buttons/ButtonLabel/component.js'
 import SVGFacebookLogo from '../../Dummy/SVG/FacebookLogo/component.js'
 import SVGTwitterLogo from '../../Dummy/SVG/TwitterLogo/component.js'
 import BadgesList from '../../Dummy/Lists/BadgesList/component.js'
-import TextAssignedList from '../../Dummy/Lists/TextAssignedList/component.js'
+import ContainerTopRankedList from '../../Dummy/ContainerTopRankedList/component'
 import SeeTheTextOnSyllabiList from '../../Dummy/Lists/SeeTheTextOnSyllabiList/component.js'
 // import BarChart from '../../Dummy/BarChart/component.js'
 
@@ -73,18 +73,26 @@ class DummyTitleResult extends Component {
                       <ButtonLabel title={`SCORE ${store.score}`} backgroundColor="#9BD331" color="#FFFFFF" border=""/>
                     </div>
                     <div className="badge-list-component">
-                      <p className="badge-list-component-title">Appearances by field</p>
+                      <p className="badge-list-component-title font-semibold mid-font-size">Appearances by field</p>
                       <BadgesList store={store.appearences.by_field} type={0}/>
                     </div>
                     <div className="text-assigned">
-                      <p className="text-assigned-discription">Texts assigned with <span>{`${store.title}:`}</span></p>
-                      <TextAssignedList store={store.textAssignedWith}/>
+                      <ContainerTopRankedList
+                        store={store.topRanked}
+                        title={<p className="container-top-ranked-list-title font-semibold mid-font-size">Texts assigned with <span className="font-bold">{`${store.title}:`}</span></p>}
+                        isYearSelectable={false}
+                        isTextAssigned={true}
+                        navigation={true}
+                        defaultListType={"Columbia"}
+                        listTypes={["Columbia","All Schools"]}
+                        _makeRequest={this.props._makeRequest}
+                      />
                     </div>
                   </div>
 
                   <aside className="right-content">
                     <div className="availability">
-                      <p>
+                      <p className="font-semibold mid-font-size">
                         Availability
                       </p>
                       <p>

@@ -12,20 +12,20 @@ class TextAssignedList extends Component {
     }
   }
 
-  renderFieldItemList = () =>
+  renderItemList = () =>
   {
-    let FieldItemsList = [];
+    let ItemsList = [];
     if(this.props.store.length <= 6) {
       this.props.store.map ( (item, i) => {
-        FieldItemsList.push(<li key={i}><TextAssignedItemList objectItem={item}/></li>)
+        ItemsList.push(<li key={i}><TextAssignedItemList objectItem={item}/></li>)
       });
     }
     else {
       for (var i = 0; i < this.state.pagination; i++) {
-        FieldItemsList.push(<li key={i}><TextAssignedItemList objectItem={this.props.store[i]}/></li>)
+        ItemsList.push(<li key={i}><TextAssignedItemList objectItem={this.props.store[i]}/></li>)
       }
     }
-    return FieldItemsList;
+    return ItemsList;
   }
 
   showMore = () => this.setState({pagination:this.props.store.length})
@@ -54,7 +54,7 @@ class TextAssignedList extends Component {
                 <div>RANK</div>
                 <div>TEXT</div>
             </div>
-            {this.renderFieldItemList()}
+            {this.renderItemList()}
           </ul>
           {this.renderButtonPagination()}
         </div>

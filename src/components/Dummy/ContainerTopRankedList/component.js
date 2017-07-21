@@ -28,11 +28,11 @@ class ContainerTopRankedList extends Component {
   {
       switch (this.state.defaultListType) {
         case 'Columbia':
-          return (<TitleList store={this.state.columbiaStore}/>)
+          return (<TitleList store={this.state.columbiaStore} showLessInfo={this.props.isTextAssigned}/>)
           break;
 
         case 'All Schools':
-          return (<TitleList store={this.state.allSchoolsStore}/>)
+          return (<TitleList store={this.state.allSchoolsStore} showLessInfo={this.props.isTextAssigned}/>)
           break;
 
         default:
@@ -73,6 +73,7 @@ class ContainerTopRankedList extends Component {
 
 
     if(this.props.navigation){
+      if(this.props.isYearSelectable){
         navigationTab = (
           <div className="navigation">
             <ButtonFilterDropdown
@@ -87,6 +88,18 @@ class ContainerTopRankedList extends Component {
             </div>
           </div>
         );
+      }
+      else {
+        navigationTab = (
+          <div className="navigation">
+            <div className="buttons-navigation">
+              <span ref="Columbia" className={columbiaClassName} onClick={this.changeList}>Columbia</span>
+              <span ref="All Schools" className={allSchoolsClassName} onClick={this.changeList}>All Schools</span>
+            </div>
+          </div>
+        );
+      }
+
     }
     else {
       navigationTab = (<div></div>);
@@ -194,7 +207,7 @@ class ContainerTopRankedList extends Component {
   render() {
       return (
         <div className="container-top-ranked-list">
-          <p className="container-top-ranked-list-title">Most Frequently Assigned Texts</p>
+          {this.props.title}
           {this.renderButtonsNavigation()}
           {this.renderList()}
           {this.renderButtonPagination()}
