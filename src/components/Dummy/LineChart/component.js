@@ -89,7 +89,7 @@ class LineChartComponent extends Component {
   render() {
     return (
       <div ref="linechartContainer" className="linechart-container">
-        <p className="linechart-title font-bold mid-font-size">Share of employed people working 50 hours or more per week</p>
+        <p className="linechart-title font-semibold mid-font-size">Share of employed people working 50 hours or more per week</p>
         <LineChart width={this.state.width} height={this.state.height} data={this.filterData()}
           margin={{ top: 5, right: 40, left: 7, bottom: 5 }}>
           <XAxis dataKey="name" />
